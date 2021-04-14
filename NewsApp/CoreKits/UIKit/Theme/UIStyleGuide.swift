@@ -51,6 +51,7 @@ extension UIStyleGuide {
     struct ColorPalette {
         static let white: UIColor = .white
         static let black: UIColor = .init(hex: "#171717")
+        static let dBlack: UIColor = .init(hex: "#090909")
     }
     
 }

@@ -34,7 +34,7 @@ extension AppTheme {
                 color: UIStyleGuide.ColorPalette.white,
                 font: .title1
             ),
-            background: .init(color: UIStyleGuide.ColorPalette.black)
+            background: .init(color: UIStyleGuide.ColorPalette.dBlack)
         ),
         backgroundColor: UIStyleGuide.ColorPalette.black
     ))
