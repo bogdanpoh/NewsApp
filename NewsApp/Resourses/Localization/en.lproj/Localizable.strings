@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  NewsApp
+
+  Created by Bogdan Pohidnya on 10.04.2021.
+  
+*/
+
+"news.title" = "News";
