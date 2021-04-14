@@ -17,7 +17,7 @@ extension ModulesFactory: NewsModuleFactoryProtocol {
     
     func makeNewsView(coordinator: NewsCoordinatorProtocol) -> Presentable {
         let viewModel = NewsViewModel(coordinator: coordinator)
-        return NewsViewController(viewModel: viewModel)
+        return FeedViewController(viewModel: viewModel)
     }
     
 }

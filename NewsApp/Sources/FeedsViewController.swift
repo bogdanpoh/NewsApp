@@ -1,5 +1,5 @@
 //
-//  NewsViewController.swift
+//  FeedViewController.swift
 //  NewsApp
 //
 //  Created by Bogdan Pohidnya on 13.04.2021.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-private let logger = Logger(identifier: "NewsViewController")
+private let logger = Logger(identifier: "FeedViewController")
 
-final class NewsViewController: ViewController<NewsView> {
+final class FeedViewController: ViewController<FeedView> {
     
     // MARK: - Initializers
     
@@ -18,7 +18,7 @@ final class NewsViewController: ViewController<NewsView> {
         
         super.init()
         
-        logger.debug("NewsViewController constructed")
+        logger.debug("FeedViewController constructed")
     }
     
     @available(*, unavailable)
@@ -27,7 +27,7 @@ final class NewsViewController: ViewController<NewsView> {
     }
     
     deinit {
-        logger.debug("~NewsViewController destructed")
+        logger.debug("~FeedViewController destructed")
     }
     
     // MARK: - Lifecycle
@@ -46,7 +46,7 @@ final class NewsViewController: ViewController<NewsView> {
 
 // MARK: -
 
-private extension NewsViewController {
+private extension FeedViewController {
     
     func setupNavigationBar() {
         navigationItem.title = R.string.localizable.newsTitle()

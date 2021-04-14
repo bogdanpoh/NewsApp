@@ -1,5 +1,5 @@
 //
-//  NewsView.swift
+//  FeedView.swift
 //  NewsApp
 //
 //  Created by Bogdan Pohidnya on 13.04.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class NewsView: View {
+final class FeedView: View {
     
     // MARK: - UI
     

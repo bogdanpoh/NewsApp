@@ -13,7 +13,7 @@ final class NavigationController: UINavigationController {
         super.viewDidLoad()
         
 //         bopo: uncomment for work back gesture
-        interactivePopGestureRecognizer?.delegate = nil
+//        interactivePopGestureRecognizer?.delegate = nil
     }
     
 }
