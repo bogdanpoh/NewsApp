@@ -14,7 +14,7 @@ protocol DetailsModuleFactoryProtocol {
 extension ModulesFactory: DetailsModuleFactoryProtocol {
     
     func makeDetailsView(coordinator: DetailsCoordinatorProtocol, news: News) -> Presentable {
-        let viewModel = DetailViewModel(coordinator: coordinator)
+        let viewModel = DetailViewModel(coordinator: coordinator, news: news)
         return DetailsViewController(viewModel: viewModel)
     }
     

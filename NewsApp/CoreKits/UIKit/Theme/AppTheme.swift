@@ -21,7 +21,16 @@ extension AppTheme {
             ),
             background: .init(color: UIStyleGuide.ColorPalette.white)
         ),
-        backgroundColor: UIStyleGuide.ColorPalette.white
+        backgroundColor: UIStyleGuide.ColorPalette.white,
+        details: .init(
+            title: .init(color: UIStyleGuide.ColorPalette.black, font: .title1),
+            publishedAt: .init(color: UIStyleGuide.ColorPalette.black, font: .title1),
+            description: .init(color: UIStyleGuide.ColorPalette.black, font: .title1),
+            button: .init(
+                text: .init(color: UIStyleGuide.ColorPalette.blue, font: .title1),
+                background: .init(color: UIStyleGuide.ColorPalette.lightGray)
+            )
+        )
     ))
     
 }
@@ -36,7 +45,16 @@ extension AppTheme {
             ),
             background: .init(color: UIStyleGuide.ColorPalette.dBlack)
         ),
-        backgroundColor: UIStyleGuide.ColorPalette.black
+        backgroundColor: UIStyleGuide.ColorPalette.black,
+        details: .init(
+            title: .init(color: UIStyleGuide.ColorPalette.white, font: .title1),
+            publishedAt: .init(color: UIStyleGuide.ColorPalette.white, font: .title1),
+            description: .init(color: UIStyleGuide.ColorPalette.white, font: .title1),
+            button: .init(
+                text: .init(color: UIStyleGuide.ColorPalette.blue, font: .title1),
+                background: .init(color: UIStyleGuide.ColorPalette.white)
+            )
+        )
     ))
 
 }

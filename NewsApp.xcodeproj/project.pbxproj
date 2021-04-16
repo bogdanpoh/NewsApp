@@ -99,6 +99,8 @@
 		F7FC1EF02629F03100B687DA /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FC1EEF2629F03100B687DA /* DetailViewModel.swift */; };
 		F7FC1EF52629F2C200B687DA /* DetailsModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FC1EF42629F2C200B687DA /* DetailsModuleFactory.swift */; };
 		F7FC1EF82629F2FF00B687DA /* DetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FC1EF72629F2FF00B687DA /* DetailsCoordinator.swift */; };
+		F7FC1F01262A1A8B00B687DA /* ButtonsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FC1F00262A1A8B00B687DA /* ButtonsFactory.swift */; };
+		F7FC1F04262A1D5600B687DA /* UIComponentsLibrary.Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FC1F03262A1D5600B687DA /* UIComponentsLibrary.Details.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -199,6 +201,8 @@
 		F7FC1EEF2629F03100B687DA /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		F7FC1EF42629F2C200B687DA /* DetailsModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModuleFactory.swift; sourceTree = "<group>"; };
 		F7FC1EF72629F2FF00B687DA /* DetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCoordinator.swift; sourceTree = "<group>"; };
+		F7FC1F00262A1A8B00B687DA /* ButtonsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsFactory.swift; sourceTree = "<group>"; };
+		F7FC1F03262A1D5600B687DA /* UIComponentsLibrary.Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponentsLibrary.Details.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -396,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				F731664D2621E33B00208394 /* UIComponentsLibrary.swift */,
+				F7FC1F03262A1D5600B687DA /* UIComponentsLibrary.Details.swift */,
 			);
 			path = UIComponentsLibrary;
 			sourceTree = "<group>";
@@ -500,6 +505,7 @@
 		F74E64DB2617450F0012728F /* NewsUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				F7FC1F00262A1A8B00B687DA /* ButtonsFactory.swift */,
 			);
 			path = NewsUIKit;
 			sourceTree = "<group>";
@@ -873,6 +879,7 @@
 				F70E844F2625ADED00ADF8C3 /* AppCoordinator.swift in Sources */,
 				F7FC1EF52629F2C200B687DA /* DetailsModuleFactory.swift in Sources */,
 				F70E847A2625B86500ADF8C3 /* ViewModel.swift in Sources */,
+				F7FC1F04262A1D5600B687DA /* UIComponentsLibrary.Details.swift in Sources */,
 				F7FC1EF02629F03100B687DA /* DetailViewModel.swift in Sources */,
 				F7CEA45A262213D7007648E1 /* R.generated.swift in Sources */,
 				F74E6519261755830012728F /* String.Ext.swift in Sources */,
@@ -882,6 +889,7 @@
 				F731664E2621E33B00208394 /* UIComponentsLibrary.swift in Sources */,
 				F70E848C2625BA8000ADF8C3 /* FeedView.swift in Sources */,
 				F73166632621E7FF00208394 /* UIColor+Ext.swift in Sources */,
+				F7FC1F01262A1A8B00B687DA /* ButtonsFactory.swift in Sources */,
 				F74E650526174E590012728F /* CacheStorage.swift in Sources */,
 				F73166462621E29600208394 /* LegacyThemeProvider.swift in Sources */,
 				F731666B2621ECC200208394 /* Label.swift in Sources */,

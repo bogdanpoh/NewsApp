@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DetailsCoordinatorProtocol {
-    func moveBack()
+    
 }
 
 final class DetailsCoordinator: BaseCoordinator, CoordinatorOutput {
@@ -46,10 +46,5 @@ extension DetailsCoordinator: Coordinatable {
 // MARK: - DetailsCoordinatorProtocol
 
 extension DetailsCoordinator: DetailsCoordinatorProtocol {
-    
-    func moveBack() {
-        router.popModule()
-        finishFlow?()
-    }
     
 }

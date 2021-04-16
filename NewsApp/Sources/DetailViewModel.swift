@@ -10,19 +10,22 @@ import Foundation
 private let logger = Logger(identifier: "DetailViewModel")
 
 protocol DetailViewModelInput {
-    
+    func tapOpenWebSite()
 }
 
 protocol DetailViewModelOutput {
-    
+    var news: News { get }
 }
 
 typealias DetailViewModelProtocol = FeedViewModelInput & FeedViewModelOutput
 
 final class DetailViewModel {
     
-    init(coordinator: DetailsCoordinatorProtocol) {
+    let news: News
+    
+    init(coordinator: DetailsCoordinatorProtocol, news: News) {
         self.coordinator = coordinator
+        self.news = news
     }
     
     // MARK: - Private
@@ -34,6 +37,10 @@ final class DetailViewModel {
 // MARK: - DetailViewModelInput
 
 extension DetailViewModel: DetailViewModelInput {
+    
+    func tapOpenWebSite() {
+        print("tap open: \(news.url)")
+    }
     
 }
 

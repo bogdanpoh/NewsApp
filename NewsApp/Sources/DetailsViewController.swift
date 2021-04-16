@@ -36,6 +36,8 @@ final class DetailsViewController: ViewController<DetailsView> {
         super.viewDidLoad()
         
         setupNavigationBar()
+        
+        contentView.set(news: viewModel.news)
     }
     
     // MARK: - Private

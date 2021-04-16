@@ -7,5 +7,7 @@
 */
 
 "news.title" = "Новости";
+"news.withoutAuthor" = "Без автора";
 
 "details.title" = "Подробности";
+"details.open" = "Открыть %@";
