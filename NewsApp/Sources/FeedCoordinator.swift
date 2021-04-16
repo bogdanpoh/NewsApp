@@ -1,5 +1,5 @@
 //
-//  NewsCoordinator.swift
+//  FeedCoordinator.swift
 //  NewsApp
 //
 //  Created by Bogdan Pohidnya on 13.04.2021.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol NewsCoordinatorProtocol {
+protocol FeedCoordinatorProtocol {
     func open(news: News)
 }
 
-final class NewsCoordinator: BaseCoordinator, CoordinatorOutput {
-    typealias ModuleFactoryProtocol = NewsModuleFactoryProtocol
+final class FeedCoordinator: BaseCoordinator, CoordinatorOutput {
+    typealias ModuleFactoryProtocol = FeedModuleFactoryProtocol
     typealias NewsCoordinatorFactory = NewsCoordinatorFactoryProtocol
     
     var finishFlow: CompletionBlock?
@@ -37,19 +37,26 @@ final class NewsCoordinator: BaseCoordinator, CoordinatorOutput {
 
 // MARK: - Coordinatable
 
-extension NewsCoordinator: Coordinatable {
+extension FeedCoordinator: Coordinatable {
     
     func start() {
-        let view = moduleFactory.makeNewsView(coordinator: self)
+        let view = moduleFactory.makeFeedView(coordinator: self)
         router.setRootModule(view)
     }
     
 }
 
-extension NewsCoordinator: NewsCoordinatorProtocol {
+// MARK: - FeedCoordinatorProtocol
+
+extension FeedCoordinator: FeedCoordinatorProtocol {
     
     func open(news: News) {
-        print("open news")
+        let coordinator = coordinatorFactory.makeDetailsCoordinator(with: router, news: news)
+        coordinator.finishFlow = { [unowned self, unowned coordinator] in
+            remove(dependency: coordinator)
+        }
+        add(dependency: coordinator)
+        coordinator.start()
     }
     
 }

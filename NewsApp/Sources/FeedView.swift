@@ -1,5 +1,5 @@
 //
-//  NewsView.swift
+//  FeedView.swift
 //  NewsApp
 //
 //  Created by Bogdan Pohidnya on 13.04.2021.
@@ -7,17 +7,15 @@
 
 import UIKit
 
-final class NewsView: View {
+final class FeedView: View {
     
     // MARK: - UI
     
     private lazy var contentStack = makeStackView(axis: .vertical) (
-        label
+        newsCollectionView
     )
     
-    private let label = Label()
-        .text("Hello")
-        .text(alignment: .center)
+    let newsCollectionView = NewsCollectionView()
     
     // MARK: - Lifecycle
     

@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var appCoordinator = AppCoordinator(
         router: Router(rootController: rootViewController),
-        factory: CoordinatorsFactory()
+        coordinatorFactory: CoordinatorsFactory()
     )
         
     private let services: [UIApplicationDelegate] = []

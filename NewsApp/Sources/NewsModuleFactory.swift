@@ -1,5 +1,5 @@
 //
-//  NewsModuleFactory.swift
+//  FeedModuleFactory.swift
 //  NewsApp
 //
 //  Created by Bogdan Pohidnya on 13.04.2021.
@@ -7,17 +7,17 @@
 
 import Foundation
 
-protocol NewsModuleFactoryProtocol {
-    func makeNewsView(coordinator: NewsCoordinatorProtocol) -> Presentable
+protocol FeedModuleFactoryProtocol {
+    func makeFeedView(coordinator: FeedCoordinatorProtocol) -> Presentable
 }
 
-// MARK: - NewsModuleFactoryProtocol
+// MARK: - FeedModuleFactoryProtocol
 
-extension ModulesFactory: NewsModuleFactoryProtocol {
+extension ModulesFactory: FeedModuleFactoryProtocol {
     
-    func makeNewsView(coordinator: NewsCoordinatorProtocol) -> Presentable {
-        let viewModel = NewsViewModel(coordinator: coordinator)
-        return NewsViewController(viewModel: viewModel)
+    func makeFeedView(coordinator: FeedCoordinatorProtocol) -> Presentable {
+        let viewModel = FeedViewModel(coordinator: coordinator)
+        return FeedViewController(viewModel: viewModel)
     }
     
 }

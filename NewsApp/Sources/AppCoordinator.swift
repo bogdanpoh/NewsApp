@@ -12,9 +12,9 @@ final class AppCoordinator: BaseCoordinator {
     
     // MARK: - Lifecycle
     
-    init(router: Routable, factory: CoordinatorFactoryProtocol) {
+    init(router: Routable, coordinatorFactory: CoordinatorFactoryProtocol) {
         self.router = router
-        self.factory = factory
+        self.coordinatorFactory = coordinatorFactory
         
         super.init()
     }
@@ -22,7 +22,7 @@ final class AppCoordinator: BaseCoordinator {
     // MARK: - Private
     
     private let router: Routable
-    private let factory: CoordinatorFactoryProtocol
+    private let coordinatorFactory: CoordinatorFactoryProtocol
     
 }
 
@@ -31,7 +31,7 @@ final class AppCoordinator: BaseCoordinator {
 extension AppCoordinator: Coordinatable {
     
     func start() {
-        let coordinator = factory.makeNewsCoordinator(with: router)
+        let coordinator = coordinatorFactory.makeNewsCoordinator(with: router)
         coordinator.finishFlow = { [unowned self, unowned coordinator] in
             remove(dependency: coordinator)
         }
