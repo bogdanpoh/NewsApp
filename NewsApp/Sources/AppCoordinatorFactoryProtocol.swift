@@ -16,7 +16,7 @@ protocol AppCoordinatorFactoryProtocol {
 extension CoordinatorsFactory: AppCoordinatorFactoryProtocol {
     
     func makeNewsCoordinator(with router: Routable) -> Coordinatable & CoordinatorOutput {
-        return NewsCoordinator(router: router, moduleFactory: modulesFactory, coordinatorFactory: self)
+        return FeedCoordinator(router: router, moduleFactory: modulesFactory, coordinatorFactory: self)
     }
     
 }
