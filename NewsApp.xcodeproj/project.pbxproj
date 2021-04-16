@@ -101,6 +101,7 @@
 		F7FC1EF82629F2FF00B687DA /* DetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FC1EF72629F2FF00B687DA /* DetailsCoordinator.swift */; };
 		F7FC1F01262A1A8B00B687DA /* ButtonsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FC1F00262A1A8B00B687DA /* ButtonsFactory.swift */; };
 		F7FC1F04262A1D5600B687DA /* UIComponentsLibrary.Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FC1F03262A1D5600B687DA /* UIComponentsLibrary.Details.swift */; };
+		F7FC1F2B262A398700B687DA /* KFImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FC1F2A262A398700B687DA /* KFImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -203,6 +204,7 @@
 		F7FC1EF72629F2FF00B687DA /* DetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCoordinator.swift; sourceTree = "<group>"; };
 		F7FC1F00262A1A8B00B687DA /* ButtonsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsFactory.swift; sourceTree = "<group>"; };
 		F7FC1F03262A1D5600B687DA /* UIComponentsLibrary.Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponentsLibrary.Details.swift; sourceTree = "<group>"; };
+		F7FC1F2A262A398700B687DA /* KFImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KFImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -506,6 +508,7 @@
 			isa = PBXGroup;
 			children = (
 				F7FC1F00262A1A8B00B687DA /* ButtonsFactory.swift */,
+				F7FC1F2A262A398700B687DA /* KFImageView.swift */,
 			);
 			path = NewsUIKit;
 			sourceTree = "<group>";
@@ -825,6 +828,7 @@
 				F74E64F426174D450012728F /* LocalizationSource.swift in Sources */,
 				F7FA84232626035800D2FAA5 /* FakeParser.swift in Sources */,
 				F74E64FE26174D9D0012728F /* LocalizableManagerProtocol.swift in Sources */,
+				F7FC1F2B262A398700B687DA /* KFImageView.swift in Sources */,
 				F738D4B82628C059006242DD /* NewsCollectionView.swift in Sources */,
 				F74E6516261753C40012728F /* Optional.String.Ext.swift in Sources */,
 				F731666F2621EE6700208394 /* View.swift in Sources */,

@@ -10,14 +10,14 @@ import UIKit
 final class NewsCollectionViewCell: CollectionViewCell {
     
     struct State {
-        var image: UIImage?
+        var imageUrl: String?
         var author: String
         var title: String
     }
     
     // MARK: - UI
     
-    private let imageView = ImageView()
+    private let imageView = KFImageView()
         .setContentMode(.scaleToFill)
         .backgroundColor(color: .gray)
     
@@ -66,7 +66,7 @@ extension NewsCollectionViewCell {
     
     @discardableResult
     func set(state: State) -> Self {
-        imageView.setImage(state.image)
+        imageView.setImage(path: state.imageUrl)
         authorLabel.text(state.author)
         titleLabel.text(state.title)
         return self

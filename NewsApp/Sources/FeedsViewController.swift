@@ -73,7 +73,7 @@ extension FeedViewController: UICollectionViewDataSource {
         let article = viewModel.item(for: indexPath)
         let cell = collectionView.dequeue(NewsCollectionViewCell.self, for: indexPath)
         return cell.set(state: .init(
-            image: R.image.testImg(),
+            imageUrl: article.urlToImage ?? "",
             author: article.author ?? R.string.localizable.newsWithoutAuthor(),
             title: article.title
         ))
