@@ -104,9 +104,14 @@ extension DetailsView {
         titleLabel.text(news.title)
 //        articleImage.setImage(news.urlToImage)
         articleImage.setImage(UIImage(named: "testImg"))
-        publishedAtLabel.text(news.publishedAt)
         descriptionLabel.text(news.description)
         openButton.title(R.string.localizable.detailsOpen(news.source.name))
+        return self
+    }
+    
+    @discardableResult
+    func set(publishAt: String) -> Self {
+        publishedAtLabel.text(publishAt)
         return self
     }
     

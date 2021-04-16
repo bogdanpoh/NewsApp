@@ -10,11 +10,14 @@ import Foundation
 private let dateFormatter = DateFormatterFabric.makeNumberFormatter(for: .ddMMMyyyy)
 
 enum DateFormatStyle: String {
-    //09:15
+    /// 09:15
     case HHmm = "HH:mm"
     
-    //20 Jan 2000
+    /// 20 Jan 2000
     case ddMMMyyyy = "dd MMM yyyy"
+    
+    /// 20.012000 - 09:15:00
+    case full = "dd.MM.yyyy - HH:mm:ss"
 }
 
 enum DateFormatterFabric {
