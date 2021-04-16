@@ -57,7 +57,7 @@ extension DateFormatter {
         return formatter
     }
     
-    static func formatISO8601(_ string: String) -> String {
+    static func formatISO8601(string: String) -> String {
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         let dateFormatterPrint = DateFormatterFabric.makeNumberFormatter(for: .full)
