@@ -12,12 +12,10 @@ final class FeedView: View {
     // MARK: - UI
     
     private lazy var contentStack = makeStackView(axis: .vertical) (
-        label
+        newsCollectionView
     )
     
-    private let label = Label()
-        .text("Hello")
-        .text(alignment: .center)
+    let newsCollectionView = NewsCollectionView()
     
     // MARK: - Lifecycle
     

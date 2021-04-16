@@ -7,8 +7,8 @@
 
 import UIKit
 
-class CollectionViewCell: UICollectionViewCell {
-    
+class CollectionViewCell: UICollectionViewCell, ViewLayoutableProtocol {
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -16,28 +16,22 @@ class CollectionViewCell: UICollectionViewCell {
         setupSubviews()
         defineLayout()
     }
-    
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-}
 
-// MARK: - ViewLayoutableProtocol
-
-extension CollectionViewCell: ViewLayoutableProtocol {
-    
     func setup() {
         // do nothing
     }
-    
+
     func setupSubviews() {
         // do nothing
     }
-    
+
     func defineLayout() {
         // do nothing
     }
-    
+
 }
