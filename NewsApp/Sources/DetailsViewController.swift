@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 private let logger = Logger(identifier: "DetailsViewController")
 
@@ -36,15 +37,15 @@ final class DetailsViewController: ViewController<DetailsView> {
         super.viewDidLoad()
         
         setupNavigationBar()
+        setupBindingToViewModel()
         
-        contentView
-            .set(news: viewModel.news)
-            .set(publishAt: viewModel.formattedPublishAt)
+        viewModel.viewDidLoad()
     }
     
     // MARK: - Private
     
     private let viewModel: DetailViewModel
+    private let disposeBag = DisposeBag()
     
 }
 
@@ -54,6 +55,20 @@ private extension DetailsViewController {
     
     func setupNavigationBar() {
         navigationItem.title = R.string.localizable.detailsTitle()
+    }
+    
+    func setupBindingToViewModel() {
+        viewModel.news
+            .subscribe(onNext: { [weak self] news in
+                self?.contentView.set(news: news)
+            })
+        .disposed(by: disposeBag)
+        
+        viewModel.formattedPublishAt
+            .subscribe(onNext: { [weak self] time in
+                self?.contentView.set(publishAt: time)
+            })
+            .disposed(by: disposeBag)
     }
     
 }

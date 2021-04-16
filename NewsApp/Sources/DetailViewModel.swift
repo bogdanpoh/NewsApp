@@ -5,33 +5,36 @@
 //  Created by Bogdan Pohidnya on 16.04.2021.
 //
 
-import Foundation
+import RxSwift
+import RxRelay
 
 private let logger = Logger(identifier: "DetailViewModel")
 
 protocol DetailViewModelInput {
+    func viewDidLoad()
+    
     func tapOpenWebSite()
 }
 
 protocol DetailViewModelOutput {
-    var news: News { get }
-    var formattedPublishAt: String { get }
+    var news: Observable<News> { get }
+    var formattedPublishAt: Observable<String> { get }
 }
 
 typealias DetailViewModelProtocol = FeedViewModelInput & FeedViewModelOutput
 
 final class DetailViewModel {
     
-    let news: News
-    
     init(coordinator: DetailsCoordinatorProtocol, news: News) {
         self.coordinator = coordinator
-        self.news = news
+        self.newsSubj = BehaviorRelay<News>(value: news)
     }
     
     // MARK: - Private
     
     private let coordinator: DetailsCoordinatorProtocol
+    private let newsSubj: BehaviorRelay<News>
+    private let publishAtSubj = PublishRelay<String>()
     
 }
 
@@ -39,8 +42,14 @@ final class DetailViewModel {
 
 extension DetailViewModel: DetailViewModelInput {
     
+    func viewDidLoad() {
+        let stringTime = newsSubj.value.publishedAt
+        let formattedTime = DateFormatter.formatISO8601(string: stringTime)
+        publishAtSubj.accept(formattedTime)
+    }
+    
     func tapOpenWebSite() {
-        print("tap open: \(news.url)")
+//        print("tap open: \(news.url)")
     }
     
 }
@@ -49,8 +58,12 @@ extension DetailViewModel: DetailViewModelInput {
 
 extension DetailViewModel: DetailViewModelOutput {
     
-    var formattedPublishAt: String {
-        return DateFormatter.formatISO8601(news.publishedAt)
+    var news: Observable<News> {
+        return newsSubj.asObservable()
+    }
+    
+    var formattedPublishAt: Observable<String> {
+        return publishAtSubj.asObservable()
     }
     
 }
