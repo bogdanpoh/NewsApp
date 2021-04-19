@@ -11,3 +11,4 @@
 
 "details.title" = "Подробности";
 "details.open" = "Открыть %@";
+"details.withoutDescription" = "Без описания";

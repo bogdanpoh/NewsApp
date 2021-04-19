@@ -103,7 +103,7 @@ extension DetailsView {
     func set(news: News) -> Self {
         titleLabel.text(news.title)
         articleImage.setImage(path: news.urlToImage)
-        descriptionLabel.text(news.description ?? "")
+        descriptionLabel.text(news.description ?? R.string.localizable.detailsWithoutDescription())
         openButton.title(R.string.localizable.detailsOpen(news.source.name))
         return self
     }
