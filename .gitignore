@@ -91,3 +91,6 @@ iOSInjectionProject/
 
 #R.Swift
 *.generated.swift
+
+#Privacy
+NewsApp/Sources/Core/StorageKeys.swift
