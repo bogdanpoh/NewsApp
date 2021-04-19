@@ -10,7 +10,9 @@ import Foundation
 enum Constants {
     
     enum NewsApi {
-        static let domainString = "https://newsapi.org/"
+        static let domainString = "https://newsapi.org/v2/top-headlines"
+        static let country = "ua"
+        static let apiKey = StorageKeys.NewsApiKey.apiKey
     }
     
 }

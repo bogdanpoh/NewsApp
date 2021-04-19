@@ -17,7 +17,7 @@ struct News: Decodable {
     var source: NewsSource
     var author: String?
     var title: String
-    var description: String
+    var description: String?
     var url: String
     var urlToImage: String?
     var publishedAt: String
@@ -25,6 +25,6 @@ struct News: Decodable {
 }
 
 struct NewsSource: Decodable {
-    var id: Int?
+    var id: String?
     var name: String
 }
