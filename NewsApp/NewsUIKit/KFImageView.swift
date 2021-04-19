@@ -14,7 +14,7 @@ final class KFImageView: ImageView {
 extension KFImageView {
     
     @discardableResult
-    func setImage(path: String?, placeholder: UIImage? = nil, completion: @escaping (Result<UIImage, Error>) -> Void = { _ in}) -> Self {
+    func setImage(path: String?, placeholder: UIImage? = nil, completion: @escaping (Result<UIImage, Error>) -> Void = { _ in }) -> Self {
         guard let url = path else {
             return self
         }
