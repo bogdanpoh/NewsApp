@@ -7,7 +7,6 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 
 private let logger = Logger(identifier: "FeedViewController")
 
