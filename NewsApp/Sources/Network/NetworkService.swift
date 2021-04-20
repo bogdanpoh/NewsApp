@@ -38,12 +38,14 @@ extension NetworkService: NetworkNewsProtocol {
     func getNews(country: Countrys) -> Promise<[News]> {
         return .init { resolver in
             guard var queryComponents = urlComponents else {
+                resolver.reject(NetworkError(code: 400, errorType: .unknown, message: "don`t have UrlComponents"))
                 return
             }
 
             queryComponents.queryItems?.append(.init(name: "country", value: country.rawValue))
 
             guard let url = queryComponents.url else {
+                resolver.reject(NetworkError(code: 400, errorType: .unknown, message: "don`t give url for fetch"))
                 return
             }
 
@@ -54,8 +56,10 @@ extension NetworkService: NetworkNewsProtocol {
                 }
 
                 guard let dataTask = data else {
+                    resolver.reject(NetworkError(code: 400, errorType: .unknown, message: "don`t fetch data"))
                     return
                 }
+                
                 do {
                     let newsResponse = try JSONDecoder().decode(NewsResponse.self, from: dataTask)
                     resolver.fulfill(newsResponse.articles)

@@ -1,27 +1,18 @@
 //
-//  NewsError.swift
+//  NewsErrorType.swift
 //  NewsApp
 //
-//  Created by Bogdan Pohidnya on 13.04.2021.
+//  Created by Bogdan Pohidnya on 20.04.2021.
 //
 
 import Foundation
 
-enum NewsErrorCode: String {
-    case apiKeyDisabled
-    case apiKeyExhausted
-    case apiKeyInvalid
-    case apiKeyMissing
-    case parameterInvalid
-    case parametersMissing
-    case rateLimited
-    case sourcesTooMany
-    case sourceDoesNotExist
-    case unexpectedError
+enum NetworkErrorType {
+    case unknown
 }
 
-struct NewsError {
-    var status: String
-    var code: NewsErrorCode
+struct NetworkError: Error {
+    var code: Int
+    var errorType: NetworkErrorType
     var message: String
 }
