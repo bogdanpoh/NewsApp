@@ -29,13 +29,12 @@ final class FeedViewModel {
     
     init(coordinator: FeedCoordinatorProtocol) {
         self.coordinator = coordinator
-        self.newsAtSubj = BehaviorRelay<[News]>(value: [])
     }
     
     // MARK: - Private
     
     private let coordinator: FeedCoordinatorProtocol
-    private var newsAtSubj: BehaviorRelay<[News]>
+    private var news: [News] = []
     private let reloadCellsSubj = PublishRelay<Void>()
     
 }
@@ -49,15 +48,15 @@ extension FeedViewModel: FeedViewModelInput {
     }
     
     func numberOfRows() -> Int {
-        return newsAtSubj.value.count
+        return news.count
     }
     
     func item(for indexPath: IndexPath) -> News {
-        return newsAtSubj.value[indexPath.row]
+        return news[indexPath.row]
     }
     
     func tapSelectCell(at indexPath: IndexPath) {
-        coordinator.open(news: newsAtSubj.value[indexPath.row])
+        coordinator.open(news: news[indexPath.row])
     }
     
 }
@@ -86,7 +85,7 @@ private extension FeedViewModel {
         ).getNews { [weak self] result in
             switch result {
             case .success(let news):
-                self?.newsAtSubj.accept(news)
+                self?.news = news
                 self?.reloadCellsSubj.accept(())
                 
             case .failure(let error):
