@@ -18,6 +18,7 @@ protocol FeedViewModelInput {
     func item(for indexPath: IndexPath) -> News
     
     func tapSelectCell(at indexPath: IndexPath)
+    func scrollToEnd()
 }
 
 protocol FeedViewModelOutput {
@@ -47,7 +48,7 @@ final class FeedViewModel {
 extension FeedViewModel: FeedViewModelInput {
     
     func viewDidLoad() {
-        fetchNews()
+        fetchNews(pagNumber: 1)
     }
     
     func numberOfRows() -> Int {
@@ -62,6 +63,10 @@ extension FeedViewModel: FeedViewModelInput {
         coordinator.open(news: news[indexPath.row])
     }
     
+    func scrollToEnd() {
+        fetchNews(pagNumber: 2)
+    }
+    
 }
 
 // MARK: - FeedViewModelOutput
@@ -74,18 +79,36 @@ extension FeedViewModel: FeedViewModelOutput {
     
 }
 
+// MARK: -
+
+private extension FeedViewModel {
+    
+    func addNews(newsResponse: NewsResponse) {
+        let newCount = news.count + newsResponse.articles.count
+        guard newCount <= newsResponse.totalResults else {
+            return
+        }
+        
+        news += newsResponse.articles
+    }
+    
+}
+
 // MARK: - Network
 
 private extension FeedViewModel {
     
-    func fetchNews() {
-        NetworkService().getNews(country: .ua)
-            .done { [weak self] news in
-                self?.news = news
-                self?.reloadCellsSubj.accept(())
+    func fetchNews(pagNumber: Int = 1) {
+        NetworkService().getNews(country: .ua, pageNumber: pagNumber)
+            .done { [weak self] newsResponse in
+                self?.addNews(newsResponse: newsResponse)
+                
             }
             .catch { error in
-                print(error)
+                logger.debug(error.localizedDescription)
+            }
+            .finally { [weak self] in
+                self?.reloadCellsSubj.accept(())
             }
     }
     

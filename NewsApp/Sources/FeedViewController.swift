@@ -7,7 +7,6 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 
 private let logger = Logger(identifier: "FeedViewController")
 
@@ -116,5 +115,14 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.tapSelectCell(at: indexPath)
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
+        
+        if bottomEdge >= scrollView.contentSize.height {
+            viewModel.scrollToEnd()
+        }
+    }
+    
     
 }

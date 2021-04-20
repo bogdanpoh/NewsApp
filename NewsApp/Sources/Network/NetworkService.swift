@@ -10,7 +10,7 @@ import PromiseKit
 typealias Countrys = Constants.NewsApi.Countrys
 
 protocol NetworkNewsProtocol {
-    func getNews(country: Countrys) -> Promise<[News]>
+    func getNews(country: Countrys, pageNumber: Int) -> Promise<NewsResponse>
 }
 
 final class NetworkService {
@@ -20,7 +20,6 @@ final class NetworkService {
     init() {
         self.urlComponents = URLComponents(string: Constants.NewsApi.domainString)
         self.urlComponents?.queryItems = [
-            URLQueryItem(name: "pageSize", value: Constants.NewsApi.pageSize),
             URLQueryItem(name: "apiKey", value: Constants.NewsApi.apiKey)
         ]
     }
@@ -35,7 +34,7 @@ final class NetworkService {
 
 extension NetworkService: NetworkNewsProtocol {
     
-    func getNews(country: Countrys) -> Promise<[News]> {
+    func getNews(country: Countrys, pageNumber: Int = 1) -> Promise<NewsResponse> {
         return .init { resolver in
             guard var queryComponents = urlComponents else {
                 resolver.reject(NetworkError(code: 400, errorType: .unknown, message: "don`t have UrlComponents"))
@@ -43,6 +42,7 @@ extension NetworkService: NetworkNewsProtocol {
             }
 
             queryComponents.queryItems?.append(.init(name: "country", value: country.rawValue))
+            queryComponents.queryItems?.append(.init(name: "page", value: String(pageNumber)))
 
             guard let url = queryComponents.url else {
                 resolver.reject(NetworkError(code: 400, errorType: .unknown, message: "don`t give url for fetch"))
@@ -62,7 +62,7 @@ extension NetworkService: NetworkNewsProtocol {
                 
                 do {
                     let newsResponse = try JSONDecoder().decode(NewsResponse.self, from: dataTask)
-                    resolver.fulfill(newsResponse.articles)
+                    resolver.fulfill(newsResponse)
                 } catch {
                     resolver.reject(error)
                 }
