@@ -28,6 +28,8 @@ typealias FeedViewModelProtocol = FeedViewModelInput & FeedViewModelOutput
 
 final class FeedViewModel {
     
+    // MARK: - Lifecycle
+    
     init(coordinator: FeedCoordinatorProtocol) {
         self.coordinator = coordinator
     }

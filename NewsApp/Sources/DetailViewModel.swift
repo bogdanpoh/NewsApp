@@ -25,6 +25,8 @@ typealias DetailViewModelProtocol = FeedViewModelInput & FeedViewModelOutput
 
 final class DetailViewModel {
     
+    // MARK: - Lifecycle
+    
     init(coordinator: DetailsCoordinatorProtocol, news: News) {
         self.coordinator = coordinator
         self.newsSubj = BehaviorRelay<News>(value: news)
