@@ -48,7 +48,7 @@ final class FeedViewModel {
 extension FeedViewModel: FeedViewModelInput {
     
     func viewDidLoad() {
-        fetchNews()
+        fetchNews(pagNumber: 1)
     }
     
     func numberOfRows() -> Int {
@@ -79,22 +79,17 @@ extension FeedViewModel: FeedViewModelOutput {
     
 }
 
-// MARK: - 
+// MARK: -
 
 private extension FeedViewModel {
     
     func addNews(newsResponse: NewsResponse) {
         let newCount = news.count + newsResponse.articles.count
         guard newCount <= newsResponse.totalResults else {
-            print(newCount)
             return
         }
         
-        if news.count < newsResponse.totalResults {
-            news += newsResponse.articles
-        } else {
-            news = newsResponse.articles
-        }
+        news += newsResponse.articles
     }
     
 }
@@ -106,12 +101,14 @@ private extension FeedViewModel {
     func fetchNews(pagNumber: Int = 1) {
         NetworkService().getNews(country: .ua, pageNumber: pagNumber)
             .done { [weak self] newsResponse in
-//                self?.news = news
                 self?.addNews(newsResponse: newsResponse)
-                self?.reloadCellsSubj.accept(())
+                
             }
             .catch { error in
-                print(error)
+                logger.debug(error.localizedDescription)
+            }
+            .finally { [weak self] in
+                self?.reloadCellsSubj.accept(())
             }
     }
     

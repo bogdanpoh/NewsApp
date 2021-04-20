@@ -121,10 +121,6 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
         let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
         
         if bottomEdge >= scrollView.contentSize.height {
-            print("end")
-            
-            print(viewModel.numberOfRows())
-            
             viewModel.scrollToEnd()
         }
     }
