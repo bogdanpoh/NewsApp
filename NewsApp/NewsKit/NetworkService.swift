@@ -7,33 +7,43 @@
 
 import Foundation
 
+typealias Countrys = Constants.NewsApi.Countrys
+
 protocol NetworkNewsProtocol {
-    func fetchNews(completion: @escaping (Result<Data, Error>) -> Void)
+    func fetchNews(country: Countrys, completion: @escaping (Result<Data, Error>) -> Void)
     
-    func getNews(completion: @escaping (Result<[News], Error>) -> Void)
+    func getNews(country: Countrys, completion: @escaping (Result<[News], Error>) -> Void)
 }
 
 final class NetworkService {
     
-    init(domainString: String, country: String, apiKey: String) {
-        self.urlComponents = URLComponents(string: domainString)
+    // MARK: - Initializers
+    
+    init() {
+        self.urlComponents = URLComponents(string: Constants.NewsApi.domainString)
         self.urlComponents?.queryItems = [
-            URLQueryItem(name: "country", value: country),
-            URLQueryItem(name: "apiKey", value: apiKey)
+            URLQueryItem(name: "apiKey", value: Constants.NewsApi.apiKey)
         ]
     }
     
+    // MARK: - Private
+    
     private var urlComponents: URLComponents?
+    
 }
 
 // MARK: - NetworkNewsProtocol
 
 extension NetworkService: NetworkNewsProtocol {
     
-    func fetchNews(completion: @escaping (Result<Data, Error>) -> Void) {
-        guard let queryComponents = urlComponents,
-              let url = queryComponents.url
-        else {
+    func fetchNews(country: Countrys, completion: @escaping (Result<Data, Error>) -> Void) {
+        guard var queryComponents = urlComponents else {
+            return
+        }
+        
+        queryComponents.queryItems?.append(.init(name: "country", value: country.rawValue))
+        
+        guard let url = queryComponents.url else {
             return
         }
         
@@ -51,8 +61,8 @@ extension NetworkService: NetworkNewsProtocol {
         task.resume()
     }
     
-    func getNews(completion: @escaping (Result<[News], Error>) -> Void) {
-        fetchNews { result in
+    func getNews(country: Countrys, completion: @escaping (Result<[News], Error>) -> Void) {
+        fetchNews(country: country) { result in
             switch result {
             case .success(let data):
                 do {

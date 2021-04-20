@@ -76,13 +76,7 @@ extension FeedViewModel: FeedViewModelOutput {
 private extension FeedViewModel {
     
     func fetchNews() {
-        let newsConstants = Constants.NewsApi.self
-        
-        NetworkService(
-            domainString: newsConstants.domainString,
-            country: newsConstants.country,
-            apiKey: newsConstants.apiKey
-        ).getNews { [weak self] result in
+        NetworkService().getNews(country: Countrys.ua) { [weak self] result in
             switch result {
             case .success(let news):
                 self?.news = news
