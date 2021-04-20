@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 private let logger = Logger(identifier: "FeedViewController")
 
@@ -41,6 +43,7 @@ final class FeedViewController: ViewController<FeedView> {
         }
         
         setupNavigationBar()
+        setupBindingToViewModel()
         
         viewModel.viewDidLoad()
     }
@@ -48,6 +51,7 @@ final class FeedViewController: ViewController<FeedView> {
     // MARK: - Private
     
     private let viewModel: FeedViewModelProtocol
+    private let disposeBag = DisposeBag()
     
 }
 
@@ -57,6 +61,16 @@ private extension FeedViewController {
     
     func setupNavigationBar() {
         navigationItem.title = R.string.localizable.newsTitle()
+    }
+    
+    func setupBindingToViewModel() {
+        viewModel.reloadCells
+            .subscribe (onNext: { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.contentView.newsCollectionView.collectionView.reloadData()
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
 }
@@ -73,7 +87,7 @@ extension FeedViewController: UICollectionViewDataSource {
         let article = viewModel.item(for: indexPath)
         let cell = collectionView.dequeue(NewsCollectionViewCell.self, for: indexPath)
         return cell.set(state: .init(
-            image: R.image.testImg(),
+            imageUrl: article.urlToImage ?? "",
             author: article.author ?? R.string.localizable.newsWithoutAuthor(),
             title: article.title
         ))

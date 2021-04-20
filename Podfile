@@ -20,5 +20,6 @@ target 'NewsApp' do
   
   # Resources
   pod 'R.swift'
+  pod 'Kingfisher', '~> 6.0'
 
 end

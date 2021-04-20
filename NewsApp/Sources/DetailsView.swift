@@ -24,7 +24,7 @@ final class DetailsView: View {
         .enableMultilines()
         .text(alignment: .center)
     
-    private let articleImage = ImageView()
+    private let articleImage = KFImageView()
         .backgroundColor(color: .gray)
         .setContentMode(.scaleToFill)
         .setCornerRadius(20)
@@ -102,9 +102,8 @@ extension DetailsView {
     @discardableResult
     func set(news: News) -> Self {
         titleLabel.text(news.title)
-//        articleImage.setImage(news.urlToImage)
-        articleImage.setImage(UIImage(named: "testImg"))
-        descriptionLabel.text(news.description)
+        articleImage.setImage(path: news.urlToImage)
+        descriptionLabel.text(news.description ?? R.string.localizable.detailsWithoutDescription())
         openButton.title(R.string.localizable.detailsOpen(news.source.name))
         return self
     }

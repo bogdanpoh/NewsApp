@@ -5,7 +5,9 @@
 //  Created by Bogdan Pohidnya on 13.04.2021.
 //
 
-import Foundation
+import RxSwift
+import RxRelay
+import PromiseKit
 
 private let logger = Logger(identifier: "FeedViewModel")
 
@@ -19,7 +21,7 @@ protocol FeedViewModelInput {
 }
 
 protocol FeedViewModelOutput {
-    
+    var reloadCells: Observable<Void> { get }
 }
 
 typealias FeedViewModelProtocol = FeedViewModelInput & FeedViewModelOutput
@@ -34,6 +36,7 @@ final class FeedViewModel {
     
     private let coordinator: FeedCoordinatorProtocol
     private var news: [News] = []
+    private let reloadCellsSubj = PublishRelay<Void>()
     
 }
 
@@ -46,6 +49,7 @@ extension FeedViewModel: FeedViewModelInput {
     }
     
     func numberOfRows() -> Int {
+        print(news.count)
         return news.count
     }
     
@@ -63,6 +67,10 @@ extension FeedViewModel: FeedViewModelInput {
 
 extension FeedViewModel: FeedViewModelOutput {
     
+    var reloadCells: Observable<Void> {
+        return reloadCellsSubj.asObservable()
+    }
+    
 }
 
 // MARK: - Network
@@ -70,7 +78,14 @@ extension FeedViewModel: FeedViewModelOutput {
 private extension FeedViewModel {
     
     func fetchNews() {
-        self.news = FakeParsser().getNews()
+        NetworkService().getNews(country: .ua)
+            .done { [weak self] news in
+                self?.news = news
+                self?.reloadCellsSubj.accept(())
+            }
+            .catch { error in
+                print(error)
+            }
     }
     
 }

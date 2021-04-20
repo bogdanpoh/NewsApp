@@ -11,3 +11,4 @@
 
 "details.title" = "Details";
 "details.open" = "Open %@";
+"details.withoutDescription" = "Without description";
