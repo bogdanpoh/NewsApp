@@ -16,7 +16,6 @@ final class NewsCollectionView: View {
         collectionViewFlowLayout.scrollDirection = .vertical
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
-        collectionView.showsVerticalScrollIndicator = false
         collectionView.register(class: NewsCollectionViewCell.self)
         return collectionView
     }()

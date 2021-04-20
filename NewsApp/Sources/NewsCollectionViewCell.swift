@@ -22,11 +22,15 @@ final class NewsCollectionViewCell: CollectionViewCell {
         .backgroundColor(color: .gray)
     
     private let authorLabel = Label()
-        .textColor(.white)
+        .textColor(.black)
+    
+    private let authorBackgroundView = makeBackgroundView(backgroundColor: .white)
     
     private let titleLabel = Label()
         .set(numberOfLines: 2)
-        .textColor(.white)
+        .textColor(.black)
+    
+    private let titleBackgroundView = makeBackgroundView(backgroundColor: .white)
     
     // MARK: - Lifecycle
     
@@ -37,7 +41,9 @@ final class NewsCollectionViewCell: CollectionViewCell {
         maskToBounds(true)
         
         contentView.addSubview(imageView)
-        imageView.addSubviews(authorLabel, titleLabel)
+        imageView.addSubviews(authorBackgroundView, titleBackgroundView)
+        authorBackgroundView.addSubview(authorLabel)
+        titleBackgroundView.addSubview(titleLabel)
     }
 
     override func defineLayout() {
@@ -46,15 +52,30 @@ final class NewsCollectionViewCell: CollectionViewCell {
         imageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
-        authorLabel.snp.makeConstraints {
+
+        authorBackgroundView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(UIEdgeInsets(aTop: 10))
             $0.leading.equalToSuperview().inset(UIEdgeInsets(aLeft: 10))
+
+            $0.width.equalTo(authorLabel.snp.width).offset(10)
+            $0.height.equalTo(authorLabel.snp.height).offset(10)
         }
-        
-        titleLabel.snp.makeConstraints {
+
+        authorLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+
+        titleBackgroundView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
                 .inset(UIEdgeInsets.init(aLeft: 10, aBottom: 10, aRight: 10))
+
+            $0.width.equalTo(titleLabel.snp.width).offset(10)
+            $0.height.equalTo(titleLabel.snp.height).offset(10)
+        }
+
+        titleLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().inset(UIEdgeInsets(aLeft: 10))
         }
     }
     
@@ -70,6 +91,19 @@ extension NewsCollectionViewCell {
         authorLabel.text(state.author)
         titleLabel.text(state.title)
         return self
+    }
+    
+}
+
+// MARK: - BackgroundView Factory
+
+private extension NewsCollectionViewCell {
+    
+    static func makeBackgroundView(backgroundColor: UIColor) -> View {
+        return View()
+            .backgroundColor(color: backgroundColor)
+            .setCornerRadius(5)
+            .maskToBounds(true)
     }
     
 }
