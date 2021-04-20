@@ -5,14 +5,12 @@
 //  Created by Bogdan Pohidnya on 19.04.2021.
 //
 
-import Foundation
+import PromiseKit
 
 typealias Countrys = Constants.NewsApi.Countrys
 
 protocol NetworkNewsProtocol {
-    func fetchNews(country: Countrys, completion: @escaping (Result<Data, Error>) -> Void)
-    
-    func getNews(country: Countrys, completion: @escaping (Result<[News], Error>) -> Void)
+    func getNews(country: Countrys) -> Promise<[News]>
 }
 
 final class NetworkService {
@@ -36,45 +34,35 @@ final class NetworkService {
 
 extension NetworkService: NetworkNewsProtocol {
     
-    func fetchNews(country: Countrys, completion: @escaping (Result<Data, Error>) -> Void) {
-        guard var queryComponents = urlComponents else {
-            return
-        }
-        
-        queryComponents.queryItems?.append(.init(name: "country", value: country.rawValue))
-        
-        guard let url = queryComponents.url else {
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let errorTask = error {
-                completion(.failure(errorTask))
+    func getNews(country: Countrys) -> Promise<[News]> {
+        return .init { resolver in
+            guard var queryComponents = urlComponents else {
                 return
             }
-            
-            guard let dataTask = data else {
+
+            queryComponents.queryItems?.append(.init(name: "country", value: country.rawValue))
+
+            guard let url = queryComponents.url else {
                 return
             }
-            completion(.success(dataTask))
-        }
-        task.resume()
-    }
-    
-    func getNews(country: Countrys, completion: @escaping (Result<[News], Error>) -> Void) {
-        fetchNews(country: country) { result in
-            switch result {
-            case .success(let data):
-                do {
-                    let newsResponse = try JSONDecoder().decode(NewsResponse.self, from: data)
-                    completion(.success(newsResponse.articles))
-                } catch {
-                    completion(.failure(error))
+
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if let errorTask = error {
+                    resolver.reject(errorTask)
+                    return
                 }
-                
-            case .failure(let error):
-                completion(.failure(error))
+
+                guard let dataTask = data else {
+                    return
+                }
+                do {
+                    let newsResponse = try JSONDecoder().decode(NewsResponse.self, from: dataTask)
+                    resolver.fulfill(newsResponse.articles)
+                } catch {
+                    resolver.reject(error)
+                }
             }
+            task.resume()
         }
     }
 }

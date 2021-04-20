@@ -7,6 +7,7 @@
 
 import RxSwift
 import RxRelay
+import PromiseKit
 
 private let logger = Logger(identifier: "FeedViewModel")
 
@@ -76,16 +77,14 @@ extension FeedViewModel: FeedViewModelOutput {
 private extension FeedViewModel {
     
     func fetchNews() {
-        NetworkService().getNews(country: Countrys.ua) { [weak self] result in
-            switch result {
-            case .success(let news):
+        NetworkService().getNews(country: .ua)
+            .done { [weak self] news in
                 self?.news = news
                 self?.reloadCellsSubj.accept(())
-                
-            case .failure(let error):
-                print("Error when get news from network: \(error)")
             }
-        }
+            .catch { error in
+                print(error)
+            }
     }
     
 }
