@@ -20,6 +20,7 @@ final class NetworkService {
     init() {
         self.urlComponents = URLComponents(string: Constants.NewsApi.domainString)
         self.urlComponents?.queryItems = [
+            URLQueryItem(name: "pageSize", value: Constants.NewsApi.pageSize),
             URLQueryItem(name: "apiKey", value: Constants.NewsApi.apiKey)
         ]
     }

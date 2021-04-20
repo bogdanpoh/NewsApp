@@ -49,6 +49,7 @@ extension FeedViewModel: FeedViewModelInput {
     }
     
     func numberOfRows() -> Int {
+        print(news.count)
         return news.count
     }
     
