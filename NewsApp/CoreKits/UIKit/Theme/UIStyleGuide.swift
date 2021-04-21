@@ -34,9 +34,6 @@ enum UIStyleGuide {
             case .bold:
                 return "Bold"
 
-            case .semibold:
-                return "Semibold"
-
             default:
                 assertionFailure("missing required weight")
                 return stringFrom(weight: .regular)

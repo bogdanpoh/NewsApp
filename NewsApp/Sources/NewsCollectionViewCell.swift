@@ -19,7 +19,7 @@ final class NewsCollectionViewCell: CollectionViewCell {
     
     private let containerView = View()
         .backgroundColor(color: UIStyleGuide.ColorPalette.white)
-        .setCornerRadius(20)
+        .setCornerRadius(15)
         .maskToBounds(true)
         
     private let imageView = KFImageView()
@@ -35,7 +35,7 @@ final class NewsCollectionViewCell: CollectionViewCell {
     override func setup() {
         super.setup()
         
-        addShadow()
+        applyShadow()
     }
     
     override func setupSubviews() {
@@ -84,7 +84,6 @@ final class NewsCollectionViewCell: CollectionViewCell {
         authorLabel
             .textColor(feedStyle.author.color)
             .text(font: feedStyle.author.font)
-        
     }
     
 }
@@ -93,15 +92,15 @@ final class NewsCollectionViewCell: CollectionViewCell {
 
 private extension NewsCollectionViewCell {
     
-    func addShadow() {
+    func applyShadow() {
         let shadowWidth = bounds.width
-        let shadowHeight = bounds.height / 2 + 5
+        let shadowHeight = bounds.height / 2
         let rect = CGRect(x: 0, y: shadowHeight, width: shadowWidth, height: shadowHeight)
         layer.shadowPath = UIBezierPath(roundedRect: rect, cornerRadius: 10).cgPath
         layer.backgroundColor = UIColor.clear.cgColor
         layer.shadowColor = UIStyleGuide.ColorPalette.black.cgColor
         layer.shadowOpacity = 0.2
-        layer.shadowRadius = 6
+        layer.shadowRadius = 8
     }
     
 }
