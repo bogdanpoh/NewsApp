@@ -39,6 +39,8 @@ final class FeedViewModel {
     
     private let coordinator: FeedCoordinatorProtocol
     private var news: [News] = []
+    private var isLoadingFull: Bool = false
+    private var currentLoadingPage: Int = 1
     private let reloadCellsSubj = PublishRelay<Void>()
     
 }
@@ -48,7 +50,7 @@ final class FeedViewModel {
 extension FeedViewModel: FeedViewModelInput {
     
     func viewDidLoad() {
-        fetchNews(pagNumber: 1)
+        fetchNews(for: currentLoadingPage)
     }
     
     func numberOfRows() -> Int {
@@ -64,7 +66,7 @@ extension FeedViewModel: FeedViewModelInput {
     }
     
     func scrollToEnd() {
-        fetchNews(pagNumber: 2)
+        fetchNews(for: currentLoadingPage)
     }
     
 }
@@ -86,6 +88,7 @@ private extension FeedViewModel {
     func addNews(newsResponse: NewsResponse) {
         let newCount = news.count + newsResponse.articles.count
         guard newCount <= newsResponse.totalResults else {
+            isLoadingFull = true
             return
         }
         
@@ -98,17 +101,21 @@ private extension FeedViewModel {
 
 private extension FeedViewModel {
     
-    func fetchNews(pagNumber: Int = 1) {
+    func fetchNews(for pagNumber: Int = 1) {
+        guard !isLoadingFull else {
+            return
+        }
+        
         NetworkService().getNews(country: .ua, pageNumber: pagNumber)
             .done { [weak self] newsResponse in
                 self?.addNews(newsResponse: newsResponse)
-                
             }
             .catch { error in
                 logger.debug(error.localizedDescription)
             }
             .finally { [weak self] in
                 self?.reloadCellsSubj.accept(())
+                self?.currentLoadingPage += 1
             }
     }
     
