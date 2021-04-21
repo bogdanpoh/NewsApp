@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CollectionViewCell: UICollectionViewCell, ViewLayoutableProtocol {
+class CollectionViewCell: UICollectionViewCell, ViewLayoutableProtocol, Themeable {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,7 +23,7 @@ class CollectionViewCell: UICollectionViewCell, ViewLayoutableProtocol {
     }
 
     func setup() {
-        // do nothing
+        themeProvider.register(observer: self)
     }
 
     func setupSubviews() {
@@ -31,6 +31,12 @@ class CollectionViewCell: UICollectionViewCell, ViewLayoutableProtocol {
     }
 
     func defineLayout() {
+        // do nothing
+    }
+    
+    // MARK: - Delegate
+    
+    func apply(theme: AppTheme) {
         // do nothing
     }
 

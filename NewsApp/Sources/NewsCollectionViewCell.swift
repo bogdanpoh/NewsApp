@@ -24,14 +24,11 @@ final class NewsCollectionViewCell: CollectionViewCell {
         
     private let imageView = KFImageView()
         .setContentMode(.scaleToFill)
-        .backgroundColor(color: .gray)
-    
-    private let authorLabel = Label()
-        .textColor(.black)
     
     private let titleLabel = Label()
         .set(numberOfLines: 2)
-        .textColor(.black)
+    
+    private let authorLabel = Label()
     
     // MARK: - Lifecycle
     
@@ -65,7 +62,7 @@ final class NewsCollectionViewCell: CollectionViewCell {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(imageView.snp.bottom).offset(10)
+            $0.top.equalTo(imageView.snp.bottom).offset(15)
             $0.leading.trailing.equalToSuperview().inset(UIEdgeInsets(horizontal: 10))
         }
         
@@ -73,6 +70,21 @@ final class NewsCollectionViewCell: CollectionViewCell {
             $0.leading.trailing.equalToSuperview().inset(UIEdgeInsets(horizontal: 10))
             $0.bottom.equalToSuperview().inset(UIEdgeInsets(aBottom: 10))
         }
+    }
+    
+    override func apply(theme: AppTheme) {
+        super.apply(theme: theme)
+        
+        let feedStyle = theme.components.feed
+        
+        titleLabel
+            .textColor(feedStyle.title.color)
+            .text(font: feedStyle.title.font)
+        
+        authorLabel
+            .textColor(feedStyle.author.color)
+            .text(font: feedStyle.author.font)
+        
     }
     
 }

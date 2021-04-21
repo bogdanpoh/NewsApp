@@ -51,9 +51,11 @@ extension UIStyleGuide {
     struct ColorPalette {
         static let white: UIColor = .white
         static let black: UIColor = .init(hex: "#080808")
+        static let tblack: UIColor = .init(hex: "#000000")
         static let blue: UIColor = .init(hex: "#007AFF")
         static let dBlack: UIColor = .init(hex: "#090909")
-        static let lightGray: UIColor = .init(hex: "#C4C4C4")
+        static let gray: UIColor = .init(hex: "#C4C4C4")
+        static let lightGray: UIColor = .init(hex: "767676")
     }
     
 }
@@ -62,5 +64,11 @@ extension UIFont {
     
     ///roboto, .bold, size: 18
     static let title1 = UIStyleGuide.Typography.roboto(weight: .bold, size: 18)
+    
+    ///roboto, .regular, size 18
+    static let title = UIStyleGuide.Typography.roboto(weight: .regular, size: 20)
+    
+    ///roboto, .light, size 14
+    static let author = UIStyleGuide.Typography.roboto(weight: .light, size: 14)
     
 }
