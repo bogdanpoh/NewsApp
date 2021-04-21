@@ -18,9 +18,10 @@ final class NewsCollectionViewCell: CollectionViewCell {
     // MARK: - UI
     
     private let containerView = View()
+        .backgroundColor(color: UIStyleGuide.ColorPalette.white)
         .setCornerRadius(20)
         .maskToBounds(true)
-    
+        
     private let imageView = KFImageView()
         .setContentMode(.scaleToFill)
         .backgroundColor(color: .gray)
@@ -28,13 +29,9 @@ final class NewsCollectionViewCell: CollectionViewCell {
     private let authorLabel = Label()
         .textColor(.black)
     
-    private let authorBackgroundView = makeBackgroundView(backgroundColor: .white)
-    
     private let titleLabel = Label()
         .set(numberOfLines: 2)
         .textColor(.black)
-    
-    private let titleBackgroundView = makeBackgroundView(backgroundColor: .white)
     
     // MARK: - Lifecycle
     
@@ -48,10 +45,11 @@ final class NewsCollectionViewCell: CollectionViewCell {
         super.setupSubviews()
         
         contentView.addSubview(containerView)
-        containerView.addSubview(imageView)
-        imageView.addSubviews(authorBackgroundView, titleBackgroundView)
-        authorBackgroundView.addSubview(authorLabel)
-        titleBackgroundView.addSubview(titleLabel)
+        containerView.addSubviews(
+            imageView,
+            titleLabel,
+            authorLabel
+        )
     }
 
     override func defineLayout() {
@@ -62,32 +60,18 @@ final class NewsCollectionViewCell: CollectionViewCell {
         }
         
         imageView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(200)
         }
-
-        authorBackgroundView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(UIEdgeInsets(aTop: 10))
-            $0.leading.equalToSuperview().inset(UIEdgeInsets(aLeft: 10))
-
-            $0.width.equalTo(authorLabel.snp.width).offset(10)
-            $0.height.equalTo(authorLabel.snp.height).offset(10)
-        }
-
-        authorLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-
-        titleBackgroundView.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalToSuperview()
-                .inset(UIEdgeInsets.init(aLeft: 10, aBottom: 10, aRight: 10))
-
-            $0.width.equalTo(titleLabel.snp.width).offset(10)
-            $0.height.equalTo(titleLabel.snp.height).offset(10)
-        }
-
+        
         titleLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(UIEdgeInsets(aLeft: 10))
+            $0.top.equalTo(imageView.snp.bottom).offset(10)
+            $0.leading.trailing.equalToSuperview().inset(UIEdgeInsets(horizontal: 10))
+        }
+        
+        authorLabel.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(UIEdgeInsets(horizontal: 10))
+            $0.bottom.equalToSuperview().inset(UIEdgeInsets(aBottom: 10))
         }
     }
     
