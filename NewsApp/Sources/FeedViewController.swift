@@ -103,12 +103,12 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        return 30
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width - 36
-        let height = UIScreen.main.bounds.height / 4
+        let width: CGFloat = UIScreen.main.bounds.width - 36
+        let height: CGFloat = 300
         return .init(width: width, height: height)
     }
     
@@ -116,13 +116,13 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
         viewModel.tapSelectCell(at: indexPath)
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        let height = contentView.newsCollectionView.collectionView.contentSize.height / 2
         
-        if bottomEdge >= scrollView.contentSize.height {
+        if position > height {
             viewModel.scrollToEnd()
         }
     }
-    
     
 }

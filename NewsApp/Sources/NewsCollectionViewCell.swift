@@ -17,45 +17,90 @@ final class NewsCollectionViewCell: CollectionViewCell {
     
     // MARK: - UI
     
+    private let containerView = View()
+        .backgroundColor(color: UIStyleGuide.ColorPalette.white)
+        .setCornerRadius(15)
+        .maskToBounds(true)
+        
     private let imageView = KFImageView()
         .setContentMode(.scaleToFill)
-        .backgroundColor(color: .gray)
-    
-    private let authorLabel = Label()
-        .textColor(.white)
     
     private let titleLabel = Label()
         .set(numberOfLines: 2)
-        .textColor(.white)
+    
+    private let authorLabel = Label()
     
     // MARK: - Lifecycle
+    
+    override func setup() {
+        super.setup()
+        
+        applyShadow()
+    }
     
     override func setupSubviews() {
         super.setupSubviews()
         
-        setCornerRadius(20)
-        maskToBounds(true)
-        
-        contentView.addSubview(imageView)
-        imageView.addSubviews(authorLabel, titleLabel)
+        contentView.addSubview(containerView)
+        containerView.addSubviews(
+            imageView,
+            titleLabel,
+            authorLabel
+        )
     }
 
     override func defineLayout() {
         super.defineLayout()
         
-        imageView.snp.makeConstraints {
+        containerView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
-        authorLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(UIEdgeInsets(aTop: 10))
-            $0.leading.equalToSuperview().inset(UIEdgeInsets(aLeft: 10))
+        imageView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(200)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalToSuperview()
-                .inset(UIEdgeInsets.init(aLeft: 10, aBottom: 10, aRight: 10))
+            $0.top.equalTo(imageView.snp.bottom).offset(15)
+            $0.leading.trailing.equalToSuperview().inset(UIEdgeInsets(horizontal: 10))
         }
+        
+        authorLabel.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(UIEdgeInsets(horizontal: 10))
+            $0.bottom.equalToSuperview().inset(UIEdgeInsets(aBottom: 10))
+        }
+    }
+    
+    override func apply(theme: AppTheme) {
+        super.apply(theme: theme)
+        
+        let feedStyle = theme.components.feed
+        
+        titleLabel
+            .textColor(feedStyle.title.color)
+            .text(font: feedStyle.title.font)
+        
+        authorLabel
+            .textColor(feedStyle.author.color)
+            .text(font: feedStyle.author.font)
+    }
+    
+}
+
+// MARK: -
+
+private extension NewsCollectionViewCell {
+    
+    func applyShadow() {
+        let shadowWidth = bounds.width
+        let shadowHeight = bounds.height / 2
+        let rect = CGRect(x: 0, y: shadowHeight, width: shadowWidth, height: shadowHeight)
+        layer.shadowPath = UIBezierPath(roundedRect: rect, cornerRadius: 10).cgPath
+        layer.backgroundColor = UIColor.clear.cgColor
+        layer.shadowColor = UIStyleGuide.ColorPalette.black.cgColor
+        layer.shadowOpacity = 0.2
+        layer.shadowRadius = 8
     }
     
 }
@@ -66,10 +111,23 @@ extension NewsCollectionViewCell {
     
     @discardableResult
     func set(state: State) -> Self {
-        imageView.setImage(path: state.imageUrl)
+        imageView.setImage(path: state.imageUrl, placeholder: R.image.newsPlaceholder())
         authorLabel.text(state.author)
         titleLabel.text(state.title)
         return self
+    }
+    
+}
+
+// MARK: - BackgroundView Factory
+
+private extension NewsCollectionViewCell {
+    
+    static func makeBackgroundView(backgroundColor: UIColor) -> View {
+        return View()
+            .backgroundColor(color: backgroundColor)
+            .setCornerRadius(5)
+            .maskToBounds(true)
     }
     
 }

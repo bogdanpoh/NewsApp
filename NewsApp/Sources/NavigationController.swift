@@ -12,8 +12,6 @@ final class NavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//         bopo: uncomment for work back gesture
-//        interactivePopGestureRecognizer?.delegate = nil
     }
     
 }

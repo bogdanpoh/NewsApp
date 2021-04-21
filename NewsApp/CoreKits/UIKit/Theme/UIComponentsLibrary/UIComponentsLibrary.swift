@@ -32,5 +32,6 @@ struct UIComponentsLibrary {
     
     var navigationBar: NavigationBar
     var backgroundColor: UIColor
+    var feed: Feed
     var details: Details
 }
