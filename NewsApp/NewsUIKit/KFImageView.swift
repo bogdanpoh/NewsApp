@@ -15,13 +15,11 @@ extension KFImageView {
     
     @discardableResult
     func setImage(path: String?, placeholder: UIImage? = nil, completion: @escaping (Result<UIImage, Error>) -> Void = { _ in }) -> Self {
-        guard let url = path else {
+        guard let stringUrl = path else {
             return self
         }
-        if url.isEmpty {
-            return self
-        }
-        kf.setImage(with: URL(string: url), placeholder: placeholder) { result in
+        
+        kf.setImage(with: URL(string: stringUrl), placeholder: placeholder) { result in
             switch result {
             case .success(let imageResult):
                 completion(.success(imageResult.image))

@@ -87,7 +87,7 @@ extension NewsCollectionViewCell {
     
     @discardableResult
     func set(state: State) -> Self {
-        imageView.setImage(path: state.imageUrl)
+        imageView.setImage(path: state.imageUrl, placeholder: R.image.newsPlaceholder())
         authorLabel.text(state.author)
         titleLabel.text(state.title)
         return self
