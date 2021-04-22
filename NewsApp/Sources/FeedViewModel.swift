@@ -71,7 +71,6 @@ extension FeedViewModel: FeedViewModelInput {
     }
     
     func pullToRefresh(completion: @escaping () -> Void) {
-        self.articles.removeAll()
         fetchArticles(country: .ua, pageNumber: 1)
         completion()
     }
