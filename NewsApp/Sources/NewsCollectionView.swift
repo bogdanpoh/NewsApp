@@ -11,12 +11,15 @@ final class NewsCollectionView: View {
     
     // MARK: - UI
     
+    private(set) var refreshControl = UIRefreshControl()
+    
     private(set) lazy var collectionView: UICollectionView = {
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.scrollDirection = .vertical
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
         collectionView.register(class: NewsCollectionViewCell.self)
+        collectionView.refreshControl = refreshControl
         return collectionView
     }()
     
