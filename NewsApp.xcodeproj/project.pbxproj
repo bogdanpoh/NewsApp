@@ -22,7 +22,7 @@
 		F70E84632625B2EA00ADF8C3 /* CoordinatorsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E84622625B2EA00ADF8C3 /* CoordinatorsFactory.swift */; };
 		F70E846B2625B58900ADF8C3 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E846A2625B58900ADF8C3 /* FeedCoordinator.swift */; };
 		F70E846F2625B61500ADF8C3 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E846E2625B61500ADF8C3 /* News.swift */; };
-		F70E84752625B70100ADF8C3 /* NewsModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E84742625B70100ADF8C3 /* NewsModuleFactory.swift */; };
+		F70E84752625B70100ADF8C3 /* FeedModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E84742625B70100ADF8C3 /* FeedModuleFactory.swift */; };
 		F70E847A2625B86500ADF8C3 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E84792625B86500ADF8C3 /* ViewModel.swift */; };
 		F70E84862625B96900ADF8C3 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E84852625B96900ADF8C3 /* FeedViewModel.swift */; };
 		F70E848C2625BA8000ADF8C3 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E848B2625BA8000ADF8C3 /* FeedView.swift */; };
@@ -128,7 +128,7 @@
 		F70E84622625B2EA00ADF8C3 /* CoordinatorsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorsFactory.swift; sourceTree = "<group>"; };
 		F70E846A2625B58900ADF8C3 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		F70E846E2625B61500ADF8C3 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
-		F70E84742625B70100ADF8C3 /* NewsModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModuleFactory.swift; sourceTree = "<group>"; };
+		F70E84742625B70100ADF8C3 /* FeedModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModuleFactory.swift; sourceTree = "<group>"; };
 		F70E84792625B86500ADF8C3 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		F70E84852625B96900ADF8C3 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		F70E848B2625BA8000ADF8C3 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
@@ -314,7 +314,7 @@
 		F70E84662625B36200ADF8C3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				F70E84742625B70100ADF8C3 /* NewsModuleFactory.swift */,
+				F70E84742625B70100ADF8C3 /* FeedModuleFactory.swift */,
 				F7FC1EF42629F2C200B687DA /* DetailsModuleFactory.swift */,
 			);
 			name = Modules;
@@ -861,7 +861,7 @@
 				F75CF4892624CF7B008AE543 /* UIStackView+Ext.swift in Sources */,
 				F74E64C7261743790012728F /* AppDelegate.swift in Sources */,
 				F731662E2621D84300208394 /* Presentable.swift in Sources */,
-				F70E84752625B70100ADF8C3 /* NewsModuleFactory.swift in Sources */,
+				F70E84752625B70100ADF8C3 /* FeedModuleFactory.swift in Sources */,
 				F75CF48D2624D1E2008AE543 /* SKitScrollView.swift in Sources */,
 				F7FC1EEB2629EDF600B687DA /* DetailsViewController.swift in Sources */,
 				F7BD705B262E44F800C99F3C /* StorageKeys.swift in Sources */,

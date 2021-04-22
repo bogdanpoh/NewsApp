@@ -34,7 +34,7 @@ final class NetworkService {
 
 extension NetworkService: NetworkNewsProtocol {
     
-    func getNews(country: Countrys, pageNumber: Int = 1) -> Promise<NewsResponse> {
+    func getNews(country: Countrys, pageNumber: Int) -> Promise<NewsResponse> {
         return .init { resolver in
             guard var queryComponents = urlComponents else {
                 resolver.reject(NetworkError(code: 400, errorType: .unknown, message: "don`t have UrlComponents"))

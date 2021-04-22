@@ -11,6 +11,7 @@ final class ModulesFactory {
     
     let dependencyContainer: Container = {
         let container = Container()
+        container.register(NetworkNewsProtocol.self) { _ in NetworkService() }
         container.register(Loggable.self) { _ in Logger() }
         return container
     }()

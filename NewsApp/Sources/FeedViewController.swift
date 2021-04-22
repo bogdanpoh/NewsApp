@@ -36,11 +36,7 @@ final class FeedViewController: ViewController<FeedView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        contentView.newsCollectionView.collectionView.make {
-            $0.dataSource = self
-            $0.delegate = self
-        }
-        
+        setupView()
         setupNavigationBar()
         setupBindingToViewModel()
         
@@ -58,6 +54,15 @@ final class FeedViewController: ViewController<FeedView> {
 
 private extension FeedViewController {
     
+    func setupView() {
+        contentView.newsCollectionView.collectionView.make {
+            $0.dataSource = self
+            $0.delegate = self
+        }
+        
+        contentView.newsCollectionView.refreshControl.addTarget(self, action: #selector(didPullToRefresh(_:)), for: .valueChanged)
+    }
+    
     func setupNavigationBar() {
         navigationItem.title = R.string.localizable.newsTitle()
     }
@@ -70,6 +75,19 @@ private extension FeedViewController {
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+}
+
+// MARK: - User interactions
+
+extension FeedViewController {
+    
+    @objc
+    func didPullToRefresh(_ sender: Any) {
+        viewModel.pullToRefresh { [weak self] in
+            self?.contentView.newsCollectionView.refreshControl.endRefreshing()
+        }
     }
     
 }
@@ -117,10 +135,10 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let position = scrollView.contentOffset.y
-        let height = contentView.newsCollectionView.collectionView.contentSize.height / 2
+        let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
+        let contentHeight = scrollView.contentSize.height
         
-        if position > height {
+        if bottomEdge >= contentHeight {
             viewModel.scrollToEnd()
         }
     }

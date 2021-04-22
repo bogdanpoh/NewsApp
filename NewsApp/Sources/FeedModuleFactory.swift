@@ -16,7 +16,10 @@ protocol FeedModuleFactoryProtocol {
 extension ModulesFactory: FeedModuleFactoryProtocol {
     
     func makeFeedView(coordinator: FeedCoordinatorProtocol) -> Presentable {
-        let viewModel = FeedViewModel(coordinator: coordinator)
+        let viewModel = FeedViewModel(
+            coordinator: coordinator,
+            networkService: dependencyContainer.resolve(NetworkNewsProtocol.self)!
+        )
         return FeedViewController(viewModel: viewModel)
     }
     
