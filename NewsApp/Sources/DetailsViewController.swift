@@ -60,7 +60,14 @@ private extension DetailsViewController {
     func setupBindingToViewModel() {
         viewModel.article
             .subscribe(onNext: { [weak self] article in
-                self?.contentView.set(article: article)
+                self?.contentView.set(state: DetailsView.State.init(
+                    articleImageUrl: article.urlToImage,
+                    title: article.title,
+                    author: article.author,
+                    publishedAt: article.publishedAt,
+                    description: article.description,
+                    sourceName: article.source.name
+                ))
             })
         .disposed(by: disposeBag)
         

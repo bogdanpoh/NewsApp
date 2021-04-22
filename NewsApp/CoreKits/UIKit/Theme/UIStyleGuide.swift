@@ -52,7 +52,8 @@ extension UIStyleGuide {
         static let blue: UIColor = .init(hex: "#007AFF")
         static let dBlack: UIColor = .init(hex: "#090909")
         static let gray: UIColor = .init(hex: "#C4C4C4")
-        static let lightGray: UIColor = .init(hex: "767676")
+        static let lightGray: UIColor = .init(hex: "#767676")
+        static let ultraLightGray: UIColor = .init(hex: "#EEEEF0")
     }
     
 }
@@ -62,10 +63,19 @@ extension UIFont {
     ///roboto, .bold, size: 18
     static let title1 = UIStyleGuide.Typography.roboto(weight: .bold, size: 18)
     
-    ///roboto, .regular, size 18
-    static let title = UIStyleGuide.Typography.roboto(weight: .regular, size: 20)
+    ///roboto, .regular, size: 18
+    static let titleFeed = UIStyleGuide.Typography.roboto(weight: .regular, size: 20)
     
-    ///roboto, .light, size 14
-    static let author = UIStyleGuide.Typography.roboto(weight: .light, size: 14)
+    ///roboto, .light, size: 14
+    static let authorFeed = UIStyleGuide.Typography.roboto(weight: .light, size: 14)
+    
+    ///roboto, .medium, size: 20
+    static let titleDetail = UIStyleGuide.Typography.roboto(weight: .medium, size: 20)
+    
+    ///roboto, .light, size: 12
+    static let authorDetail = UIStyleGuide.Typography.roboto(weight: .light, size: 14)
+    
+    ///roboto, .regular, size: 14
+    static let descriptionDetail = UIStyleGuide.Typography.roboto(weight: .regular, size: 18)
     
 }

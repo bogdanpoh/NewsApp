@@ -18,6 +18,9 @@ enum DateFormatStyle: String {
     
     /// 20.012000 - 09:15:00
     case full = "dd.MM.yyyy - HH:mm:ss"
+    
+    /// Jan 20, 2000 - 09:15
+    case mayDayYear = "MMM dd, yyyy - HH:mm"
 }
 
 enum DateFormatterFabric {

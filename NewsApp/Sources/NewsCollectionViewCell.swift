@@ -11,7 +11,7 @@ final class NewsCollectionViewCell: CollectionViewCell {
     
     struct State {
         var imageUrl: String?
-        var author: String
+        var author: String?
         var title: String
     }
     
@@ -112,7 +112,7 @@ extension NewsCollectionViewCell {
     @discardableResult
     func set(state: State) -> Self {
         imageView.setImage(path: state.imageUrl, placeholder: R.image.newsPlaceholder())
-        authorLabel.text(state.author)
+        authorLabel.text(state.author ?? R.string.localizable.feedWithoutAuthor())
         titleLabel.text(state.title)
         return self
     }

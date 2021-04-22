@@ -6,8 +6,8 @@
   
 */
 
-"news.title" = "Новости";
-"news.withoutAuthor" = "Без автора";
+"feed.title" = "Новости";
+"feed.withoutAuthor" = "Без автора";
 
 "details.title" = "Подробности";
 "details.open" = "Открыть %@";

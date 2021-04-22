@@ -16,23 +16,23 @@ extension AppTheme {
     static let light = AppTheme(components: .init(
         navigationBar: .init(
             text: .init(
-                color: UIStyleGuide.ColorPalette.black,
+                color: UIStyleGuide.ColorPalette.tblack,
                 font: .title1
             ),
             background: .init(color: UIStyleGuide.ColorPalette.white)
         ),
         backgroundColor: UIStyleGuide.ColorPalette.white,
         feed: .init(
-            title: .init(color: UIStyleGuide.ColorPalette.tblack, font: .title),
-            author: .init(color: UIStyleGuide.ColorPalette.lightGray, font: .author)
+            title: .init(color: UIStyleGuide.ColorPalette.tblack, font: .titleFeed),
+            author: .init(color: UIStyleGuide.ColorPalette.lightGray, font: .authorFeed)
         ),
         details: .init(
-            title: .init(color: UIStyleGuide.ColorPalette.black, font: .title1),
-            publishedAt: .init(color: UIStyleGuide.ColorPalette.black, font: .title1),
-            description: .init(color: UIStyleGuide.ColorPalette.black, font: .title1),
+            title: .init(color: UIStyleGuide.ColorPalette.black, font: .titleDetail),
+            author: .init(color: UIStyleGuide.ColorPalette.black, font: .authorDetail),
+            description: .init(color: UIStyleGuide.ColorPalette.black, font: .descriptionDetail),
             button: .init(
                 text: .init(color: UIStyleGuide.ColorPalette.blue, font: .title1),
-                background: .init(color: UIStyleGuide.ColorPalette.gray)
+                background: .init(color: UIStyleGuide.ColorPalette.ultraLightGray)
             )
         )
     ))
@@ -51,13 +51,13 @@ extension AppTheme {
         ),
         backgroundColor: UIStyleGuide.ColorPalette.black,
         feed: .init(
-            title: .init(color: UIStyleGuide.ColorPalette.tblack, font: .title),
-            author: .init(color: UIStyleGuide.ColorPalette.lightGray, font: .author)
+            title: .init(color: UIStyleGuide.ColorPalette.tblack, font: .titleFeed),
+            author: .init(color: UIStyleGuide.ColorPalette.lightGray, font: .authorFeed)
         ),
         details: .init(
-            title: .init(color: UIStyleGuide.ColorPalette.white, font: .title1),
-            publishedAt: .init(color: UIStyleGuide.ColorPalette.white, font: .title1),
-            description: .init(color: UIStyleGuide.ColorPalette.white, font: .title1),
+            title: .init(color: UIStyleGuide.ColorPalette.white, font: .titleDetail),
+            author: .init(color: UIStyleGuide.ColorPalette.gray, font: .authorDetail),
+            description: .init(color: UIStyleGuide.ColorPalette.white, font: .descriptionDetail),
             button: .init(
                 text: .init(color: UIStyleGuide.ColorPalette.blue, font: .title1),
                 background: .init(color: UIStyleGuide.ColorPalette.white)
