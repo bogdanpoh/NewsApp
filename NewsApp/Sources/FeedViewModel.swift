@@ -114,8 +114,7 @@ private extension FeedViewModel {
     
     func fetchArticles(country: Countrys, pageNumber: Int) {
         firstly {
-//            networkService.getNews(country: country, pageNumber: pageNumber)
-            FakeParsser().getArticlesResponse()
+            networkService.getNews(country: country, pageNumber: pageNumber)
         }.done { newsResponse in
             self.addArticles(newsResponse: newsResponse, pageNumber: pageNumber)
             self.reloadCellsSubj.accept(())
