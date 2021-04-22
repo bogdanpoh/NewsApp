@@ -8,15 +8,15 @@
 import Foundation
 
 protocol NewsCoordinatorFactoryProtocol {
-    func makeDetailsCoordinator(with router: Routable, news: News) -> Coordinatable & CoordinatorOutput
+    func makeDetailsCoordinator(with router: Routable, article: Article) -> Coordinatable & CoordinatorOutput
 }
 
 // MARK: - NewsCoordinatorFactoryProtocol
 
 extension CoordinatorsFactory: NewsCoordinatorFactoryProtocol {
     
-    func makeDetailsCoordinator(with router: Routable, news: News) -> Coordinatable & CoordinatorOutput {
-        return DetailsCoordinator(router: router, moduleFactory: modulesFactory, news: news)
+    func makeDetailsCoordinator(with router: Routable, article: Article) -> Coordinatable & CoordinatorOutput {
+        return DetailsCoordinator(router: router, moduleFactory: modulesFactory, article: article)
     }
     
 }

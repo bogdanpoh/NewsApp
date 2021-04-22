@@ -100,11 +100,11 @@ final class DetailsView: View {
 extension DetailsView {
     
     @discardableResult
-    func set(news: News) -> Self {
-        titleLabel.text(news.title)
-        articleImage.setImage(path: news.urlToImage)
-        descriptionLabel.text(news.description ?? R.string.localizable.detailsWithoutDescription())
-        openButton.title(R.string.localizable.detailsOpen(news.source.name))
+    func set(article: Article) -> Self {
+        titleLabel.text(article.title)
+        articleImage.setImage(path: article.urlToImage)
+        descriptionLabel.text(article.description ?? R.string.localizable.detailsWithoutDescription())
+        openButton.title(R.string.localizable.detailsOpen(article.source.name))
         return self
     }
     

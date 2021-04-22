@@ -58,9 +58,9 @@ private extension DetailsViewController {
     }
     
     func setupBindingToViewModel() {
-        viewModel.news
-            .subscribe(onNext: { [weak self] news in
-                self?.contentView.set(news: news)
+        viewModel.article
+            .subscribe(onNext: { [weak self] article in
+                self?.contentView.set(article: article)
             })
         .disposed(by: disposeBag)
         

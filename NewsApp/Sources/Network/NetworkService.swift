@@ -10,7 +10,7 @@ import PromiseKit
 typealias Countrys = Constants.NewsApi.Countrys
 
 protocol NetworkNewsProtocol {
-    func getNews(country: Countrys, pageNumber: Int) -> Promise<NewsResponse>
+    func getNews(country: Countrys, pageNumber: Int) -> Promise<ArticleResponse>
 }
 
 final class NetworkService {
@@ -34,7 +34,7 @@ final class NetworkService {
 
 extension NetworkService: NetworkNewsProtocol {
     
-    func getNews(country: Countrys, pageNumber: Int) -> Promise<NewsResponse> {
+    func getNews(country: Countrys, pageNumber: Int) -> Promise<ArticleResponse> {
         return .init { resolver in
             guard var queryComponents = urlComponents else {
                 resolver.reject(NetworkError(code: 400, errorType: .unknown, message: "don`t have UrlComponents"))
@@ -61,7 +61,7 @@ extension NetworkService: NetworkNewsProtocol {
                 }
                 
                 do {
-                    let newsResponse = try JSONDecoder().decode(NewsResponse.self, from: dataTask)
+                    let newsResponse = try JSONDecoder().decode(ArticleResponse.self, from: dataTask)
                     resolver.fulfill(newsResponse)
                 } catch {
                     resolver.reject(error)
