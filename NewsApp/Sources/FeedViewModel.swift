@@ -15,7 +15,7 @@ protocol FeedViewModelInput {
     func viewDidLoad()
     
     func numberOfRows() -> Int
-    func item(for indexPath: IndexPath) -> News
+    func item(for indexPath: IndexPath) -> Article
     
     func tapSelectCell(at indexPath: IndexPath)
     func pullToRefresh(completion: @escaping () -> Void)
@@ -41,7 +41,7 @@ final class FeedViewModel {
     
     private let coordinator: FeedCoordinatorProtocol
     private let networkService: NetworkNewsProtocol
-    private var news: [News] = []
+    private var articles: [Article] = []
     private let reloadCellsSubj = PublishRelay<Void>()
     
 }
@@ -51,28 +51,28 @@ final class FeedViewModel {
 extension FeedViewModel: FeedViewModelInput {
     
     func viewDidLoad() {
-        fetchNews(country: .ua, pageNumber: 1)
+        fetchArticles(country: .ua, pageNumber: 1)
     }
     
     func numberOfRows() -> Int {
-        return news.count
+        return articles.count
     }
     
-    func item(for indexPath: IndexPath) -> News {
-        return news[indexPath.row]
+    func item(for indexPath: IndexPath) -> Article {
+        return articles[indexPath.row]
     }
     
     func tapSelectCell(at indexPath: IndexPath) {
-        coordinator.open(news: news[indexPath.row])
+        coordinator.open(article: articles[indexPath.row])
     }
     
     func scrollToEnd() {
-        fetchNews(country: .ua, pageNumber: 2)
+        fetchArticles(country: .ua, pageNumber: 2)
     }
     
     func pullToRefresh(completion: @escaping () -> Void) {
-        self.news.removeAll()
-        fetchNews(country: .ua, pageNumber: 1)
+        self.articles.removeAll()
+        fetchArticles(country: .ua, pageNumber: 1)
         completion()
     }
     
@@ -92,17 +92,17 @@ extension FeedViewModel: FeedViewModelOutput {
 
 private extension FeedViewModel {
     
-    func addNews(newsResponse: NewsResponse, pageNumber: Int) {
-        let newCount = self.news.count + newsResponse.articles.count
+    func addArticles(newsResponse: ArticleResponse, pageNumber: Int) {
+        let newCount = self.articles.count + newsResponse.articles.count
         guard newCount <= newsResponse.totalResults else {
             return
         }
         
         if pageNumber > 1 {
-            self.news += newsResponse.articles
+            self.articles += newsResponse.articles
         } else {
-            self.news.removeAll()
-            self.news = newsResponse.articles
+            self.articles.removeAll()
+            self.articles = newsResponse.articles
         }
     }
     
@@ -112,11 +112,11 @@ private extension FeedViewModel {
 
 private extension FeedViewModel {
     
-    func fetchNews(country: Countrys, pageNumber: Int) {
+    func fetchArticles(country: Countrys, pageNumber: Int) {
         firstly {
             networkService.getNews(country: country, pageNumber: pageNumber)
         }.done { newsResponse in
-            self.addNews(newsResponse: newsResponse, pageNumber: pageNumber)
+            self.addArticles(newsResponse: newsResponse, pageNumber: pageNumber)
             self.reloadCellsSubj.accept(())
         }.catch { error in
             logger.error(error.localizedDescription)

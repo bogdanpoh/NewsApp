@@ -18,17 +18,17 @@ final class DetailsCoordinator: BaseCoordinator, CoordinatorOutput {
     
     // MARK: - Lifecycle
     
-    init(router: Routable, moduleFactory: DetailsModuleFactory, news: News) {
+    init(router: Routable, moduleFactory: DetailsModuleFactory, article: Article) {
         self.router = router
         self.moduleFactory = moduleFactory
-        self.news = news
+        self.news = article
     }
     
     // MARK: - Private
     
     private let router: Routable
     private let moduleFactory: DetailsModuleFactory
-    private let news: News
+    private let news: Article
     
 }
 

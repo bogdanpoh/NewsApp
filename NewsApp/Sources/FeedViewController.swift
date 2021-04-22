@@ -64,7 +64,7 @@ private extension FeedViewController {
     }
     
     func setupNavigationBar() {
-        navigationItem.title = R.string.localizable.newsTitle()
+        navigationItem.title = R.string.localizable.feedTitle()
     }
     
     func setupBindingToViewModel() {
@@ -104,8 +104,8 @@ extension FeedViewController: UICollectionViewDataSource {
         let article = viewModel.item(for: indexPath)
         let cell = collectionView.dequeue(NewsCollectionViewCell.self, for: indexPath)
         return cell.set(state: .init(
-            imageUrl: article.urlToImage ?? "",
-            author: article.author ?? R.string.localizable.newsWithoutAuthor(),
+            imageUrl: article.urlToImage,
+            author: article.author,
             title: article.title
         ))
     }

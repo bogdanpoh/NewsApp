@@ -11,7 +11,7 @@ extension UIComponentsLibrary {
     
     struct Details {
         var title: TextComponent
-        var publishedAt: TextComponent
+        var author: TextComponent
         var description: TextComponent
         var button: Button
     }

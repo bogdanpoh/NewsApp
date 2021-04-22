@@ -1,5 +1,5 @@
 //
-//  News.swift
+//  Article.swift
 //  NewsApp
 //
 //  Created by Bogdan Pohidnya on 13.04.2021.
@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct NewsResponse: Decodable {
+struct ArticleResponse: Decodable {
     var status: String
     var totalResults: Int
-    var articles: [News]
+    var articles: [Article]
 }
 
-struct News: Decodable {
-    var source: NewsSource
+struct Article: Decodable {
+    var source: ArticleSource
     var author: String?
     var title: String
     var description: String?
@@ -24,7 +24,7 @@ struct News: Decodable {
     var content: String?
 }
 
-struct NewsSource: Decodable {
+struct ArticleSource: Decodable {
     var id: String?
     var name: String
 }

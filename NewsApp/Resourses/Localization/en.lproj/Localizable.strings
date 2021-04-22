@@ -6,8 +6,8 @@
   
 */
 
-"news.title" = "News";
-"news.withoutAuthor" = "Without author";
+"feed.title" = "News";
+"feed.withoutAuthor" = "Without author";
 
 "details.title" = "Details";
 "details.open" = "Open %@";

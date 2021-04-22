@@ -36,6 +36,10 @@ final class DetailsViewController: ViewController<DetailsView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        contentView.openButton.whenTap { [unowned self] in
+            viewModel.tapOpenWebSite()
+        }
+        
         setupNavigationBar()
         setupBindingToViewModel()
         
@@ -58,9 +62,16 @@ private extension DetailsViewController {
     }
     
     func setupBindingToViewModel() {
-        viewModel.news
-            .subscribe(onNext: { [weak self] news in
-                self?.contentView.set(news: news)
+        viewModel.article
+            .subscribe(onNext: { [weak self] article in
+                self?.contentView.set(state: DetailsView.State.init(
+                    articleImageUrl: article.urlToImage,
+                    title: article.title,
+                    author: article.author,
+                    publishedAt: article.publishedAt,
+                    description: article.description,
+                    sourceName: article.source.name
+                ))
             })
         .disposed(by: disposeBag)
         

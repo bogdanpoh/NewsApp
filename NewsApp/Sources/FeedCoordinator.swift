@@ -8,7 +8,7 @@
 import Foundation
 
 protocol FeedCoordinatorProtocol {
-    func open(news: News)
+    func open(article: Article)
 }
 
 final class FeedCoordinator: BaseCoordinator, CoordinatorOutput {
@@ -50,8 +50,8 @@ extension FeedCoordinator: Coordinatable {
 
 extension FeedCoordinator: FeedCoordinatorProtocol {
     
-    func open(news: News) {
-        let coordinator = coordinatorFactory.makeDetailsCoordinator(with: router, news: news)
+    func open(article: Article) {
+        let coordinator = coordinatorFactory.makeDetailsCoordinator(with: router, article: article)
         coordinator.finishFlow = { [unowned self, unowned coordinator] in
             remove(dependency: coordinator)
         }

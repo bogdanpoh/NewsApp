@@ -60,7 +60,7 @@ extension DateFormatter {
     static func formatISO8601(string: String) -> String {
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        let dateFormatterPrint = DateFormatterFabric.makeNumberFormatter(for: .full)
+        let dateFormatterPrint = DateFormatterFabric.makeNumberFormatter(for: .mayDayYear)
         let date = dateFormatterGet.date(from: string)
         
         guard let dateFromString = date else {

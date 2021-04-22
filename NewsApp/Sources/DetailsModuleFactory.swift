@@ -8,13 +8,13 @@
 import Foundation
 
 protocol DetailsModuleFactoryProtocol {
-    func makeDetailsView(coordinator: DetailsCoordinatorProtocol, news: News) -> Presentable
+    func makeDetailsView(coordinator: DetailsCoordinatorProtocol, news: Article) -> Presentable
 }
 
 extension ModulesFactory: DetailsModuleFactoryProtocol {
     
-    func makeDetailsView(coordinator: DetailsCoordinatorProtocol, news: News) -> Presentable {
-        let viewModel = DetailViewModel(coordinator: coordinator, news: news)
+    func makeDetailsView(coordinator: DetailsCoordinatorProtocol, news: Article) -> Presentable {
+        let viewModel = DetailViewModel(coordinator: coordinator, article: news)
         return DetailsViewController(viewModel: viewModel)
     }
     

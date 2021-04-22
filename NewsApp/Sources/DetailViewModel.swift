@@ -17,7 +17,7 @@ protocol DetailViewModelInput {
 }
 
 protocol DetailViewModelOutput {
-    var news: Observable<News> { get }
+    var article: Observable<Article> { get }
     var formattedPublishAt: Observable<String> { get }
 }
 
@@ -27,15 +27,15 @@ final class DetailViewModel {
     
     // MARK: - Lifecycle
     
-    init(coordinator: DetailsCoordinatorProtocol, news: News) {
+    init(coordinator: DetailsCoordinatorProtocol, article: Article) {
         self.coordinator = coordinator
-        self.newsSubj = BehaviorRelay<News>(value: news)
+        self.articleSubj = BehaviorRelay<Article>(value: article)
     }
     
     // MARK: - Private
     
     private let coordinator: DetailsCoordinatorProtocol
-    private let newsSubj: BehaviorRelay<News>
+    private let articleSubj: BehaviorRelay<Article>
     private let publishAtSubj = PublishRelay<String>()
     
 }
@@ -45,13 +45,11 @@ final class DetailViewModel {
 extension DetailViewModel: DetailViewModelInput {
     
     func viewDidLoad() {
-        let stringTime = newsSubj.value.publishedAt
-        let formattedTime = DateFormatter.formatISO8601(string: stringTime)
-        publishAtSubj.accept(formattedTime)
+        formatTime()
     }
     
     func tapOpenWebSite() {
-//        print("tap open: \(news.url)")
+        logger.mark()
     }
     
 }
@@ -60,12 +58,24 @@ extension DetailViewModel: DetailViewModelInput {
 
 extension DetailViewModel: DetailViewModelOutput {
     
-    var news: Observable<News> {
-        return newsSubj.asObservable()
+    var article: Observable<Article> {
+        return articleSubj.asObservable()
     }
     
     var formattedPublishAt: Observable<String> {
         return publishAtSubj.asObservable()
+    }
+    
+}
+
+// MARK: -
+
+private extension DetailViewModel {
+    
+    func formatTime() {
+        let stringTime = articleSubj.value.publishedAt
+        let formattedTime = DateFormatter.formatISO8601(string: stringTime)
+        publishAtSubj.accept(formattedTime)
     }
     
 }

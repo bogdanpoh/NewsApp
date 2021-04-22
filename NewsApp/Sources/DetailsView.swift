@@ -9,56 +9,64 @@ import UIKit
 
 final class DetailsView: View {
     
+    struct State {
+        var articleImageUrl: String?
+        var title: String
+        var author: String?
+        var publishedAt: String
+        var description: String?
+        var sourceName: String
+    }
+    
     // MARK: - UI
-    
-    private lazy var contentStack = makeStackView(axis: .vertical, spacing: 10) (
-        titleLabel,
-        articleImage,
-        publishedAtLabel,
-        descriptionLabel,
-        emptyView,
-        openButton
-    )
-    
-    private let titleLabel = Label()
-        .enableMultilines()
-        .text(alignment: .center)
     
     private let articleImage = KFImageView()
         .backgroundColor(color: .gray)
         .setContentMode(.scaleToFill)
-        .setCornerRadius(20)
         .maskToBounds(true)
     
-    private let publishedAtLabel = Label()
-        .text(alignment: .center)
+    private lazy var contentStack = makeStackView(axis: .vertical, spacing: 10) (
+        titleLabel,
+        authorLabel,
+        descriptionLabel,
+        emptyView,
+        openButton
+    )
+    .make { $0.setCustomSpacing(15, after: authorLabel) }
+    
+    private let titleLabel = Label()
+        .enableMultilines()
+    
+    private let authorLabel = Label()
     
     private let descriptionLabel = Label()
         .enableMultilines()
     
     private let emptyView = View()
     
-    private let openButton = ButtonsFactory.makeActionButton()
-        .titleColor(.black)
+    private(set) var openButton = Button()
+        .setCornerRadius(20)
     
     // MARK: - Lifecycle
     
     override func setupSubviews() {
         super.setupSubviews()
         
-        addSubview(contentStack)
+        addSubviews(articleImage, contentStack)
     }
     
     override func defineLayout() {
         super.defineLayout()
         
-        contentStack.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview().inset(UIEdgeInsets(aTop: 20, aLeft: 18, aRight: 18))
-            $0.bottom.equalTo(layoutMarginsGuide).inset(UIEdgeInsets(aBottom: 10))
+        articleImage.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(200)
         }
         
-        articleImage.snp.makeConstraints {
-            $0.height.equalTo(200)
+        contentStack.snp.makeConstraints {
+            $0.top.equalTo(articleImage.snp.bottom).offset(20)
+            $0.leading.trailing.equalToSuperview().inset(UIEdgeInsets(horizontal: 18))
+            $0.bottom.equalTo(layoutMarginsGuide).inset(UIEdgeInsets(aBottom: 10))
         }
         
         openButton.snp.makeConstraints {
@@ -79,9 +87,9 @@ final class DetailsView: View {
             .textColor(detailsStyle.title.color)
             .text(font: detailsStyle.title.font)
         
-        publishedAtLabel
-            .textColor(detailsStyle.publishedAt.color)
-            .text(font: detailsStyle.publishedAt.font)
+        authorLabel
+            .textColor(detailsStyle.author.color)
+            .text(font: detailsStyle.author.font)
         
         descriptionLabel
             .textColor(detailsStyle.description.color)
@@ -90,6 +98,7 @@ final class DetailsView: View {
         openButton
             .titleColor(detailsStyle.button.text.color)
             .titleColor(detailsStyle.button.text.color.withAlphaComponent(0.6), for: .highlighted)
+            .text(font: detailsStyle.button.text.font)
             .background(color: detailsStyle.button.background.color)
     }
     
@@ -100,17 +109,20 @@ final class DetailsView: View {
 extension DetailsView {
     
     @discardableResult
-    func set(news: News) -> Self {
-        titleLabel.text(news.title)
-        articleImage.setImage(path: news.urlToImage)
-        descriptionLabel.text(news.description ?? R.string.localizable.detailsWithoutDescription())
-        openButton.title(R.string.localizable.detailsOpen(news.source.name))
+    func set(state: State) -> Self {
+        articleImage.setImage(path: state.articleImageUrl, placeholder: R.image.newsPlaceholder())
+        titleLabel.text(state.title)
+        authorLabel.text(state.author ?? R.string.localizable.feedWithoutAuthor())
+        descriptionLabel.text(state.description ?? R.string.localizable.detailsWithoutDescription())
+        openButton.title(R.string.localizable.detailsOpen(state.sourceName))
         return self
     }
     
     @discardableResult
     func set(publishAt: String) -> Self {
-        publishedAtLabel.text(publishAt)
+        authorLabel.make {
+            $0.text? += " | " + publishAt
+        }
         return self
     }
     
