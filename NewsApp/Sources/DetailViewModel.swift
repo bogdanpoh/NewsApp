@@ -49,7 +49,7 @@ extension DetailViewModel: DetailViewModelInput {
     }
     
     func tapOpenWebSite() {
-//        print("tap open: \(news.url)")
+        logger.mark()
     }
     
 }

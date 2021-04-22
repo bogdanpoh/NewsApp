@@ -44,7 +44,7 @@ final class DetailsView: View {
     
     private let emptyView = View()
     
-    private let openButton = Button()
+    private(set) var openButton = Button()
         .setCornerRadius(20)
     
     // MARK: - Lifecycle

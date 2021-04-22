@@ -36,6 +36,10 @@ final class DetailsViewController: ViewController<DetailsView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        contentView.openButton.whenTap { [unowned self] in
+            viewModel.tapOpenWebSite()
+        }
+        
         setupNavigationBar()
         setupBindingToViewModel()
         
