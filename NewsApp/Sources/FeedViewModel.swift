@@ -43,6 +43,7 @@ final class FeedViewModel {
     private let networkService: NetworkNewsProtocol
     private var articles: [Article] = []
     private let reloadCellsSubj = PublishRelay<Void>()
+    private var totalResult: Int = -1
     
 }
 
@@ -71,6 +72,7 @@ extension FeedViewModel: FeedViewModelInput {
     }
     
     func pullToRefresh(completion: @escaping () -> Void) {
+        totalResult = -1
         fetchArticles(country: .ua, pageNumber: 1)
         completion()
     }
@@ -87,35 +89,25 @@ extension FeedViewModel: FeedViewModelOutput {
     
 }
 
-// MARK: -
-
-private extension FeedViewModel {
-    
-    func addArticles(newsResponse: ArticleResponse, pageNumber: Int) {
-        let newCount = self.articles.count + newsResponse.articles.count
-        guard newCount <= newsResponse.totalResults else {
-            return
-        }
-        
-        if pageNumber > 1 {
-            self.articles += newsResponse.articles
-        } else {
-            self.articles.removeAll()
-            self.articles = newsResponse.articles
-        }
-    }
-    
-}
-
 // MARK: - Network
 
 private extension FeedViewModel {
     
     func fetchArticles(country: Countrys, pageNumber: Int) {
+        if articles.count == totalResult {
+            return
+        }
+        
         firstly {
             networkService.getNews(country: country, pageNumber: pageNumber)
         }.done { newsResponse in
-            self.addArticles(newsResponse: newsResponse, pageNumber: pageNumber)
+            if pageNumber > 1 {
+                self.articles += newsResponse.articles
+            } else {
+                self.articles = newsResponse.articles
+            }
+            
+            self.totalResult = newsResponse.totalResults
             self.reloadCellsSubj.accept(())
         }.catch { error in
             logger.error(error.localizedDescription)

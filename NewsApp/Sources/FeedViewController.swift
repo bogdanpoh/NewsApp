@@ -134,11 +134,8 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
         viewModel.tapSelectCell(at: indexPath)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
-        let contentHeight = scrollView.contentSize.height
-        
-        if bottomEdge >= contentHeight {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if (indexPath.row == viewModel.numberOfRows() - 2) {
             viewModel.scrollToEnd()
         }
     }
