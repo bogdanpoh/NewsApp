@@ -35,10 +35,21 @@ final class WebSiteViewController: ViewController<WebSiteView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNavigationBar()
     }
     
     // MARK: - Private
     
     private let viewModel: WebSiteViewModel
+    
+}
+
+// MARK: - Setup
+
+private extension WebSiteViewController {
+    
+    func setupNavigationBar() {
+        navigationItem.title = R.string.localizable.webSiteTitle()
+    }
     
 }
