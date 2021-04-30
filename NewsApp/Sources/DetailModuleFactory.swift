@@ -8,15 +8,15 @@
 import Foundation
 
 protocol DetailModuleFactoryProtocol {
-    func makeDetailsView(coordinator: DetailCoordinatorProtocol, news: Article) -> Presentable
+    func makeDetailsView(coordinator: DetailCoordinatorProtocol, article: Article) -> Presentable
 }
 
 // MARK: - DetailModuleFactoryProtocol
 
 extension ModulesFactory: DetailModuleFactoryProtocol {
     
-    func makeDetailsView(coordinator: DetailCoordinatorProtocol, news: Article) -> Presentable {
-        let viewModel = DetailViewModel(coordinator: coordinator, article: news)
+    func makeDetailsView(coordinator: DetailCoordinatorProtocol, article: Article) -> Presentable {
+        let viewModel = DetailViewModel(coordinator: coordinator, article: article)
         return DetailsViewController(viewModel: viewModel)
     }
     

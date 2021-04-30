@@ -8,15 +8,15 @@
 import Foundation
 
 protocol DetailCoordinatorFactoryProtocol {
-    func makeWebSiteCoordinator(with router: Routable) -> Coordinatable & CoordinatorOutput
+    func makeWebSiteCoordinator(with router: Routable, urlString: String) -> Coordinatable & CoordinatorOutput
 }
 
 // MARK: - DetailCoordinatorFactoryProtocol
 
 extension CoordinatorsFactory: DetailCoordinatorFactoryProtocol {
     
-    func makeWebSiteCoordinator(with router: Routable) -> Coordinatable & CoordinatorOutput {
-        return WebSiteCoordinator(router: router, moduleFactory: modulesFactory)
+    func makeWebSiteCoordinator(with router: Routable, urlString: String) -> Coordinatable & CoordinatorOutput {
+        return WebSiteCoordinator(router: router, moduleFactory: modulesFactory, urlString: urlString)
     }
     
 }

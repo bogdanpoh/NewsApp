@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 private let logger = Logger(identifier: "WebSiteViewController")
 
@@ -35,7 +36,11 @@ final class WebSiteViewController: ViewController<WebSiteView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        contentView.webView.navigationDelegate = self
+
         setupNavigationBar()
+        
+        viewModel.loadPage(with: contentView.webView)
     }
     
     // MARK: - Private
@@ -50,6 +55,16 @@ private extension WebSiteViewController {
     
     func setupNavigationBar() {
         navigationItem.title = R.string.localizable.webSiteTitle()
+    }
+    
+}
+
+// MARK: - WKNavigationDelegate
+
+extension WebSiteViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        navigationItem.title = webView.title
     }
     
 }

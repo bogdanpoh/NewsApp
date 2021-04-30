@@ -18,15 +18,17 @@ final class WebSiteCoordinator: BaseCoordinator, CoordinatorOutput {
     
     // MARK: - Lifecycle
     
-    init(router: Routable, moduleFactory: WebSiteModuleFactory) {
+    init(router: Routable, moduleFactory: WebSiteModuleFactory, urlString: String) {
         self.router = router
         self.moduleFactory = moduleFactory
+        self.urlString = urlString
     }
     
     // MARK: - Private
     
     private let router: Routable
     private let moduleFactory: WebSiteModuleFactory
+    private let urlString: String
     
 }
 
@@ -35,7 +37,7 @@ final class WebSiteCoordinator: BaseCoordinator, CoordinatorOutput {
 extension WebSiteCoordinator: Coordinatable {
     
     func start() {
-        let view = moduleFactory.makeWebSiteView(coordinator: self)
+        let view = moduleFactory.makeWebSiteView(coordinator: self, urlString: urlString)
         router.push(view)
     }
     

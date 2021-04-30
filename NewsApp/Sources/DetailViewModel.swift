@@ -49,7 +49,7 @@ extension DetailViewModel: DetailViewModelInput {
     }
     
     func tapOpenWebSite() {
-        coordinator.openWebSite()
+        coordinator.openWebSite(urlString: articleSubj.value.url)
     }
     
 }

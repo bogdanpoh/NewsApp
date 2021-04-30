@@ -6,26 +6,26 @@
 //
 
 import UIKit
+import WebKit
 
 final class WebSiteView: View {
     
     // MARK: - UI
     
-    private lazy var contentStack = makeStackView(axis: .vertical) ()
-        .backgroundColor(color: .red)
+    private(set) var webView = WKWebView()
     
     // MARK: - Lifecycle
     
     override func setupSubviews() {
         super.setupSubviews()
         
-        addSubview(contentStack)
+        addSubview(webView)
     }
     
     override func defineLayout() {
         super.defineLayout()
         
-        contentStack.snp.makeConstraints {
+        webView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }

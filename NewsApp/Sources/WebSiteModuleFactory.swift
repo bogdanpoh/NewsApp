@@ -8,15 +8,15 @@
 import Foundation
 
 protocol WebSiteModuleFactoryProtocol {
-    func makeWebSiteView(coordinator: WebSiteCoordinator) -> Presentable
+    func makeWebSiteView(coordinator: WebSiteCoordinator, urlString: String) -> Presentable
 }
 
 // MARK: - WebSiteModuleFactoryProtocol
 
 extension ModulesFactory: WebSiteModuleFactoryProtocol {
     
-    func makeWebSiteView(coordinator: WebSiteCoordinator) -> Presentable {
-        let webSiteViewModel = WebSiteViewModel(coordinator: coordinator)
+    func makeWebSiteView(coordinator: WebSiteCoordinator, urlString: String) -> Presentable {
+        let webSiteViewModel = WebSiteViewModel(coordinator: coordinator, urlString: urlString)
         return WebSiteViewController(viewModel: webSiteViewModel)
     }
     

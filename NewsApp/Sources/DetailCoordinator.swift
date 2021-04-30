@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DetailCoordinatorProtocol {
-    func openWebSite()
+    func openWebSite(urlString: String)
 }
 
 final class DetailCoordinator: BaseCoordinator, CoordinatorOutput {
@@ -23,7 +23,7 @@ final class DetailCoordinator: BaseCoordinator, CoordinatorOutput {
         self.router = router
         self.moduleFactory = moduleFactory
         self.coordinatorFactory = coordinatorFactory
-        self.news = article
+        self.article = article
     }
     
     // MARK: - Private
@@ -31,7 +31,7 @@ final class DetailCoordinator: BaseCoordinator, CoordinatorOutput {
     private let router: Routable
     private let moduleFactory: DetailModuleFactory
     private let coordinatorFactory: DetailCoordinatorFactory
-    private let news: Article
+    private let article: Article
     
 }
 
@@ -40,7 +40,7 @@ final class DetailCoordinator: BaseCoordinator, CoordinatorOutput {
 extension DetailCoordinator: Coordinatable {
     
     func start() {
-        let view = moduleFactory.makeDetailsView(coordinator: self, news: news)
+        let view = moduleFactory.makeDetailsView(coordinator: self, article: article)
         router.push(view)
     }
     
@@ -50,8 +50,8 @@ extension DetailCoordinator: Coordinatable {
 
 extension DetailCoordinator: DetailCoordinatorProtocol {
     
-    func openWebSite() {
-        let coordinator = coordinatorFactory.makeWebSiteCoordinator(with: router)
+    func openWebSite(urlString: String) {
+        let coordinator = coordinatorFactory.makeWebSiteCoordinator(with: router, urlString: urlString)
         coordinator.finishFlow = { [unowned self, unowned coordinator] in
             remove(dependency: coordinator)
         }
