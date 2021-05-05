@@ -27,14 +27,14 @@ final class DetailViewModel {
     
     // MARK: - Lifecycle
     
-    init(coordinator: DetailsCoordinatorProtocol, article: Article) {
+    init(coordinator: DetailCoordinatorProtocol, article: Article) {
         self.coordinator = coordinator
         self.articleSubj = BehaviorRelay<Article>(value: article)
     }
     
     // MARK: - Private
     
-    private let coordinator: DetailsCoordinatorProtocol
+    private let coordinator: DetailCoordinatorProtocol
     private let articleSubj: BehaviorRelay<Article>
     private let publishAtSubj = PublishRelay<String>()
     
@@ -49,7 +49,7 @@ extension DetailViewModel: DetailViewModelInput {
     }
     
     func tapOpenWebSite() {
-        logger.mark()
+        coordinator.openWebSite(urlString: articleSubj.value.url)
     }
     
 }

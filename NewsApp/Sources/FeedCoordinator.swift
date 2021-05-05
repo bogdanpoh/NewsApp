@@ -12,8 +12,9 @@ protocol FeedCoordinatorProtocol {
 }
 
 final class FeedCoordinator: BaseCoordinator, CoordinatorOutput {
+    
     typealias ModuleFactoryProtocol = FeedModuleFactoryProtocol
-    typealias NewsCoordinatorFactory = NewsCoordinatorFactoryProtocol
+    typealias NewsCoordinatorFactory = FeedCoordinatorFactoryProtocol
     
     var finishFlow: CompletionBlock?
     

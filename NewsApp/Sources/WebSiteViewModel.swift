@@ -1,0 +1,55 @@
+//
+//  WebSiteViewModel.swift
+//  NewsApp
+//
+//  Created by Bogdan Pohidnya on 30.04.2021.
+//
+
+import Foundation
+import WebKit
+
+private let logger = Logger(identifier: "WebSiteViewModel")
+
+protocol WebSiteViewModelInput {
+    func loadPage(with webView: WKWebView)
+}
+
+protocol WebSiteViewModelOutput {
+    
+}
+
+typealias WebSiteViewModelProtocol = WebSiteViewModelInput & WebSiteViewModelOutput
+
+final class WebSiteViewModel {
+    
+    init(coordinator: WebSiteCoordinatorProtocol, urlString: String) {
+        self.coordinator = coordinator
+        self.urlString = urlString
+    }
+    
+    // MARK: - Private
+    
+    private let coordinator: WebSiteCoordinatorProtocol
+    private let urlString: String
+    
+}
+
+// MARK: - WebSiteViewModelInput
+
+extension WebSiteViewModel: WebSiteViewModelInput {
+    
+    func loadPage(with webView: WKWebView) {
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        let request = URLRequest(url: url)
+        webView.load(request)
+    }
+    
+}
+
+// MARK: - WebSiteViewModelOutput
+
+extension WebSiteViewModel: WebSiteViewModelOutput {
+    
+}

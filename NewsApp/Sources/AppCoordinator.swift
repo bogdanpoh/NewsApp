@@ -8,6 +8,7 @@
 import Foundation
 
 final class AppCoordinator: BaseCoordinator {
+    
     typealias CoordinatorFactoryProtocol = AppCoordinatorFactoryProtocol
     
     // MARK: - Lifecycle
