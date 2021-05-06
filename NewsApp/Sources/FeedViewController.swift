@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 private let logger = Logger(identifier: "FeedViewController")
 
@@ -75,6 +76,12 @@ private extension FeedViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.viewState
+            .bind { [weak self] viewState in
+                self?.update(with: viewState)
+            }
+            .disposed(by: disposeBag)
     }
     
 }
@@ -137,6 +144,25 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if (indexPath.row == viewModel.numberOfRows() - 2) {
             viewModel.scrollToEnd()
+        }
+    }
+    
+}
+
+// MARK: -
+
+extension FeedViewController {
+    
+    func update(with state: ViewState) {
+        switch state {
+        case .initial:
+            break
+        
+        case .loading, .ready, .error:
+            logger.info("viewState: loading, ready, error")
+            
+        case .empty:
+            logger.info("viewState: empty")
         }
     }
     

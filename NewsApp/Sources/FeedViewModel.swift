@@ -22,19 +22,24 @@ protocol FeedViewModelInput {
     func scrollToEnd()
 }
 
-protocol FeedViewModelOutput {
+protocol FeedViewModelOutput: ViewModelOutput {
     var reloadCells: Observable<Void> { get }
 }
 
 typealias FeedViewModelProtocol = FeedViewModelInput & FeedViewModelOutput
 
-final class FeedViewModel {
+final class FeedViewModel: ViewModel {
     
     // MARK: - Lifecycle
     
     init(coordinator: FeedCoordinatorProtocol, networkService: NetworkNewsProtocol) {
         self.coordinator = coordinator
         self.networkService = networkService
+        
+        super.init()
+        
+        let articlesCount = numberOfRows()
+        viewStateSubj.accept(articlesCount == 0 ? .empty : .ready)
     }
     
     // MARK: - Private
@@ -103,6 +108,11 @@ private extension FeedViewModel {
         }.done { response in
             self.articles = response.articles
             self.reloadCellsSubj.accept(())
+            self.viewStateSubj.accept(self.numberOfRows() == 0 ? .empty : .ready)
+        }
+        .catch { error in
+            logger.error(error.localizedDescription)
+            self.viewStateSubj.accept(.error)
         }
         
 //        firstly {
