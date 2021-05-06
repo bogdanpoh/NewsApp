@@ -6,6 +6,8 @@
   
 */
 
+"placeholder.loading" = "Loading";
+
 "feed.title" = "News";
 "feed.withoutAuthor" = "Without author";
 

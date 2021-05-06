@@ -79,7 +79,7 @@ private extension FeedViewController {
         
         viewModel.viewState
             .bind { [weak self] viewState in
-                self?.update(with: viewState)
+                self?.updateView(with: viewState)
             }
             .disposed(by: disposeBag)
     }
@@ -153,16 +153,16 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
 
 extension FeedViewController {
     
-    func update(with state: ViewState) {
+    func updateView(with state: ViewState) {
         switch state {
         case .initial:
             break
-        
-        case .loading, .ready, .error:
-            logger.info("viewState: loading, ready, error")
             
-        case .empty:
-            logger.info("viewState: empty")
+        case .ready:
+            contentView.hidePlaceholder()
+            
+        case .error, .empty, .loading:
+            contentView.showPlaceholder()
         }
     }
     

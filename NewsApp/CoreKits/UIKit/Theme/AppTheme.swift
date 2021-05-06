@@ -22,6 +22,7 @@ extension AppTheme {
             background: .init(color: UIStyleGuide.ColorPalette.white)
         ),
         backgroundColor: UIStyleGuide.ColorPalette.white,
+        placeholder: .init(color: UIStyleGuide.ColorPalette.black, font: .titleFeed),
         feed: .init(
             title: .init(color: UIStyleGuide.ColorPalette.tblack, font: .titleFeed),
             author: .init(color: UIStyleGuide.ColorPalette.lightGray, font: .authorFeed)
@@ -50,6 +51,7 @@ extension AppTheme {
             background: .init(color: UIStyleGuide.ColorPalette.dBlack)
         ),
         backgroundColor: UIStyleGuide.ColorPalette.black,
+        placeholder: .init(color: UIStyleGuide.ColorPalette.white, font: .titleFeed),
         feed: .init(
             title: .init(color: UIStyleGuide.ColorPalette.tblack, font: .titleFeed),
             author: .init(color: UIStyleGuide.ColorPalette.lightGray, font: .authorFeed)

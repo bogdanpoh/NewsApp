@@ -13,9 +13,8 @@ final class WebSiteView: View {
     // MARK: - UI
     
     let safariButton = Button()
-        .setImage(UIImage(systemName: "safari"))
-        .tint(color: UIStyleGuide.ColorPalette.blue)
-    
+        .setImage(R.image.icSafari())
+        
     private(set) var webView = WKWebView()
     
     // MARK: - Lifecycle
@@ -28,6 +27,10 @@ final class WebSiteView: View {
     
     override func defineLayout() {
         super.defineLayout()
+        
+        safariButton.snp.makeConstraints {
+            $0.width.equalTo(24)
+        }
         
         webView.snp.makeConstraints {
             $0.edges.equalToSuperview()
