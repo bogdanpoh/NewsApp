@@ -22,19 +22,24 @@ protocol FeedViewModelInput {
     func scrollToEnd()
 }
 
-protocol FeedViewModelOutput {
+protocol FeedViewModelOutput: ViewModelOutput {
     var reloadCells: Observable<Void> { get }
 }
 
 typealias FeedViewModelProtocol = FeedViewModelInput & FeedViewModelOutput
 
-final class FeedViewModel {
+final class FeedViewModel: ViewModel {
     
     // MARK: - Lifecycle
     
     init(coordinator: FeedCoordinatorProtocol, networkService: NetworkNewsProtocol) {
         self.coordinator = coordinator
         self.networkService = networkService
+        
+        super.init()
+        
+        let articlesCount = numberOfRows()
+        viewStateSubj.accept(articlesCount == 0 ? .empty : .ready)
     }
     
     // MARK: - Private
@@ -98,27 +103,38 @@ private extension FeedViewModel {
             return
         }
         
-        firstly {
-            FakeParsser().getArticlesResponse()
-        }.done { response in
-            self.articles = response.articles
-            self.reloadCellsSubj.accept(())
-        }
-        
 //        firstly {
-//            networkService.getNews(country: country, pageNumber: pageNumber)
-//        }.done { newsResponse in
-//            if pageNumber > 1 {
-//                self.articles += newsResponse.articles
-//            } else {
-//                self.articles = newsResponse.articles
+//            FakeParsser().getArticlesResponse()
+//        }.done { response in
+//            DispatchQueue.main.asyncAfter(deadline: .now()+0.5) { [weak self] in
+//                self?.articles = response.articles
+//                self?.reloadCellsSubj.accept(())
+//                self?.viewStateSubj.accept(self?.numberOfRows() == 0 ? .empty : .ready)
 //            }
-//
-//            self.totalResult = newsResponse.totalResults
-//            self.reloadCellsSubj.accept(())
-//        }.catch { error in
-//            logger.error(error.localizedDescription)
 //        }
+//        .catch { error in
+//            logger.error(error.localizedDescription)
+//            self.viewStateSubj.accept(.error)
+//        }
+        
+        self.viewStateSubj.accept(.loading)
+
+        firstly {
+            networkService.getNews(country: country, pageNumber: pageNumber)
+        }.done { newsResponse in
+            if pageNumber > 1 {
+                self.articles += newsResponse.articles
+            } else {
+                self.articles = newsResponse.articles
+            }
+
+            self.totalResult = newsResponse.totalResults
+            self.reloadCellsSubj.accept(())
+            self.viewStateSubj.accept(self.numberOfRows() == 0 ? .empty : .ready)
+        }.catch { error in
+            logger.error(error.localizedDescription)
+            self.viewStateSubj.accept(.error)
+        }
     }
     
 }

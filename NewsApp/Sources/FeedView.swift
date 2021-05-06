@@ -17,6 +17,8 @@ final class FeedView: View {
     
     let newsCollectionView = NewsCollectionView()
     
+    private var placeholderView: PlaceholderView?
+    
     // MARK: - Lifecycle
     
     override func setupSubviews() {
@@ -39,6 +41,37 @@ final class FeedView: View {
         super.apply(theme: theme)
         
         backgroundColor(color: theme.components.backgroundColor)
+    }
+    
+}
+
+// MARK: - Set
+
+extension FeedView {
+    
+    @discardableResult
+    func showPlaceholder() -> Self {
+        guard placeholderView == nil else {
+            return self
+        }
+        
+        let placeholder = PlaceholderView()
+            .set(title: R.string.localizable.placeholderLoading())
+        contentStack.addSubview(placeholder)
+        
+        placeholder.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        placeholderView = placeholder
+        
+        return self
+    }
+    
+    @discardableResult
+    func hidePlaceholder() -> Self {
+        placeholderView?.removeFromSuperview()
+        placeholderView = nil
+        return self
     }
     
 }

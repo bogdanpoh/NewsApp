@@ -6,6 +6,8 @@
   
 */
 
+"placeholder.loading" = "Загрузка";
+
 "feed.title" = "Новости";
 "feed.withoutAuthor" = "Без автора";
 
