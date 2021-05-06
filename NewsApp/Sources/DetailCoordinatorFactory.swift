@@ -16,7 +16,7 @@ protocol DetailCoordinatorFactoryProtocol {
 extension CoordinatorsFactory: DetailCoordinatorFactoryProtocol {
     
     func makeWebSiteCoordinator(with router: Routable, urlString: String) -> Coordinatable & CoordinatorOutput {
-        return WebSiteCoordinator(router: router, moduleFactory: modulesFactory, urlString: urlString)
+        return WebSiteCoordinator(router: router, moduleFactory: modulesFactory, coordinator: self, urlString: urlString)
     }
     
 }

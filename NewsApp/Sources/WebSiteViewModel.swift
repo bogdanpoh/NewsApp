@@ -12,6 +12,7 @@ private let logger = Logger(identifier: "WebSiteViewModel")
 
 protocol WebSiteViewModelInput {
     func loadPage(with webView: WKWebView)
+    func openSafari()
 }
 
 protocol WebSiteViewModelOutput {
@@ -44,6 +45,10 @@ extension WebSiteViewModel: WebSiteViewModelInput {
         }
         let request = URLRequest(url: url)
         webView.load(request)
+    }
+    
+    func openSafari() {
+        coordinator.shareToSafari(urlString: urlString)
     }
     
 }

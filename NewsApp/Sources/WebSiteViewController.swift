@@ -37,6 +37,7 @@ final class WebSiteViewController: ViewController<WebSiteView> {
         super.viewDidLoad()
 
         setupNavigationBar()
+        setupActionHandlers()
         
         viewModel.loadPage(with: contentView.webView)
     }
@@ -53,6 +54,13 @@ private extension WebSiteViewController {
     
     func setupNavigationBar() {
         navigationItem.title = R.string.localizable.webSiteTitle()
+        navigationItem.rightBarButtonItem = .makeButton(contentView.safariButton)
+    }
+    
+    func setupActionHandlers() {
+        contentView.safariButton.whenTap { [unowned self] in
+            viewModel.openSafari()
+        }
     }
     
 }

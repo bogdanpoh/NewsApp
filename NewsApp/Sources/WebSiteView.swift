@@ -12,6 +12,10 @@ final class WebSiteView: View {
     
     // MARK: - UI
     
+    let safariButton = Button()
+        .setImage(UIImage(systemName: "safari"))
+        .tint(color: UIStyleGuide.ColorPalette.blue)
+    
     private(set) var webView = WKWebView()
     
     // MARK: - Lifecycle
