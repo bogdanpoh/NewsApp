@@ -8,7 +8,7 @@
 import Foundation
 
 protocol WebSiteCoordinatorProtocol {
-    func shareToSafari(stringUrl: String)
+    func shareToSafari(urlString: String)
 }
 
 final class WebSiteCoordinator: BaseCoordinator, CoordinatorOutput {
@@ -50,8 +50,8 @@ extension WebSiteCoordinator: Coordinatable {
 
 extension WebSiteCoordinator: WebSiteCoordinatorProtocol {
     
-    func shareToSafari(stringUrl: String) {
-        let coordinator = coordinator.makeShareToSafariCoordinator(with: router, stringUrl: stringUrl)
+    func shareToSafari (urlString: String) {
+        let coordinator = coordinator.makeShareToSafariCoordinator(with: router, urlString: urlString)
         coordinator.finishFlow = { [unowned coordinator, unowned self] in
             remove(dependency: coordinator)
         }

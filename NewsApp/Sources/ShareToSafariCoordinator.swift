@@ -13,15 +13,15 @@ final class ShareToSafariCoordinator: CoordinatorOutput {
     
     // MARK: - Lifecycle
     
-    init(router: Routable, stringUrl: String) {
+    init(router: Routable, urlString: String) {
         self.router = router
-        self.stringUrl = stringUrl
+        self.urlString = urlString
     }
     
     // MARK: - Private
     
     private let router: Routable
-    private let stringUrl: String
+    private let urlString: String
     
 }
 
@@ -30,7 +30,7 @@ final class ShareToSafariCoordinator: CoordinatorOutput {
 extension ShareToSafariCoordinator: Coordinatable {
     
     func start() {
-        if let url = URL(string: stringUrl) {
+        if let url = URL(string: urlString) {
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:]) { [weak self] _ in
                     self?.finishFlow?()
