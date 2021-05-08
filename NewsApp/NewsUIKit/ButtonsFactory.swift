@@ -9,15 +9,17 @@ import UIKit
 
 enum ButtonsFactory {
     
-    ///corner radius: 20
-    static func makeActionButton(image: UIImage?,cornerRadius: CGFloat = 20) -> Button {
+    /// button with corner radius and image
+    /// default params: cornerRadius = 20, titleEdgeInsets: aLeft = 8
+    static func makeActionButton(image: UIImage?, cornerRadius: CGFloat = 20) -> Button {
         Button()
             .title(hAlignment: .center)
-            .setImage(image)
             .setCornerRadius(cornerRadius)
             .maskToBounds(true)
             .make {
                 $0.titleEdgeInsets = .init(aLeft: 8)
+                $0.setImage(image, for: .normal)
+                $0.setImage(image, for: .highlighted)
             }
     }
     
