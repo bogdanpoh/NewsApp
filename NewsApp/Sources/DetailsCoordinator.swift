@@ -8,6 +8,7 @@
 import Foundation
 
 protocol DetailsCoordinatorProtocol {
+    func close()
     func openWebSite(urlString: String)
 }
 
@@ -41,7 +42,7 @@ extension DetailsCoordinator: Coordinatable {
     
     func start() {
         let view = moduleFactory.makeDetailsView(coordinator: self, article: article)
-        router.push(view)
+        router.present(view)
     }
     
 }
@@ -57,6 +58,11 @@ extension DetailsCoordinator: DetailsCoordinatorProtocol {
         }
         add(dependency: coordinator)
         coordinator.start()
+    }
+    
+    func close() {
+        router.dismissModule()
+        finishFlow?()
     }
     
 }

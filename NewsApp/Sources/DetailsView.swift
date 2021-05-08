@@ -25,6 +25,9 @@ final class DetailsView: View {
         .setContentMode(.scaleToFill)
         .maskToBounds(true)
     
+    private(set) var closeButton = Button()
+        .setImage(R.image.icNavBarClose())
+    
     private lazy var contentStack = makeStackView(axis: .vertical, spacing: 10) (
         titleLabel,
         authorLabel,
@@ -52,11 +55,17 @@ final class DetailsView: View {
     override func setupSubviews() {
         super.setupSubviews()
         
-        addSubviews(articleImage, contentStack)
+        addSubviews(articleImage, closeButton, contentStack)
     }
     
     override func defineLayout() {
         super.defineLayout()
+        
+        closeButton.snp.makeConstraints {
+            $0.top.equalTo(layoutMarginsGuide).inset(UIEdgeInsets(aTop: 8))
+            $0.trailing.equalToSuperview().inset(UIEdgeInsets(aRight: 18))
+            $0.width.height.equalTo(36)
+        }
         
         articleImage.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()

@@ -11,7 +11,6 @@
 "feed.title" = "News";
 "feed.withoutAuthor" = "Without author";
 
-"details.title" = "Details";
 "details.open" = "Open %@";
 "details.withoutDescription" = "Without description";
 

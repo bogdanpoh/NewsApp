@@ -1,7 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "icNavBarClose.pdf",
+      "filename" : "icNavBarCloseLight.pdf",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "icNavBarCloseDark.pdf",
       "idiom" : "universal"
     }
   ],

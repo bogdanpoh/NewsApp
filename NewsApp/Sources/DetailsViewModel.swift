@@ -13,6 +13,7 @@ private let logger = Logger(identifier: "DetailsViewModel")
 protocol DetailsViewModelInput {
     func viewDidLoad()
     
+    func tapClose()
     func tapOpenWebSite()
 }
 
@@ -46,6 +47,10 @@ extension DetailsViewModel: DetailsViewModelInput {
     
     func viewDidLoad() {
         formatTime()
+    }
+    
+    func tapClose() {
+        coordinator.close()
     }
     
     func tapOpenWebSite() {
