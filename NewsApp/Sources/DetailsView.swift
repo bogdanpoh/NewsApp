@@ -47,14 +47,7 @@ final class DetailsView: View {
     
     private let emptyView = View()
     
-    private(set) var openButton = Button()
-        .setImage(R.image.icExternalLink())
-        .title(hAlignment: .center)
-        .setCornerRadius(20)
-        .maskToBounds(true)
-        .make {
-            $0.titleEdgeInsets = .init(aLeft: 8)
-        }
+    private(set) var openButton = ButtonsFactory.makeActionButton(image: R.image.icExternalLink())
     
     // MARK: - Lifecycle
     

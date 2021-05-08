@@ -31,6 +31,7 @@
 		F714C8432643BF2700ED596D /* ShareToSafariCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F714C8422643BF2700ED596D /* ShareToSafariCoordinator.swift */; };
 		F714C8452643C0E800ED596D /* WebSiteCoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F714C8442643C0E800ED596D /* WebSiteCoordinatorFactory.swift */; };
 		F714C84E2643E88100ED596D /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F714C84D2643E88100ED596D /* PlaceholderView.swift */; };
+		F71E09752647193F007FB6AB /* ButtonsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71E09742647193F007FB6AB /* ButtonsFactory.swift */; };
 		F73166232621D77900208394 /* Translatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73166222621D77900208394 /* Translatable.swift */; };
 		F73166272621D79C00208394 /* CoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73166262621D79C00208394 /* CoordinatorOutput.swift */; };
 		F731662B2621D7CA00208394 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731662A2621D7CA00208394 /* Routable.swift */; };
@@ -145,6 +146,7 @@
 		F714C8422643BF2700ED596D /* ShareToSafariCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareToSafariCoordinator.swift; sourceTree = "<group>"; };
 		F714C8442643C0E800ED596D /* WebSiteCoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSiteCoordinatorFactory.swift; sourceTree = "<group>"; };
 		F714C84D2643E88100ED596D /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		F71E09742647193F007FB6AB /* ButtonsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsFactory.swift; sourceTree = "<group>"; };
 		F73166222621D77900208394 /* Translatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translatable.swift; sourceTree = "<group>"; };
 		F73166262621D79C00208394 /* CoordinatorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorOutput.swift; sourceTree = "<group>"; };
 		F731662A2621D7CA00208394 /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 			children = (
 				F7FC1F2A262A398700B687DA /* KFImageView.swift */,
 				F714C84D2643E88100ED596D /* PlaceholderView.swift */,
+				F71E09742647193F007FB6AB /* ButtonsFactory.swift */,
 			);
 			path = NewsUIKit;
 			sourceTree = "<group>";
@@ -880,6 +883,7 @@
 				F73166272621D79C00208394 /* CoordinatorOutput.swift in Sources */,
 				F70E84322625A48300ADF8C3 /* UIBarButtonItem+Ext.swift in Sources */,
 				F714C8452643C0E800ED596D /* WebSiteCoordinatorFactory.swift in Sources */,
+				F71E09752647193F007FB6AB /* ButtonsFactory.swift in Sources */,
 				F74E64F726174D620012728F /* EmbeddedLocalizationSource.swift in Sources */,
 				F74E64F426174D450012728F /* LocalizationSource.swift in Sources */,
 				F7FA84232626035800D2FAA5 /* FakeParser.swift in Sources */,
