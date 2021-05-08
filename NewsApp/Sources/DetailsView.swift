@@ -114,7 +114,7 @@ extension DetailsView {
         titleLabel.text(state.title)
         authorLabel.text(state.author ?? R.string.localizable.feedWithoutAuthor())
         descriptionLabel.text(state.description ?? R.string.localizable.detailsWithoutDescription())
-        openButton.title(R.string.localizable.detailsOpen(state.sourceName))
+        openButton.title(R.string.localizable.detailsOpen(state.sourceName.lowercased()))
         return self
     }
     

@@ -116,8 +116,6 @@ private extension FeedViewModel {
 //            logger.error(error.localizedDescription)
 //            self.viewStateSubj.accept(.error)
 //        }
-        
-        self.viewStateSubj.accept(.loading)
 
         firstly {
             networkService.getNews(country: country, pageNumber: pageNumber)
@@ -125,6 +123,7 @@ private extension FeedViewModel {
             if pageNumber > 1 {
                 self.articles += newsResponse.articles
             } else {
+                self.viewStateSubj.accept(.loading)
                 self.articles = newsResponse.articles
             }
 
