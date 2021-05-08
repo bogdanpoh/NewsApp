@@ -14,7 +14,7 @@ final class DetailsViewController: ViewController<DetailsView> {
     
     // MARK: - Initializers
     
-    init(viewModel: DetailViewModel) {
+    init(viewModel: DetailsViewModel) {
         self.viewModel = viewModel
         
         super.init()
@@ -48,7 +48,7 @@ final class DetailsViewController: ViewController<DetailsView> {
     
     // MARK: - Private
     
-    private let viewModel: DetailViewModel
+    private let viewModel: DetailsViewModel
     private let disposeBag = DisposeBag()
     
 }

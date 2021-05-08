@@ -1,5 +1,5 @@
 //
-//  DetailModuleFactory.swift
+//  DetailsModuleFactory.swift
 //  NewsApp
 //
 //  Created by Bogdan Pohidnya on 16.04.2021.
@@ -7,16 +7,16 @@
 
 import Foundation
 
-protocol DetailModuleFactoryProtocol {
-    func makeDetailsView(coordinator: DetailCoordinatorProtocol, article: Article) -> Presentable
+protocol DetailsModuleFactoryProtocol {
+    func makeDetailsView(coordinator: DetailsCoordinatorProtocol, article: Article) -> Presentable
 }
 
-// MARK: - DetailModuleFactoryProtocol
+// MARK: - DetailsModuleFactoryProtocol
 
-extension ModulesFactory: DetailModuleFactoryProtocol {
+extension ModulesFactory: DetailsModuleFactoryProtocol {
     
-    func makeDetailsView(coordinator: DetailCoordinatorProtocol, article: Article) -> Presentable {
-        let viewModel = DetailViewModel(coordinator: coordinator, article: article)
+    func makeDetailsView(coordinator: DetailsCoordinatorProtocol, article: Article) -> Presentable {
+        let viewModel = DetailsViewModel(coordinator: coordinator, article: article)
         return DetailsViewController(viewModel: viewModel)
     }
     
