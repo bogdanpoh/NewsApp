@@ -69,7 +69,7 @@ final class DetailsView: View {
         
         articleImage.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(200)
+            $0.height.equalTo(250)
         }
         
         contentStack.snp.makeConstraints {
