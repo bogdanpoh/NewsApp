@@ -61,8 +61,7 @@ extension DetailsCoordinator: DetailsCoordinatorProtocol {
     }
     
     func close() {
-        router.dismissModule()
-        finishFlow?()
+        router.dismissModule(animated: true, completion: finishFlow)
     }
     
 }

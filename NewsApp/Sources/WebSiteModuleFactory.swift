@@ -16,8 +16,10 @@ protocol WebSiteModuleFactoryProtocol {
 extension ModulesFactory: WebSiteModuleFactoryProtocol {
     
     func makeWebSiteView(coordinator: WebSiteCoordinator, urlString: String) -> Presentable {
-        let webSiteViewModel = WebSiteViewModel(coordinator: coordinator, urlString: urlString)
-        return WebSiteViewController(viewModel: webSiteViewModel)
+        let viewModel = WebSiteViewModel(coordinator: coordinator, urlString: urlString)
+        let viewController = WebSiteViewController(viewModel: viewModel)
+        viewController.modalPresentationStyle = .formSheet
+        return viewController
     }
     
 }

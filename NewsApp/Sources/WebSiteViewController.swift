@@ -36,8 +36,8 @@ final class WebSiteViewController: ViewController<WebSiteView> {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupNavigationBar()
-        setupActionHandlers()
+//        setupNavigationBar()
+//        setupActionHandlers()
         
         viewModel.loadPage(with: contentView.webView)
     }
