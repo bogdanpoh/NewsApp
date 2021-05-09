@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "icNavBarCloseLight.pdf",
+      "filename" : "icExternalLinkLight.pdf",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "icNavBarCloseDark.pdf",
+      "filename" : "icExternalLinkDark.pdf",
       "idiom" : "universal"
     }
   ],

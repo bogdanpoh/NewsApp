@@ -14,7 +14,7 @@ final class DetailsViewController: ViewController<DetailsView> {
     
     // MARK: - Initializers
     
-    init(viewModel: DetailViewModel) {
+    init(viewModel: DetailsViewModel) {
         self.viewModel = viewModel
         
         super.init()
@@ -36,11 +36,7 @@ final class DetailsViewController: ViewController<DetailsView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        contentView.openButton.whenTap { [unowned self] in
-            viewModel.tapOpenWebSite()
-        }
-        
-        setupNavigationBar()
+        setupActionHandlers()
         setupBindingToViewModel()
         
         viewModel.viewDidLoad()
@@ -48,7 +44,7 @@ final class DetailsViewController: ViewController<DetailsView> {
     
     // MARK: - Private
     
-    private let viewModel: DetailViewModel
+    private let viewModel: DetailsViewModel
     private let disposeBag = DisposeBag()
     
 }
@@ -57,14 +53,20 @@ final class DetailsViewController: ViewController<DetailsView> {
 
 private extension DetailsViewController {
     
-    func setupNavigationBar() {
-        navigationItem.title = R.string.localizable.detailsTitle()
+    func setupActionHandlers() {
+        contentView.closeButton.whenTap { [unowned self] in
+            viewModel.tapClose()
+        }
+        
+        contentView.openButton.whenTap { [unowned self] in
+            viewModel.tapOpenWebSite()
+        }
     }
     
     func setupBindingToViewModel() {
         viewModel.article
             .subscribe(onNext: { [weak self] article in
-                self?.contentView.set(state: DetailsView.State.init(
+                self?.contentView.set(state: .init(
                     articleImageUrl: article.urlToImage,
                     title: article.title,
                     author: article.author,

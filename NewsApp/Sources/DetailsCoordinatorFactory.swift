@@ -1,5 +1,5 @@
 //
-//  DetailCoordinatorFactory.swift
+//  DetailsCoordinatorFactory.swift
 //  NewsApp
 //
 //  Created by Bogdan Pohidnya on 30.04.2021.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol DetailCoordinatorFactoryProtocol {
+protocol DetailsCoordinatorFactoryProtocol {
     func makeWebSiteCoordinator(with router: Routable, urlString: String) -> Coordinatable & CoordinatorOutput
 }
 
-// MARK: - DetailCoordinatorFactoryProtocol
+// MARK: - DetailsCoordinatorFactoryProtocol
 
-extension CoordinatorsFactory: DetailCoordinatorFactoryProtocol {
+extension CoordinatorsFactory: DetailsCoordinatorFactoryProtocol {
     
     func makeWebSiteCoordinator(with router: Routable, urlString: String) -> Coordinatable & CoordinatorOutput {
         return WebSiteCoordinator(router: router, moduleFactory: modulesFactory, coordinator: self, urlString: urlString)

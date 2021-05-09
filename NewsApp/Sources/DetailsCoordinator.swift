@@ -1,5 +1,5 @@
 //
-//  DetailCoordinator.swift
+//  DetailsCoordinator.swift
 //  NewsApp
 //
 //  Created by Bogdan Pohidnya on 16.04.2021.
@@ -7,19 +7,20 @@
 
 import Foundation
 
-protocol DetailCoordinatorProtocol {
+protocol DetailsCoordinatorProtocol {
+    func close()
     func openWebSite(urlString: String)
 }
 
-final class DetailCoordinator: BaseCoordinator, CoordinatorOutput {
+final class DetailsCoordinator: BaseCoordinator, CoordinatorOutput {
     
-    typealias DetailModuleFactory = DetailModuleFactoryProtocol
-    typealias DetailCoordinatorFactory = DetailCoordinatorFactoryProtocol
+    typealias DetailsModuleFactory = DetailsModuleFactoryProtocol
+    typealias DetailsCoordinatorFactory = DetailsCoordinatorFactoryProtocol
     var finishFlow: CompletionBlock?
     
     // MARK: - Lifecycle
     
-    init(router: Routable, moduleFactory: DetailModuleFactory, coordinatorFactory: DetailCoordinatorFactory, article: Article) {
+    init(router: Routable, moduleFactory: DetailsModuleFactory, coordinatorFactory: DetailsCoordinatorFactory, article: Article) {
         self.router = router
         self.moduleFactory = moduleFactory
         self.coordinatorFactory = coordinatorFactory
@@ -29,26 +30,26 @@ final class DetailCoordinator: BaseCoordinator, CoordinatorOutput {
     // MARK: - Private
     
     private let router: Routable
-    private let moduleFactory: DetailModuleFactory
-    private let coordinatorFactory: DetailCoordinatorFactory
+    private let moduleFactory: DetailsModuleFactory
+    private let coordinatorFactory: DetailsCoordinatorFactory
     private let article: Article
     
 }
 
 // MARK: - Coordinatable
 
-extension DetailCoordinator: Coordinatable {
+extension DetailsCoordinator: Coordinatable {
     
     func start() {
         let view = moduleFactory.makeDetailsView(coordinator: self, article: article)
-        router.push(view)
+        router.present(view)
     }
     
 }
 
 // MARK: - DetailsCoordinatorProtocol
 
-extension DetailCoordinator: DetailCoordinatorProtocol {
+extension DetailsCoordinator: DetailsCoordinatorProtocol {
     
     func openWebSite(urlString: String) {
         let coordinator = coordinatorFactory.makeWebSiteCoordinator(with: router, urlString: urlString)
@@ -57,6 +58,10 @@ extension DetailCoordinator: DetailCoordinatorProtocol {
         }
         add(dependency: coordinator)
         coordinator.start()
+    }
+    
+    func close() {
+        router.dismissModule(animated: true, completion: finishFlow)
     }
     
 }

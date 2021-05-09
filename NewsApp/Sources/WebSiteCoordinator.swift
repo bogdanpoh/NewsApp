@@ -41,7 +41,8 @@ extension WebSiteCoordinator: Coordinatable {
     
     func start() {
         let view = moduleFactory.makeWebSiteView(coordinator: self, urlString: urlString)
-        router.push(view)
+//        router.push(view)
+        router.present(view)
     }
     
 }

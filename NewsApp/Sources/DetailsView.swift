@@ -25,12 +25,15 @@ final class DetailsView: View {
         .setContentMode(.scaleToFill)
         .maskToBounds(true)
     
+    private(set) var closeButton = Button()
+        .setImage(R.image.icNavBarClose())
+    
     private lazy var contentStack = makeStackView(axis: .vertical, spacing: 10) (
         titleLabel,
         authorLabel,
         descriptionLabel,
         emptyView,
-        openButton
+        buttonStack
     )
     .make { $0.setCustomSpacing(15, after: authorLabel) }
     
@@ -44,23 +47,36 @@ final class DetailsView: View {
     
     private let emptyView = View()
     
-    private(set) var openButton = Button()
-        .setCornerRadius(20)
+    private lazy var buttonStack = makeStackView(axis: .vertical, spacing: 8) (
+        shareButton,
+        openButton
+    )
+    
+    private(set) var shareButton = ButtonsFactory.makeActionButton(image: UIImage(systemName: "square.and.arrow.up"))
+        .title(R.string.localizable.detailsShareArticle())
+    
+    private(set) var openButton = ButtonsFactory.makeActionButton(image: R.image.icExternalLink())
     
     // MARK: - Lifecycle
     
     override func setupSubviews() {
         super.setupSubviews()
         
-        addSubviews(articleImage, contentStack)
+        addSubviews(articleImage, closeButton, contentStack)
     }
     
     override func defineLayout() {
         super.defineLayout()
         
+        closeButton.snp.makeConstraints {
+            $0.top.equalTo(layoutMarginsGuide).inset(UIEdgeInsets(aTop: 8))
+            $0.trailing.equalToSuperview().inset(UIEdgeInsets(aRight: 18))
+            $0.width.height.equalTo(36)
+        }
+        
         articleImage.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(200)
+            $0.height.equalTo(250)
         }
         
         contentStack.snp.makeConstraints {
@@ -69,8 +85,10 @@ final class DetailsView: View {
             $0.bottom.equalTo(layoutMarginsGuide).inset(UIEdgeInsets(aBottom: 10))
         }
         
-        openButton.snp.makeConstraints {
-            $0.height.equalTo(60)
+        [shareButton, openButton].forEach { button in
+            button.snp.makeConstraints {
+                $0.height.equalTo(60)
+            }
         }
     }
     
@@ -95,11 +113,13 @@ final class DetailsView: View {
             .textColor(detailsStyle.description.color)
             .text(font: detailsStyle.description.font)
         
-        openButton
-            .titleColor(detailsStyle.button.text.color)
-            .titleColor(detailsStyle.button.text.color.withAlphaComponent(0.6), for: .highlighted)
-            .text(font: detailsStyle.button.text.font)
-            .background(color: detailsStyle.button.background.color)
+        [shareButton, openButton].forEach {
+            $0.titleColor(detailsStyle.button.text.color)
+            $0.titleColor(detailsStyle.button.text.color.withAlphaComponent(0.6), for: .highlighted)
+            $0.text(font: detailsStyle.button.text.font)
+            $0.background(color: detailsStyle.button.background.color)
+        }
+            
     }
     
 }

@@ -11,7 +11,7 @@
 "feed.title" = "Новости";
 "feed.withoutAuthor" = "Без автора";
 
-"details.title" = "Подробности";
+"details.shareArticle" = "Поделиться статьей";
 "details.open" = "Открыть %@";
 "details.withoutDescription" = "Без описания";
 

@@ -1,5 +1,5 @@
 //
-//  DetailViewModel.swift
+//  DetailsViewModel.swift
 //  NewsApp
 //
 //  Created by Bogdan Pohidnya on 16.04.2021.
@@ -8,44 +8,49 @@
 import RxSwift
 import RxRelay
 
-private let logger = Logger(identifier: "DetailViewModel")
+private let logger = Logger(identifier: "DetailsViewModel")
 
-protocol DetailViewModelInput {
+protocol DetailsViewModelInput {
     func viewDidLoad()
     
+    func tapClose()
     func tapOpenWebSite()
 }
 
-protocol DetailViewModelOutput {
+protocol DetailsViewModelOutput {
     var article: Observable<Article> { get }
     var formattedPublishAt: Observable<String> { get }
 }
 
-typealias DetailViewModelProtocol = FeedViewModelInput & FeedViewModelOutput
+typealias DetailsViewModelProtocol = DetailsViewModelInput & DetailsViewModelOutput
 
-final class DetailViewModel {
+final class DetailsViewModel {
     
     // MARK: - Lifecycle
     
-    init(coordinator: DetailCoordinatorProtocol, article: Article) {
+    init(coordinator: DetailsCoordinatorProtocol, article: Article) {
         self.coordinator = coordinator
         self.articleSubj = BehaviorRelay<Article>(value: article)
     }
     
     // MARK: - Private
     
-    private let coordinator: DetailCoordinatorProtocol
+    private let coordinator: DetailsCoordinatorProtocol
     private let articleSubj: BehaviorRelay<Article>
     private let publishAtSubj = PublishRelay<String>()
     
 }
 
-// MARK: - DetailViewModelInput
+// MARK: - DetailsViewModelInput
 
-extension DetailViewModel: DetailViewModelInput {
+extension DetailsViewModel: DetailsViewModelInput {
     
     func viewDidLoad() {
         formatTime()
+    }
+    
+    func tapClose() {
+        coordinator.close()
     }
     
     func tapOpenWebSite() {
@@ -54,9 +59,9 @@ extension DetailViewModel: DetailViewModelInput {
     
 }
 
-// MARK: - DetailViewModelOutput
+// MARK: - DetailsViewModelOutput
 
-extension DetailViewModel: DetailViewModelOutput {
+extension DetailsViewModel: DetailsViewModelOutput {
     
     var article: Observable<Article> {
         return articleSubj.asObservable()
@@ -70,7 +75,7 @@ extension DetailViewModel: DetailViewModelOutput {
 
 // MARK: -
 
-private extension DetailViewModel {
+private extension DetailsViewModel {
     
     func formatTime() {
         let stringTime = articleSubj.value.publishedAt
