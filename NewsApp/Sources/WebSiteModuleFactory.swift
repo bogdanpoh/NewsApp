@@ -19,7 +19,7 @@ extension ModulesFactory: WebSiteModuleFactoryProtocol {
         let viewModel = WebSiteViewModel(coordinator: coordinator, urlString: urlString)
         let viewController = WebSiteViewController(viewModel: viewModel)
         let navigation = NavigationController(rootViewController: viewController)
-        navigation.modalPresentationStyle = .overFullScreen
+        navigation.modalPresentationStyle = .fullScreen
         return navigation
     }
     

@@ -42,7 +42,6 @@ extension WebSiteCoordinator: Coordinatable {
     
     func start() {
         let view = moduleFactory.makeWebSiteView(coordinator: self, urlString: urlString)
-//        router.present(view)
         router.topPresent(view)
     }
     
@@ -62,7 +61,7 @@ extension WebSiteCoordinator: WebSiteCoordinatorProtocol {
     }
     
     func close() {
-        router.dismissModule(animated: true, completion: finishFlow)
+        router.dismissTopmost(animated: true, completion: finishFlow)
     }
     
 }
