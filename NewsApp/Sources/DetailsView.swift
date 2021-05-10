@@ -119,7 +119,6 @@ final class DetailsView: View {
             $0.text(font: detailsStyle.button.text.font)
             $0.background(color: detailsStyle.button.background.color)
         }
-            
     }
     
 }

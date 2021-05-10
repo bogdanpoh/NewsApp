@@ -19,7 +19,6 @@ extension ModulesFactory: DetailsModuleFactoryProtocol {
         let viewModel = DetailsViewModel(coordinator: coordinator, article: article)
         let viewController = DetailsViewController(viewModel: viewModel)
         viewController.modalPresentationStyle = .fullScreen
-        viewController.modalTransitionStyle = .coverVertical
         return viewController
     }
     

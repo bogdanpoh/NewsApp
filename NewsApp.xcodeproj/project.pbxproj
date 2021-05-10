@@ -108,6 +108,8 @@
 		F7E3842026307548007E3C76 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7E3841D26307547007E3C76 /* Roboto-Regular.ttf */; };
 		F7E3842126307548007E3C76 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7E3841E26307548007E3C76 /* Roboto-Medium.ttf */; };
 		F7E384242630799E007E3C76 /* UIComponentsLibrary.Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E384232630799E007E3C76 /* UIComponentsLibrary.Feed.swift */; };
+		F7F9F3312649448A0082CDB6 /* ShareTextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F9F3302649448A0082CDB6 /* ShareTextCoordinator.swift */; };
+		F7F9F333264946870082CDB6 /* ShareTextModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F9F332264946870082CDB6 /* ShareTextModuleFactory.swift */; };
 		F7FA84232626035800D2FAA5 /* FakeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FA84222626035800D2FAA5 /* FakeParser.swift */; };
 		F7FA8432262607C100D2FAA5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FA8431262607C100D2FAA5 /* Constants.swift */; };
 		F7FC1EE82629EDE900B687DA /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FC1EE72629EDE900B687DA /* DetailsView.swift */; };
@@ -226,6 +228,8 @@
 		F7E3841D26307547007E3C76 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		F7E3841E26307548007E3C76 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		F7E384232630799E007E3C76 /* UIComponentsLibrary.Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponentsLibrary.Feed.swift; sourceTree = "<group>"; };
+		F7F9F3302649448A0082CDB6 /* ShareTextCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTextCoordinator.swift; sourceTree = "<group>"; };
+		F7F9F332264946870082CDB6 /* ShareTextModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTextModuleFactory.swift; sourceTree = "<group>"; };
 		F7FA84222626035800D2FAA5 /* FakeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeParser.swift; sourceTree = "<group>"; };
 		F7FA8431262607C100D2FAA5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F7FC1EE72629EDE900B687DA /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
@@ -307,6 +311,7 @@
 				F7FC1EF72629F2FF00B687DA /* DetailsCoordinator.swift */,
 				F7C87B1F263C2E9100CFF6CA /* WebSiteCoordinator.swift */,
 				F714C8422643BF2700ED596D /* ShareToSafariCoordinator.swift */,
+				F7F9F3302649448A0082CDB6 /* ShareTextCoordinator.swift */,
 			);
 			name = Coordinators;
 			sourceTree = "<group>";
@@ -339,6 +344,7 @@
 				F70E84742625B70100ADF8C3 /* FeedModuleFactory.swift */,
 				F7FC1EF42629F2C200B687DA /* DetailsModuleFactory.swift */,
 				F7C87B21263C2FAB00CFF6CA /* WebSiteModuleFactory.swift */,
+				F7F9F332264946870082CDB6 /* ShareTextModuleFactory.swift */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -950,6 +956,7 @@
 				F7C87B20263C2E9100CFF6CA /* WebSiteCoordinator.swift in Sources */,
 				F7C87B24263C316300CFF6CA /* DetailsCoordinatorFactory.swift in Sources */,
 				F7FC1F04262A1D5600B687DA /* UIComponentsLibrary.Details.swift in Sources */,
+				F7F9F3312649448A0082CDB6 /* ShareTextCoordinator.swift in Sources */,
 				F7FC1EF02629F03100B687DA /* DetailsViewModel.swift in Sources */,
 				F7CEA45A262213D7007648E1 /* R.generated.swift in Sources */,
 				F74E6519261755830012728F /* String.Ext.swift in Sources */,
@@ -969,6 +976,7 @@
 				F73D03ED2621F38D00BAA802 /* TableViewHeaderFooterView.swift in Sources */,
 				F731662B2621D7CA00208394 /* Routable.swift in Sources */,
 				F731665B2621E72200208394 /* ThemeProvider.swift in Sources */,
+				F7F9F333264946870082CDB6 /* ShareTextModuleFactory.swift in Sources */,
 				F714C84E2643E88100ED596D /* PlaceholderView.swift in Sources */,
 				F74E6529261757BE0012728F /* ViewLayoutableProtocol.swift in Sources */,
 			);

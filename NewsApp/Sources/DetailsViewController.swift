@@ -58,6 +58,10 @@ private extension DetailsViewController {
             viewModel.tapClose()
         }
         
+        contentView.shareButton.whenTap { [unowned self] in
+            viewModel.tapShareArticle()
+        }
+        
         contentView.openButton.whenTap { [unowned self] in
             viewModel.tapOpenWebSite()
         }

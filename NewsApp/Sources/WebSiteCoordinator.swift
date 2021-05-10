@@ -8,6 +8,7 @@
 import Foundation
 
 protocol WebSiteCoordinatorProtocol {
+    func close()
     func shareToSafari(urlString: String)
 }
 
@@ -41,8 +42,8 @@ extension WebSiteCoordinator: Coordinatable {
     
     func start() {
         let view = moduleFactory.makeWebSiteView(coordinator: self, urlString: urlString)
-//        router.push(view)
-        router.present(view)
+//        router.present(view)
+        router.topPresent(view)
     }
     
 }
@@ -58,6 +59,10 @@ extension WebSiteCoordinator: WebSiteCoordinatorProtocol {
         }
         add(dependency: coordinator)
         coordinator.start()
+    }
+    
+    func close() {
+        router.dismissModule(animated: true, completion: finishFlow)
     }
     
 }

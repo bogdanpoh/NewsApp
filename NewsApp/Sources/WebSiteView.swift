@@ -12,6 +12,10 @@ final class WebSiteView: View {
     
     // MARK: - UI
     
+    let closeButton = Button()
+        .title(R.string.localizable.webSiteClose())
+        .titleColor(UIStyleGuide.ColorPalette.blue)
+    
     let safariButton = Button()
         .setImage(R.image.icSafari())
         
