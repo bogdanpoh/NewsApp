@@ -18,7 +18,7 @@ protocol FeedViewModelInput {
     func item(for indexPath: IndexPath) -> Article
     
     func tapSelectCell(at indexPath: IndexPath)
-    func pullToRefresh(completion: @escaping () -> Void)
+    func pullToRefresh(completion: (() -> Void)?)
     func scrollToEnd()
 }
 
@@ -76,10 +76,10 @@ extension FeedViewModel: FeedViewModelInput {
         fetchArticles(country: .ua, pageNumber: 2)
     }
     
-    func pullToRefresh(completion: @escaping () -> Void) {
+    func pullToRefresh(completion: (() -> Void)?) {
         totalResult = -1
         fetchArticles(country: .ua, pageNumber: 1)
-        completion()
+        completion?()
     }
     
 }
