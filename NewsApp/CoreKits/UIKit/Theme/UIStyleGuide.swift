@@ -70,13 +70,13 @@ extension UIFont {
     ///roboto, .light, size: 14
     static let authorFeed = UIStyleGuide.Typography.roboto(weight: .light, size: 14)
     
-    ///roboto, .medium, size: 20
+    ///roboto, .medium, size: 18
     static let titleDetails = UIStyleGuide.Typography.roboto(weight: .medium, size: 18)
     
     ///roboto, .light, size: 12
     static let authorDetails = UIStyleGuide.Typography.roboto(weight: .light, size: 14)
     
-    ///roboto, .regular, size: 14
+    ///roboto, .regular, size: 16
     static let descriptionDetails = UIStyleGuide.Typography.roboto(weight: .regular, size: 16)
     
 }
