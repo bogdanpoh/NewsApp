@@ -25,7 +25,8 @@ extension AppTheme {
         placeholder: .init(color: UIStyleGuide.ColorPalette.black, font: .titleFeed),
         feed: .init(
             title: .init(color: UIStyleGuide.ColorPalette.tblack, font: .titleFeed),
-            author: .init(color: UIStyleGuide.ColorPalette.lightGray, font: .authorFeed)
+            author: .init(color: UIStyleGuide.ColorPalette.lightGray, font: .authorFeed),
+            background: UIStyleGuide.ColorPalette.white
         ),
         details: .init(
             title: .init(color: UIStyleGuide.ColorPalette.black, font: .titleDetails),
@@ -53,8 +54,9 @@ extension AppTheme {
         backgroundColor: UIStyleGuide.ColorPalette.black,
         placeholder: .init(color: UIStyleGuide.ColorPalette.white, font: .titleFeed),
         feed: .init(
-            title: .init(color: UIStyleGuide.ColorPalette.tblack, font: .titleFeed),
-            author: .init(color: UIStyleGuide.ColorPalette.lightGray, font: .authorFeed)
+            title: .init(color: UIStyleGuide.ColorPalette.white, font: .titleFeed),
+            author: .init(color: UIStyleGuide.ColorPalette.lightGray, font: .authorFeed),
+            background: UIStyleGuide.ColorPalette.tinyBlack
         ),
         details: .init(
             title: .init(color: UIStyleGuide.ColorPalette.white, font: .titleDetails),

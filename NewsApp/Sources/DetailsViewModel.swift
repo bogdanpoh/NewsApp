@@ -20,7 +20,7 @@ protocol DetailsViewModelInput {
 
 protocol DetailsViewModelOutput {
     var article: Observable<Article> { get }
-    var formattedPublishAt: Observable<String> { get }
+    var authorCopyright: Observable<String> { get }
 }
 
 typealias DetailsViewModelProtocol = DetailsViewModelInput & DetailsViewModelOutput
@@ -38,7 +38,7 @@ final class DetailsViewModel {
     
     private let coordinator: DetailsCoordinatorProtocol
     private let articleSubj: BehaviorRelay<Article>
-    private let publishAtSubj = PublishRelay<String>()
+    private let authorCopyrightSubj = PublishRelay<String>()
     
 }
 
@@ -47,7 +47,7 @@ final class DetailsViewModel {
 extension DetailsViewModel: DetailsViewModelInput {
     
     func viewDidLoad() {
-        formatTime()
+        makeAuthorCopyright()
     }
     
     func tapClose() {
@@ -72,8 +72,8 @@ extension DetailsViewModel: DetailsViewModelOutput {
         return articleSubj.asObservable()
     }
     
-    var formattedPublishAt: Observable<String> {
-        return publishAtSubj.asObservable()
+    var authorCopyright: Observable<String> {
+        return authorCopyrightSubj.asObservable()
     }
     
 }
@@ -82,10 +82,12 @@ extension DetailsViewModel: DetailsViewModelOutput {
 
 private extension DetailsViewModel {
     
-    func formatTime() {
+    func makeAuthorCopyright() {
         let stringTime = articleSubj.value.publishedAt
         let formattedTime = DateFormatter.formatISO8601(string: stringTime)
-        publishAtSubj.accept(formattedTime)
+        let author = articleSubj.value.author ?? R.string.localizable.feedWithoutAuthor()
+        let authorCopyrightWithTime = "\(author) | \(formattedTime)"
+        authorCopyrightSubj.accept(authorCopyrightWithTime)
     }
     
 }

@@ -81,10 +81,8 @@ private extension DetailsViewController {
             })
         .disposed(by: disposeBag)
         
-        viewModel.formattedPublishAt
-            .subscribe(onNext: { [weak self] time in
-                self?.contentView.set(publishAt: time)
-            })
+        viewModel.authorCopyright
+            .bind(to: contentView.authorLabel.rx.text)
             .disposed(by: disposeBag)
     }
     
