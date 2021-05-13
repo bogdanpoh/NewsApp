@@ -22,8 +22,10 @@ extension ModulesFactory: WebSiteModuleFactoryProtocol {
             navigation.modalPresentationStyle = .fullScreen
             return navigation
         }
-
-        return SFSafariViewController(url: url)
+        
+        let configuration = SFSafariViewController.Configuration()
+        configuration.entersReaderIfAvailable = true
+        return SFSafariViewController(url: url, configuration: configuration)
     }
     
 }
