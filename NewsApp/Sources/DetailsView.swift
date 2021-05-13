@@ -119,6 +119,9 @@ final class DetailsView: View {
             $0.text(font: detailsStyle.button.text.font)
             $0.background(color: detailsStyle.button.background.color)
         }
+        
+        ///bopo: remove after replace upload icon
+        shareButton.tint(color: detailsStyle.button.text.color)
     }
     
 }
