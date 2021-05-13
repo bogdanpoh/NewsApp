@@ -5,7 +5,7 @@
 //  Created by Bogdan Pohidnya on 30.04.2021.
 //
 
-import Foundation
+import SafariServices
 
 protocol WebSiteModuleFactoryProtocol {
     func makeWebSiteView(coordinator: WebSiteCoordinator, urlString: String) -> Presentable
@@ -16,11 +16,16 @@ protocol WebSiteModuleFactoryProtocol {
 extension ModulesFactory: WebSiteModuleFactoryProtocol {
     
     func makeWebSiteView(coordinator: WebSiteCoordinator, urlString: String) -> Presentable {
-        let viewModel = WebSiteViewModel(coordinator: coordinator, urlString: urlString)
-        let viewController = WebSiteViewController(viewModel: viewModel)
-        let navigation = NavigationController(rootViewController: viewController)
-        navigation.modalPresentationStyle = .fullScreen
-        return navigation
+        guard let url = URL(string: urlString) else {
+            let viewModel = WebSiteViewModel(coordinator: coordinator, urlString: urlString)
+            let navigation = NavigationController(rootViewController: WebSiteViewController(viewModel: viewModel))
+            navigation.modalPresentationStyle = .fullScreen
+            return navigation
+        }
+        
+        let configuration = SFSafariViewController.Configuration()
+        configuration.entersReaderIfAvailable = true
+        return SFSafariViewController(url: url, configuration: configuration)
     }
     
 }
