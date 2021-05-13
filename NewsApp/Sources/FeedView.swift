@@ -31,7 +31,8 @@ final class FeedView: View {
         super.defineLayout()
         
         contentStack.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(layoutMarginsGuide)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
     

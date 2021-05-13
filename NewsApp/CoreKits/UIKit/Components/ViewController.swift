@@ -31,7 +31,9 @@ class ViewController<ContentView: View>: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .automatic
         themeProvider.register(observer: self)
         
         let uiStyle = traitCollection.userInterfaceStyle
