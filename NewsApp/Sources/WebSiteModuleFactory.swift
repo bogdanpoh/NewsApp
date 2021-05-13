@@ -18,8 +18,9 @@ extension ModulesFactory: WebSiteModuleFactoryProtocol {
     func makeWebSiteView(coordinator: WebSiteCoordinator, urlString: String) -> Presentable {
         let viewModel = WebSiteViewModel(coordinator: coordinator, urlString: urlString)
         let viewController = WebSiteViewController(viewModel: viewModel)
-        viewController.modalPresentationStyle = .formSheet
-        return viewController
+        let navigation = NavigationController(rootViewController: viewController)
+        navigation.modalPresentationStyle = .fullScreen
+        return navigation
     }
     
 }

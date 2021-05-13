@@ -15,6 +15,7 @@ protocol DetailsViewModelInput {
     
     func tapClose()
     func tapOpenWebSite()
+    func tapShareArticle()
 }
 
 protocol DetailsViewModelOutput {
@@ -55,6 +56,10 @@ extension DetailsViewModel: DetailsViewModelInput {
     
     func tapOpenWebSite() {
         coordinator.openWebSite(urlString: articleSubj.value.url)
+    }
+    
+    func tapShareArticle() {
+        coordinator.shareText(text: articleSubj.value.url)
     }
     
 }

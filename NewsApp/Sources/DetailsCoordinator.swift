@@ -10,6 +10,7 @@ import Foundation
 protocol DetailsCoordinatorProtocol {
     func close()
     func openWebSite(urlString: String)
+    func shareText(text: String)
 }
 
 final class DetailsCoordinator: BaseCoordinator, CoordinatorOutput {
@@ -50,6 +51,15 @@ extension DetailsCoordinator: Coordinatable {
 // MARK: - DetailsCoordinatorProtocol
 
 extension DetailsCoordinator: DetailsCoordinatorProtocol {
+    
+    func shareText(text: String) {
+        let coordinator = coordinatorFactory.makeShareTextCoordinator(with: router, text: text)
+        coordinator.finishFlow = { [unowned self, unowned coordinator] in
+            remove(dependency: coordinator)
+        }
+        add(dependency: coordinator)
+        coordinator.start()
+    }
     
     func openWebSite(urlString: String) {
         let coordinator = coordinatorFactory.makeWebSiteCoordinator(with: router, urlString: urlString)

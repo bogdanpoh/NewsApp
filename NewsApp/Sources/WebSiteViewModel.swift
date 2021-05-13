@@ -11,6 +11,7 @@ import WebKit
 private let logger = Logger(identifier: "WebSiteViewModel")
 
 protocol WebSiteViewModelInput {
+    func tapClose()
     func loadPage(with webView: WKWebView)
     func openSafari()
 }
@@ -49,6 +50,10 @@ extension WebSiteViewModel: WebSiteViewModelInput {
     
     func openSafari() {
         coordinator.shareToSafari(urlString: urlString)
+    }
+    
+    func tapClose() {
+        coordinator.close()
     }
     
 }

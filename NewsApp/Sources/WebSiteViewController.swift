@@ -36,15 +36,15 @@ final class WebSiteViewController: ViewController<WebSiteView> {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        setupNavigationBar()
-//        setupActionHandlers()
+        setupNavigationBar()
+        setupActionHandlers()
         
         viewModel.loadPage(with: contentView.webView)
     }
     
     // MARK: - Private
     
-    private let viewModel: WebSiteViewModel
+    private let viewModel: WebSiteViewModelProtocol
     
 }
 
@@ -54,10 +54,15 @@ private extension WebSiteViewController {
     
     func setupNavigationBar() {
         navigationItem.title = R.string.localizable.webSiteTitle()
+        navigationItem.leftBarButtonItem = .makeButton(contentView.closeButton)
         navigationItem.rightBarButtonItem = .makeButton(contentView.safariButton)
     }
     
     func setupActionHandlers() {
+        contentView.closeButton.whenTap { [unowned self] in
+            viewModel.tapClose()
+        }
+        
         contentView.safariButton.whenTap { [unowned self] in
             viewModel.openSafari()
         }

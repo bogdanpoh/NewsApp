@@ -7,7 +7,11 @@
 
 import Foundation
 
-protocol DetailsCoordinatorFactoryProtocol {
+protocol ShareTextCoordinatorFactoryProtocol {
+    func makeShareTextCoordinator(with router: Routable, text: String) -> Coordinatable & CoordinatorOutput
+}
+
+protocol DetailsCoordinatorFactoryProtocol: ShareTextCoordinatorFactoryProtocol {
     func makeWebSiteCoordinator(with router: Routable, urlString: String) -> Coordinatable & CoordinatorOutput
 }
 
@@ -17,6 +21,10 @@ extension CoordinatorsFactory: DetailsCoordinatorFactoryProtocol {
     
     func makeWebSiteCoordinator(with router: Routable, urlString: String) -> Coordinatable & CoordinatorOutput {
         return WebSiteCoordinator(router: router, moduleFactory: modulesFactory, coordinator: self, urlString: urlString)
+    }
+    
+    func makeShareTextCoordinator(with router: Routable, text: String) -> Coordinatable & CoordinatorOutput {
+        return ShareTextCoordinator(router: router, moduleFactory: modulesFactory, text: text)
     }
     
 }
