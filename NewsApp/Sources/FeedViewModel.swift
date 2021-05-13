@@ -69,17 +69,18 @@ extension FeedViewModel: FeedViewModelInput {
     }
     
     func tapSelectCell(at indexPath: IndexPath) {
-        coordinator.open(article: articles[indexPath.row])
-    }
-    
-    func scrollToEnd() {
-        fetchArticles(country: .ua, pageNumber: 2)
+        let article = articles[indexPath.row]
+        coordinator.open(article: article)
     }
     
     func pullToRefresh(completion: (() -> Void)?) {
         totalResult = -1
         fetchArticles(country: .ua, pageNumber: 1)
         completion?()
+    }
+    
+    func scrollToEnd() {
+        fetchArticles(country: .ua, pageNumber: 2)
     }
     
 }
