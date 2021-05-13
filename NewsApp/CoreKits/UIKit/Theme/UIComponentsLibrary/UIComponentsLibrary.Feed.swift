@@ -10,6 +10,10 @@ import UIKit
 extension UIComponentsLibrary {
     
     struct Feed {
+        var cell: FeedCell
+    }
+    
+    struct FeedCell {
         var title: TextComponent
         var author: TextComponent
         var background: UIColor

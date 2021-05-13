@@ -75,15 +75,17 @@ final class NewsCollectionViewCell: CollectionViewCell {
     override func apply(theme: AppTheme) {
         super.apply(theme: theme)
         
-        let feedStyle = theme.components.feed
+        let feedCellStyle = theme.components.feed.cell
+
+        containerView.backgroundColor(color: feedCellStyle.background)
         
         titleLabel
-            .textColor(feedStyle.title.color)
-            .text(font: feedStyle.title.font)
+            .textColor(feedCellStyle.title.color)
+            .text(font: feedCellStyle.title.font)
         
         authorLabel
-            .textColor(feedStyle.author.color)
-            .text(font: feedStyle.author.font)
+            .textColor(feedCellStyle.author.color)
+            .text(font: feedCellStyle.author.font)
     }
     
 }
