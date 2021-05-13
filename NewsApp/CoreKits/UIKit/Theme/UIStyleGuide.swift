@@ -49,8 +49,9 @@ extension UIStyleGuide {
         static let white: UIColor = .white
         static let black: UIColor = .init(hex: "#080808")
         static let tblack: UIColor = .init(hex: "#000000")
-        static let blue: UIColor = .init(hex: "#007AFF")
         static let dBlack: UIColor = .init(hex: "#090909")
+        static let tinyBlack: UIColor = .init(hex: "#212226")
+        static let blue: UIColor = .init(hex: "#007AFF")
         static let gray: UIColor = .init(hex: "#C4C4C4")
         static let lightGray: UIColor = .init(hex: "#767676")
         static let spaceGray: UIColor = .init(hex: "#F2F2F6")
