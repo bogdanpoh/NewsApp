@@ -40,7 +40,7 @@ final class DetailsView: View {
     private let titleLabel = Label()
         .enableMultilines()
     
-    private let authorLabel = Label()
+    private(set) var authorLabel = Label()
     
     private let descriptionLabel = Label()
         .enableMultilines()
@@ -138,10 +138,8 @@ extension DetailsView {
     }
     
     @discardableResult
-    func set(publishAt: String) -> Self {
-        authorLabel.make {
-            $0.text? += " | " + publishAt
-        }
+    func set(author: String) -> Self {
+        authorLabel.text(author)
         return self
     }
     
