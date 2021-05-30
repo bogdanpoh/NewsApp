@@ -6,20 +6,20 @@ target 'NewsApp' do
   use_frameworks!
 
   # UI
-  pod 'SnapKit'
+  pod 'SnapKit', '~> 5.0.0'
 
   # Arhitecture
   pod 'Swinject'
   
   # Rx
-  pod 'RxSwift'
-  pod 'RxCocoa'
+  pod 'RxSwift', '~> 5.0'
+  pod 'RxCocoa', '~> 5.0'
   
   # Async
-  pod "PromiseKit"
+  pod "PromiseKit", "~> 6.8"
   
   # Resources
   pod 'R.swift'
-  pod 'Kingfisher'
+  pod 'Kingfisher', '~> 6.0'
 
 end
