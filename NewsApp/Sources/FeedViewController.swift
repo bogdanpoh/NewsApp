@@ -66,6 +66,7 @@ private extension FeedViewController {
     
     func setupNavigationBar() {
         navigationItem.title = R.string.localizable.feedTitle()
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     func setupBindingToViewModel() {
@@ -133,8 +134,8 @@ extension FeedViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if(indexPath.row == viewModel.numberOfRows() - 2) {
-            print("scroll to end")
-//            viewModel.scrollToEnd()
+//            print("scroll to end")
+            viewModel.scrollToEnd()
         }
     }
     
