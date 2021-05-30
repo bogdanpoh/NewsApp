@@ -1,5 +1,5 @@
 //
-//  NewsCollectionViewCell.swift
+//  NewsTableViewCell.swift
 //  NewsApp
 //
 //  Created by Bogdan Pohidnya on 15.04.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class NewsCollectionViewCell: CollectionViewCell {
+final class NewsTableViewCell: TableViewCell {
     
     struct State {
         var imageUrl: String?
@@ -21,8 +21,8 @@ final class NewsCollectionViewCell: CollectionViewCell {
         .backgroundColor(color: UIStyleGuide.ColorPalette.white)
         .setCornerRadius(15)
         .maskToBounds(true)
-        
-    private let imageView = KFImageView()
+    
+    private let articleImageView = KFImageView()
         .setContentMode(.scaleToFill)
     
     private let titleLabel = Label()
@@ -41,28 +41,30 @@ final class NewsCollectionViewCell: CollectionViewCell {
     override func setupSubviews() {
         super.setupSubviews()
         
+        selectionStyle = .none
+        
         contentView.addSubview(containerView)
         containerView.addSubviews(
-            imageView,
+            articleImageView,
             titleLabel,
             authorLabel
         )
     }
-
+    
     override func defineLayout() {
         super.defineLayout()
         
         containerView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(aTop: 18, aLeft: 16, aRight: 16))
         }
         
-        imageView.snp.makeConstraints {
+        articleImageView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(200)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(imageView.snp.bottom).offset(15)
+            $0.top.equalTo(articleImageView.snp.bottom).offset(15)
             $0.leading.trailing.equalToSuperview().inset(UIEdgeInsets(horizontal: 10))
         }
         
@@ -76,7 +78,7 @@ final class NewsCollectionViewCell: CollectionViewCell {
         super.apply(theme: theme)
         
         let feedCellStyle = theme.components.feed.cell
-
+        
         containerView.backgroundColor(color: feedCellStyle.background)
         
         titleLabel
@@ -92,7 +94,7 @@ final class NewsCollectionViewCell: CollectionViewCell {
 
 // MARK: -
 
-private extension NewsCollectionViewCell {
+private extension NewsTableViewCell {
     
     func applyShadow() {
         let shadowWidth = bounds.width
@@ -109,11 +111,11 @@ private extension NewsCollectionViewCell {
 
 // MARK: - Set
 
-extension NewsCollectionViewCell {
+extension NewsTableViewCell {
     
     @discardableResult
     func set(state: State) -> Self {
-        imageView.setImage(path: state.imageUrl, placeholder: R.image.newsPlaceholder())
+        articleImageView.setImage(path: state.imageUrl, placeholder: R.image.newsPlaceholder())
         authorLabel.text(state.author ?? R.string.localizable.feedWithoutAuthor())
         titleLabel.text(state.title)
         return self
@@ -123,7 +125,7 @@ extension NewsCollectionViewCell {
 
 // MARK: - BackgroundView Factory
 
-private extension NewsCollectionViewCell {
+private extension NewsTableViewCell {
     
     static func makeBackgroundView(backgroundColor: UIColor) -> View {
         return View()
