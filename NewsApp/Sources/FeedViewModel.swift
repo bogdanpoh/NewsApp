@@ -104,6 +104,8 @@ private extension FeedViewModel {
             return
         }
         
+        //TODO: - code for debug application
+        
 //        firstly {
 //            FakeParsser().getArticlesResponse()
 //        }.done { response in

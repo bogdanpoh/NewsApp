@@ -22,12 +22,12 @@ PODS:
   - Swinject (2.7.1)
 
 DEPENDENCIES:
-  - Kingfisher
-  - PromiseKit
+  - Kingfisher (~> 6.0)
+  - PromiseKit (~> 6.8)
   - R.swift
-  - RxCocoa
-  - RxSwift
-  - SnapKit
+  - RxCocoa (~> 5.0)
+  - RxSwift (~> 5.0)
+  - SnapKit (~> 5.0.0)
   - Swinject
 
 SPEC REPOS:
@@ -53,6 +53,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: cd7055fed66c85d9e69ba5ee04e4b0438dd2cdb6
+PODFILE CHECKSUM: a0098ef67a2de57e618423b3ab96732c85ab5904
 
 COCOAPODS: 1.10.1
