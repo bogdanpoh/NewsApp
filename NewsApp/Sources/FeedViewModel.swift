@@ -18,7 +18,7 @@ protocol FeedViewModelInput {
     func item(for indexPath: IndexPath) -> Article
     
     func tapSelectCell(at indexPath: IndexPath)
-    func pullToRefresh(completion: @escaping () -> Void)
+    func pullToRefresh(completion: (() -> Void)?)
     func scrollToEnd()
 }
 
@@ -69,17 +69,18 @@ extension FeedViewModel: FeedViewModelInput {
     }
     
     func tapSelectCell(at indexPath: IndexPath) {
-        coordinator.open(article: articles[indexPath.row])
+        let article = articles[indexPath.row]
+        coordinator.open(article: article)
+    }
+    
+    func pullToRefresh(completion: (() -> Void)?) {
+        totalResult = -1
+        fetchArticles(country: .ua, pageNumber: 1)
+        completion?()
     }
     
     func scrollToEnd() {
         fetchArticles(country: .ua, pageNumber: 2)
-    }
-    
-    func pullToRefresh(completion: @escaping () -> Void) {
-        totalResult = -1
-        fetchArticles(country: .ua, pageNumber: 1)
-        completion()
     }
     
 }
@@ -103,35 +104,35 @@ private extension FeedViewModel {
             return
         }
         
-        firstly {
-            FakeParsser().getArticlesResponse()
-        }.done { response in
-            self.articles = response.articles
-            self.reloadCellsSubj.accept(())
-            self.viewStateSubj.accept(self.numberOfRows() == 0 ? .empty : .ready)
-        }
-        .catch { error in
-            logger.error(error.localizedDescription)
-            self.viewStateSubj.accept(.error)
-        }
-
 //        firstly {
-//            networkService.getNews(country: country, pageNumber: pageNumber)
-//        }.done { newsResponse in
-//            if pageNumber > 1 {
-//                self.articles += newsResponse.articles
-//            } else {
-//                self.viewStateSubj.accept(.loading)
-//                self.articles = newsResponse.articles
-//            }
-//
-//            self.totalResult = newsResponse.totalResults
+//            FakeParsser().getArticlesResponse()
+//        }.done { response in
+//            self.articles = response.articles
 //            self.reloadCellsSubj.accept(())
 //            self.viewStateSubj.accept(self.numberOfRows() == 0 ? .empty : .ready)
-//        }.catch { error in
+//        }
+//        .catch { error in
 //            logger.error(error.localizedDescription)
 //            self.viewStateSubj.accept(.error)
 //        }
+
+        firstly {
+            networkService.getNews(country: country, pageNumber: pageNumber)
+        }.done { newsResponse in
+            if pageNumber > 1 {
+                self.articles += newsResponse.articles
+            } else {
+                self.viewStateSubj.accept(.loading)
+                self.articles = newsResponse.articles
+            }
+
+            self.totalResult = newsResponse.totalResults
+            self.reloadCellsSubj.accept(())
+            self.viewStateSubj.accept(self.numberOfRows() == 0 ? .empty : .ready)
+        }.catch { error in
+            logger.error(error.localizedDescription)
+            self.viewStateSubj.accept(.error)
+        }
     }
     
 }

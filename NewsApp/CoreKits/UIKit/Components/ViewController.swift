@@ -31,7 +31,6 @@ class ViewController<ContentView: View>: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.isTranslucent = false
         themeProvider.register(observer: self)
         
         let uiStyle = traitCollection.userInterfaceStyle

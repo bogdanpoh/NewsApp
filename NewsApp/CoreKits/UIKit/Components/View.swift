@@ -43,11 +43,11 @@ class View: UIView, ViewLayoutableProtocol, Themeable {
     }
 
     func setupSubviews() {
-        addSubview(activityView)
+//        addSubview(activityView)
     }
 
     func defineLayout() {
-        activityView.snp.makeConstraints { $0.edges.equalToSuperview() }
+//        activityView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
 
     override func layoutSubviews() {

@@ -56,23 +56,24 @@ final class FeedViewController: ViewController<FeedView> {
 private extension FeedViewController {
     
     func setupView() {
-        contentView.newsCollectionView.collectionView.make {
+        contentView.newsTableView.tableView.make {
             $0.dataSource = self
             $0.delegate = self
         }
-        
-        contentView.newsCollectionView.refreshControl.addTarget(self, action: #selector(didPullToRefresh(_:)), for: .valueChanged)
+
+        contentView.newsTableView.refreshControl.addTarget(self, action: #selector(didPullToRefresh(_:)), for: .valueChanged)
     }
     
     func setupNavigationBar() {
         navigationItem.title = R.string.localizable.feedTitle()
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     func setupBindingToViewModel() {
         viewModel.reloadCells
             .subscribe (onNext: { [weak self] _ in
                 DispatchQueue.main.async {
-                    self?.contentView.newsCollectionView.collectionView.reloadData()
+                    self?.contentView.newsTableView.tableView.reloadData()
                 }
             })
             .disposed(by: disposeBag)
@@ -93,23 +94,27 @@ extension FeedViewController {
     @objc
     func didPullToRefresh(_ sender: Any) {
         viewModel.pullToRefresh { [weak self] in
-            self?.contentView.newsCollectionView.refreshControl.endRefreshing()
+            self?.contentView.newsTableView.refreshControl.endRefreshing()
         }
     }
     
 }
 
-// MARK: - UICollectionViewDataSource
+// MARK: - UITableViewDataSource
 
-extension FeedViewController: UICollectionViewDataSource {
+extension FeedViewController: UITableViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows()
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let article = viewModel.item(for: indexPath)
-        let cell = collectionView.dequeue(NewsCollectionViewCell.self, for: indexPath)
+        let cell = tableView.dequeue(NewsTableViewCell.self, for: indexPath)
         return cell.set(state: .init(
             imageUrl: article.urlToImage,
             author: article.author,
@@ -119,30 +124,17 @@ extension FeedViewController: UICollectionViewDataSource {
     
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout
+// MARK: - Delegate
 
-extension FeedViewController: UICollectionViewDelegateFlowLayout {
+extension FeedViewController: UITableViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: View.noIntrinsicMetric, height: 20)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 30
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = UIScreen.main.bounds.width - 36
-        let height: CGFloat = 300
-        return .init(width: width, height: height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.tapSelectCell(at: indexPath)
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if (indexPath.row == viewModel.numberOfRows() - 2) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if(indexPath.row == viewModel.numberOfRows() - 2) {
+//            print("scroll to end")
             viewModel.scrollToEnd()
         }
     }

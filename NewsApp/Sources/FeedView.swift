@@ -11,11 +11,7 @@ final class FeedView: View {
     
     // MARK: - UI
     
-    private lazy var contentStack = makeStackView(axis: .vertical) (
-        newsCollectionView
-    )
-    
-    let newsCollectionView = NewsCollectionView()
+    let newsTableView = NewsTableView()
     
     private var placeholderView: PlaceholderView?
     
@@ -24,14 +20,15 @@ final class FeedView: View {
     override func setupSubviews() {
         super.setupSubviews()
         
-        addSubview(contentStack)
+        addSubview(newsTableView)
     }
     
     override func defineLayout() {
         super.defineLayout()
         
-        contentStack.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        newsTableView.snp.makeConstraints {
+            $0.top.equalTo(layoutMarginsGuide)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
     
@@ -57,7 +54,7 @@ extension FeedView {
         
         let placeholder = PlaceholderView()
             .set(title: R.string.localizable.placeholderLoading())
-        contentStack.addSubview(placeholder)
+        newsTableView.addSubview(placeholder)
         
         placeholder.snp.makeConstraints {
             $0.edges.equalToSuperview()

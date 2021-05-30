@@ -7,11 +7,11 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+class TableViewCell: UITableViewCell, ViewLayoutableProtocol, Themeable {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+     
         setup()
         setupSubviews()
         defineLayout()
@@ -22,14 +22,10 @@ class TableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-}
-
-// MARK: - ViewLayoutableProtocol
-
-extension TableViewCell: ViewLayoutableProtocol {
+    // MARK: - ViewLayoutableProtocol
     
     func setup() {
-        
+        themeProvider.register(observer: self)
     }
     
     func setupSubviews() {
@@ -40,4 +36,11 @@ extension TableViewCell: ViewLayoutableProtocol {
         
     }
     
+    // MARK: - Themeable
+    
+    func apply(theme: AppTheme) {
+        
+    }
+    
 }
+
