@@ -13,7 +13,7 @@ private let logger = Logger(identifier: "DetailsViewModel")
 protocol DetailsViewModelInput {
     func viewDidLoad()
     
-    func tapClose()
+    func close()
     func tapOpenWebSite()
     func tapShareArticle()
 }
@@ -50,7 +50,7 @@ extension DetailsViewModel: DetailsViewModelInput {
         makeAuthorCopyright()
     }
     
-    func tapClose() {
+    func close() {
         coordinator.close()
     }
     

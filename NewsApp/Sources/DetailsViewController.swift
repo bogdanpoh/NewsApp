@@ -55,7 +55,7 @@ private extension DetailsViewController {
     
     func setupActionHandlers() {
         contentView.closeButton.whenTap { [unowned self] in
-            viewModel.tapClose()
+            viewModel.close()
         }
         
         contentView.shareButton.whenTap { [unowned self] in
@@ -64,6 +64,10 @@ private extension DetailsViewController {
         
         contentView.openButton.whenTap { [unowned self] in
             viewModel.tapOpenWebSite()
+        }
+        
+        contentView.swipeDown.whenSwipe { [unowned self] in
+            viewModel.close()
         }
     }
     

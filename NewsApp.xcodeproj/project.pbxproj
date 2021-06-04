@@ -94,6 +94,7 @@
 		F75CF49A2624D800008AE543 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75CF4992624D800008AE543 /* Button.swift */; };
 		F75CF49D2624DDC7008AE543 /* UIControl+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75CF49C2624DDC7008AE543 /* UIControl+Ext.swift */; };
 		F7919D31262EF83C0056935F /* NewsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7919D30262EF83C0056935F /* NewsError.swift */; };
+		F7A777302669733C00446402 /* SwipeGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A7772F2669733C00446402 /* SwipeGestureRecognizer.swift */; };
 		F7BD705B262E44F800C99F3C /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BD705A262E44F800C99F3C /* StorageKeys.swift */; };
 		F7C60A91262E1F00004E4C83 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C60A90262E1F00004E4C83 /* NetworkService.swift */; };
 		F7C87B20263C2E9100CFF6CA /* WebSiteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C87B1F263C2E9100CFF6CA /* WebSiteCoordinator.swift */; };
@@ -210,6 +211,7 @@
 		F75CF4992624D800008AE543 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		F75CF49C2624DDC7008AE543 /* UIControl+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Ext.swift"; sourceTree = "<group>"; };
 		F7919D30262EF83C0056935F /* NewsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsError.swift; sourceTree = "<group>"; };
+		F7A7772F2669733C00446402 /* SwipeGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeGestureRecognizer.swift; sourceTree = "<group>"; };
 		F7BD705A262E44F800C99F3C /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		F7C60A90262E1F00004E4C83 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		F7C87B1F263C2E9100CFF6CA /* WebSiteCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSiteCoordinator.swift; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 				F75CF4952624D6BB008AE543 /* ImageView.swift */,
 				F73166712621EEB300208394 /* ActivityView.swift */,
 				F75CF4992624D800008AE543 /* Button.swift */,
+				F7A7772F2669733C00446402 /* SwipeGestureRecognizer.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -930,6 +933,7 @@
 				F73166722621EEB300208394 /* ActivityView.swift in Sources */,
 				F714C8432643BF2700ED596D /* ShareToSafariCoordinator.swift in Sources */,
 				F75CF47E2624CC61008AE543 /* SnappingCollectionViewLayout.swift in Sources */,
+				F7A777302669733C00446402 /* SwipeGestureRecognizer.swift in Sources */,
 				F7FC1EE82629EDE900B687DA /* DetailsView.swift in Sources */,
 				F70E844F2625ADED00ADF8C3 /* AppCoordinator.swift in Sources */,
 				F7FC1EF52629F2C200B687DA /* DetailsModuleFactory.swift in Sources */,
