@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         print("application will enter foreground")
+        
+        // TODO: update content
     }
     
     // MARK: - Private
