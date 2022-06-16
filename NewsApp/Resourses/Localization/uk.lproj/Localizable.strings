@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  NewsApp
+
+  Created by Bogdan Pohidnya on 10.04.2021.
+  
+*/
+
+"placeholder.loading" = "Завантаження";
+
+"feed.title" = "Новини";
+"feed.withoutAuthor" = "Без автора";
+
+"details.shareArticle" = "Поділитись статею";
+"details.open" = "Відкрити %@";
+"details.withoutDescription" = "Без опису";
+
+"webSite.title" = "Джерело";
+"webSite.done" = "Готово";

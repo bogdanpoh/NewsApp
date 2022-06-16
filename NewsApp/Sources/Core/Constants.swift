@@ -18,7 +18,7 @@ enum Constants {
         }
         
         static let domainString = "https://newsapi.org/v2/top-headlines"
-        static let apiKey = StorageKeys.NewsApiKey.apiKey
+        static let apiKey: String = StorageKeys.newsApiKey
     }
     
 }
