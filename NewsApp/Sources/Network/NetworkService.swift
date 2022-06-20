@@ -10,7 +10,7 @@ import PromiseKit
 typealias Countrys = Constants.NewsApi.Countrys
 
 protocol NetworkNewsProtocol {
-    func getNews(country: Countrys, pageNumber: Int) -> Promise<ArticleResponse>
+    func getNews(country: Countrys, pageNumber: Int?, pageSize: Int?) -> Promise<ArticleResponse>
 }
 
 final class NetworkService {
@@ -34,40 +34,38 @@ final class NetworkService {
 
 extension NetworkService: NetworkNewsProtocol {
     
-    func getNews(country: Countrys, pageNumber: Int) -> Promise<ArticleResponse> {
-        return .init { resolver in
+    func getNews(country: Countrys, pageNumber: Int?, pageSize: Int?) -> Promise<ArticleResponse> {
+        return Promise { resolver in
             guard var queryComponents = urlComponents else {
                 resolver.reject(NetworkError(code: 400, errorType: .unknown, message: "don`t have UrlComponents"))
                 return
             }
-
+            
+            if let pageNumber = pageNumber {
+                queryComponents.queryItems?.append(.init(name: "page", value: pageNumber.string))
+            }
+            
+            if let pageSize = pageSize {
+                queryComponents.queryItems?.append(.init(name: "pageSize", value: pageSize.string))
+            }
+            
             queryComponents.queryItems?.append(.init(name: "country", value: country.rawValue))
-            queryComponents.queryItems?.append(.init(name: "page", value: String(pageNumber)))
-
+            
             guard let url = queryComponents.url else {
                 resolver.reject(NetworkError(code: 400, errorType: .unknown, message: "don`t give url for fetch"))
                 return
             }
-
-            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if let errorTask = error {
-                    resolver.reject(errorTask)
-                    return
-                }
-
-                guard let dataTask = data else {
-                    resolver.reject(NetworkError(code: 400, errorType: .unknown, message: "don`t fetch data"))
-                    return
-                }
-                
-                do {
-                    let newsResponse = try JSONDecoder().decode(ArticleResponse.self, from: dataTask)
-                    resolver.fulfill(newsResponse)
-                } catch {
-                    resolver.reject(error)
-                }
+            
+            firstly {
+                URLSession.shared.dataTask(.promise, with: url)
+            }.map {
+                try JSONDecoder().decode(ArticleResponse.self, from: $0.data)
+            }.done {
+                resolver.fulfill($0)
+            }.catch { error in
+                resolver.reject(error)
             }
-            task.resume()
         }
     }
+    
 }

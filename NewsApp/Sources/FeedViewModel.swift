@@ -119,7 +119,7 @@ private extension FeedViewModel {
 //        }
 
         firstly {
-            networkService.getNews(country: country, pageNumber: pageNumber)
+            networkService.getNews(country: country, pageNumber: pageNumber, pageSize: nil)
         }.done { newsResponse in
             if pageNumber > 1 {
                 self.articles += newsResponse.articles
