@@ -115,7 +115,17 @@ extension NewsTableViewCell {
     
     @discardableResult
     func set(state: State) -> Self {
-        articleImageView.setImage(path: state.imageUrl, placeholder: R.image.newsPlaceholder())
+
+        articleImageView.setImage(path: state.imageUrl, placeholder: R.image.newsPlaceholder()) { [weak articleImageView] result in
+            switch result {
+            case .failure(_):
+                articleImageView?.image = R.image.newsPlaceholder()
+                
+            default:
+                break
+            }
+        }
+        
         authorLabel.text(state.author ?? R.string.localizable.feedWithoutAuthor())
         titleLabel.text(state.title)
         return self
