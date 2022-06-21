@@ -7,10 +7,10 @@
 
 import PromiseKit
 
-typealias Countrys = Constants.NewsApi.Countrys
+typealias Country = Constants.NewsApi.Countrys
 
 protocol NetworkNewsProtocol {
-    func getNews(country: Countrys, pageNumber: Int?, pageSize: Int?) -> Promise<ArticleResponse>
+    func getNews(country: Country, pageNumber: Int?, pageSize: Int?) -> Promise<ArticleResponse>
 }
 
 final class NetworkService {
@@ -34,7 +34,7 @@ final class NetworkService {
 
 extension NetworkService: NetworkNewsProtocol {
     
-    func getNews(country: Countrys, pageNumber: Int?, pageSize: Int?) -> Promise<ArticleResponse> {
+    func getNews(country: Country, pageNumber: Int?, pageSize: Int?) -> Promise<ArticleResponse> {
         return Promise { resolver in
             guard var queryComponents = urlComponents else {
                 resolver.reject(NetworkError(code: 400, errorType: .unknown, message: "don`t have UrlComponents"))
@@ -66,6 +66,32 @@ extension NetworkService: NetworkNewsProtocol {
                 resolver.reject(error)
             }
         }
+    }
+    
+}
+
+// MARK: - New features
+
+@available(iOS 15.0, *)
+extension NetworkService {
+    
+    func getNews(country: Country, pageNumber: Int? = nil, pageSize: Int? = nil) async throws -> ArticleResponse {
+        guard var urlComponents = urlComponents else {
+            throw NetworkError(code: 400, errorType: .unknown, message: "don`t have UrlComponents")
+        }
+        
+        urlComponents.queryItems?.append(.init(name: "page", value: (pageNumber ?? 0).string))
+        urlComponents.queryItems?.append(.init(name: "pageSize", value: (pageSize ?? 0).string))
+        urlComponents.queryItems?.append(.init(name: "country", value: country.rawValue))
+        
+        guard let url = urlComponents.url else {
+            throw NetworkError(code: 400, errorType: .unknown, message: "don`t have url")
+        }
+        
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let articleResponse = try JSONDecoder().decode(ArticleResponse.self, from: data)
+        
+        return articleResponse
     }
     
 }

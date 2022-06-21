@@ -8,7 +8,7 @@
 import ClockKit
 
 
-class ComplicationController: NSObject, CLKComplicationDataSource {
+final class ComplicationController: NSObject, CLKComplicationDataSource {
     
     // MARK: - Complication Configuration
 

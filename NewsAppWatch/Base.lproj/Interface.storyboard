@@ -46,5 +46,12 @@
             </objects>
             <point key="canvasLocation" x="-16" y="-6"/>
         </scene>
+        <!--Interface Controller-->
+        <scene sceneID="T5h-C8-G9I">
+            <objects>
+                <controller id="ImZ-Gw-sJw"/>
+            </objects>
+            <point key="canvasLocation" x="233" y="-7"/>
+        </scene>
     </scenes>
 </document>

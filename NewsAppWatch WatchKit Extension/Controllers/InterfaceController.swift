@@ -6,10 +6,8 @@
 //
 
 import WatchKit
-import PromiseKit
 
-
-class InterfaceController: WKInterfaceController {
+final class InterfaceController: WKInterfaceController {
     
     // MARK: - IBOutlets
     
@@ -20,21 +18,23 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         super.willActivate()
         
-        firstly {
-            networkManager.getNews(country: .ua, pageNumber: nil, pageSize: 100)
-        }.done { [weak self] news in
-            self?.setupTable(news)
-        }.catch { [weak self] error in
-            print("[dev] error fetched news \(error.localizedDescription)")
-            
-            self?.setupError(error.localizedDescription)
+        Task {
+            do {
+                let articleResponse = try await networkService.getNews(country: .ua, pageSize: 100)
+                
+                setupTable(articleResponse)
+            } catch {
+                print("[dev] \(error)")
+                
+                setupError(error.localizedDescription)
+            }
         }
         
     }
     
     // MARK: - Private
     
-    private let networkManager = NetworkService()
+    private let networkService = NetworkService()
 
 }
 

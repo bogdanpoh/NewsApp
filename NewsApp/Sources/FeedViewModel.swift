@@ -99,7 +99,7 @@ extension FeedViewModel: FeedViewModelOutput {
 
 private extension FeedViewModel {
     
-    func fetchArticles(country: Countrys, pageNumber: Int) {
+    func fetchArticles(country: Country, pageNumber: Int) {
         if articles.count == totalResult {
             return
         }
