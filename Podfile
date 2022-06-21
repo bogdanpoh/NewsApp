@@ -23,9 +23,3 @@ target 'NewsApp' do
     pod 'Kingfisher', '~> 6.0'
     
 end
-
-target 'NewsAppWatch WatchKit Extension' do
-    platform :watchos, '6.0'
-    
-    pod "PromiseKit", "~> 6.8"
-end
