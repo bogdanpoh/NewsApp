@@ -78,7 +78,7 @@ extension DetailsViewModel: DetailsViewModelOutput {
     
 }
 
-// MARK: -
+// MARK: - Formatted copyright
 
 private extension DetailsViewModel {
     
