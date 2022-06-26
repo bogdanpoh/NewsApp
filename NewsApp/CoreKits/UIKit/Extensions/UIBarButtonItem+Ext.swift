@@ -11,7 +11,7 @@ extension UIBarButtonItem {
     
     static func makeCloseButton(target: Any, action: Selector) -> Self {
         return .init(
-            image: #imageLiteral(resourceName: "icNavBarClose"),
+            image: R.image.icNavBarClose(),
             style: .plain,
             target: target,
             action: action
@@ -20,7 +20,7 @@ extension UIBarButtonItem {
     
     static func makeBackButton(target: Any, action: Selector) -> Self {
         return .init(
-            image: #imageLiteral(resourceName: "icNavBarBack"),
+            image: R.image.icNavBarBack(),
             style: .plain,
             target: target,
             action: action
