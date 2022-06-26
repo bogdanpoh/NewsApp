@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		24DD6D8627C25E7BAE0C3BC9 /* Pods_NewsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F31555C34108D1E1148D5757 /* Pods_NewsApp.framework */; };
-		65D587DFA7DE36B93DFCEEDA /* libPods-NewsAppWatch WatchKit Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB8F56FC39BFB963AB9B4E0B /* libPods-NewsAppWatch WatchKit Extension.a */; };
+		7A3D6BB8DC538AEB3B3BD5BB /* Pods_NewsAppWatch_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E27EC479EAA1913F937C808A /* Pods_NewsAppWatch_WatchKit_Extension.framework */; };
 		F707EF202621F08600B486D9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F707EF1F2621F08600B486D9 /* ViewController.swift */; };
+		F70E09B628619D5200712490 /* DetailNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E09B528619D5200712490 /* DetailNewsController.swift */; };
 		F70E842A26259C5300ADF8C3 /* UICollectionView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E842926259C5300ADF8C3 /* UICollectionView+Ext.swift */; };
 		F70E842E26259F6100ADF8C3 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E842D26259F6100ADF8C3 /* UITableView+Ext.swift */; };
 		F70E84322625A48300ADF8C3 /* UIBarButtonItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E84312625A48300ADF8C3 /* UIBarButtonItem+Ext.swift */; };
@@ -108,7 +109,10 @@
 		F75CF4962624D6BB008AE543 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75CF4952624D6BB008AE543 /* ImageView.swift */; };
 		F75CF49A2624D800008AE543 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75CF4992624D800008AE543 /* Button.swift */; };
 		F75CF49D2624DDC7008AE543 /* UIControl+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75CF49C2624DDC7008AE543 /* UIControl+Ext.swift */; };
+		F77AE2712868C9CB00573FB5 /* WKInterfaceImage.Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77AE2702868C9CB00573FB5 /* WKInterfaceImage.Ext.swift */; };
 		F7919D31262EF83C0056935F /* NewsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7919D30262EF83C0056935F /* NewsError.swift */; };
+		F797BB782868D3F10034FA97 /* R.generated_watch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F797BB772868D3F10034FA97 /* R.generated_watch.swift */; };
+		F797BB7B2868D98E0034FA97 /* Array.Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F797BB7A2868D98E0034FA97 /* Array.Ext.swift */; };
 		F7A777302669733C00446402 /* SwipeGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A7772F2669733C00446402 /* SwipeGestureRecognizer.swift */; };
 		F7C60A91262E1F00004E4C83 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C60A90262E1F00004E4C83 /* NetworkService.swift */; };
 		F7C87B20263C2E9100CFF6CA /* WebSiteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C87B1F263C2E9100CFF6CA /* WebSiteCoordinator.swift */; };
@@ -186,9 +190,10 @@
 		8F23AE368BDDC8C85C84D311 /* Pods-NewsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsApp.debug.xcconfig"; path = "Target Support Files/Pods-NewsApp/Pods-NewsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		95652670F561C07EA6F69125 /* Pods-NewsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsApp.release.xcconfig"; path = "Target Support Files/Pods-NewsApp/Pods-NewsApp.release.xcconfig"; sourceTree = "<group>"; };
 		A7D83367EA66E4B5CED31F84 /* Pods-NewsAppWatch WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsAppWatch WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-NewsAppWatch WatchKit Extension/Pods-NewsAppWatch WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
-		CB8F56FC39BFB963AB9B4E0B /* libPods-NewsAppWatch WatchKit Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NewsAppWatch WatchKit Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E27EC479EAA1913F937C808A /* Pods_NewsAppWatch_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsAppWatch_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31555C34108D1E1148D5757 /* Pods_NewsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F707EF1F2621F08600B486D9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F70E09B528619D5200712490 /* DetailNewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsController.swift; sourceTree = "<group>"; };
 		F70E842926259C5300ADF8C3 /* UICollectionView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Ext.swift"; sourceTree = "<group>"; };
 		F70E842D26259F6100ADF8C3 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		F70E84312625A48300ADF8C3 /* UIBarButtonItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Ext.swift"; sourceTree = "<group>"; };
@@ -287,7 +292,10 @@
 		F75CF4952624D6BB008AE543 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		F75CF4992624D800008AE543 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		F75CF49C2624DDC7008AE543 /* UIControl+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Ext.swift"; sourceTree = "<group>"; };
+		F77AE2702868C9CB00573FB5 /* WKInterfaceImage.Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKInterfaceImage.Ext.swift; sourceTree = "<group>"; };
 		F7919D30262EF83C0056935F /* NewsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsError.swift; sourceTree = "<group>"; };
+		F797BB772868D3F10034FA97 /* R.generated_watch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated_watch.swift; sourceTree = "<group>"; };
+		F797BB7A2868D98E0034FA97 /* Array.Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.Ext.swift; sourceTree = "<group>"; };
 		F7A7772F2669733C00446402 /* SwipeGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeGestureRecognizer.swift; sourceTree = "<group>"; };
 		F7C60A90262E1F00004E4C83 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		F7C87B1F263C2E9100CFF6CA /* WebSiteCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSiteCoordinator.swift; sourceTree = "<group>"; };
@@ -321,7 +329,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65D587DFA7DE36B93DFCEEDA /* libPods-NewsAppWatch WatchKit Extension.a in Frameworks */,
+				7A3D6BB8DC538AEB3B3BD5BB /* Pods_NewsAppWatch_WatchKit_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				F31555C34108D1E1148D5757 /* Pods_NewsApp.framework */,
-				CB8F56FC39BFB963AB9B4E0B /* libPods-NewsAppWatch WatchKit Extension.a */,
+				E27EC479EAA1913F937C808A /* Pods_NewsAppWatch_WatchKit_Extension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -497,6 +505,9 @@
 				F7293AFE285B6C510023FE31 /* ExtensionDelegate.swift */,
 				F7293B02285B6C510023FE31 /* Assets.xcassets */,
 				F7293B04285B6C510023FE31 /* Info.plist */,
+				F77AE2702868C9CB00573FB5 /* WKInterfaceImage.Ext.swift */,
+				F797BB7A2868D98E0034FA97 /* Array.Ext.swift */,
+				F797BB772868D3F10034FA97 /* R.generated_watch.swift */,
 			);
 			path = "NewsAppWatch WatchKit Extension";
 			sourceTree = "<group>";
@@ -816,6 +827,7 @@
 			isa = PBXGroup;
 			children = (
 				F7293AFC285B6C510023FE31 /* InterfaceController.swift */,
+				F70E09B528619D5200712490 /* DetailNewsController.swift */,
 				F7293B00285B6C510023FE31 /* ComplicationController.swift */,
 			);
 			path = Controllers;
@@ -881,9 +893,11 @@
 			buildConfigurationList = F7293B08285B6C510023FE31 /* Build configuration list for PBXNativeTarget "NewsAppWatch WatchKit Extension" */;
 			buildPhases = (
 				534B729E45FEA0E2F0F3077E /* [CP] Check Pods Manifest.lock */,
+				F797BB752868D1250034FA97 /* R.Swift */,
 				F7293AF3285B6C510023FE31 /* Sources */,
 				F7293AF4285B6C510023FE31 /* Frameworks */,
 				F7293AF5285B6C510023FE31 /* Resources */,
+				4EAD9E725C386AECEBC35A44 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -992,6 +1006,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4EAD9E725C386AECEBC35A44 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NewsAppWatch WatchKit Extension/Pods-NewsAppWatch WatchKit Extension-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NewsAppWatch WatchKit Extension/Pods-NewsAppWatch WatchKit Extension-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NewsAppWatch WatchKit Extension/Pods-NewsAppWatch WatchKit Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		534B729E45FEA0E2F0F3077E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1073,6 +1104,27 @@
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
 		};
+		F797BB752868D1250034FA97 /* R.Swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			name = R.Swift;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$SRCROOT/NewsAppWatch WatchKit Extension/R.generated_watch.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/NewsAppWatch WatchKit Extension/R.generated_watch.swift\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1081,10 +1133,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7293B11285B72450023FE31 /* Constants.swift in Sources */,
+				F70E09B628619D5200712490 /* DetailNewsController.swift in Sources */,
 				F7E18EDD2860F64C004342BC /* NSObject.swift in Sources */,
+				F797BB782868D3F10034FA97 /* R.generated_watch.swift in Sources */,
 				F7293AFF285B6C510023FE31 /* ExtensionDelegate.swift in Sources */,
 				F7293B12285B72490023FE31 /* Article.swift in Sources */,
+				F77AE2712868C9CB00573FB5 /* WKInterfaceImage.Ext.swift in Sources */,
 				F7E18ED82860F467004342BC /* NewsRow.swift in Sources */,
+				F797BB7B2868D98E0034FA97 /* Array.Ext.swift in Sources */,
 				F7293AFD285B6C510023FE31 /* InterfaceController.swift in Sources */,
 				F7E18ED62860F25D004342BC /* Int.Ext.swift in Sources */,
 				F7E18EE12860FA45004342BC /* ErrorRow.swift in Sources */,
@@ -1279,7 +1335,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
 		};
@@ -1311,7 +1367,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Release;
 		};
@@ -1339,7 +1395,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
 		};
@@ -1367,7 +1423,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Release;
 		};

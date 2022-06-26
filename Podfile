@@ -1,9 +1,7 @@
-# Uncomment the next line to define a global platform for your project
-platform :ios, '13.0'
+use_frameworks!
 
 target 'NewsApp' do
-    # Comment the next line if you don't want to use dynamic frameworks
-    use_frameworks!
+    platform :ios, '13.0'
     
     # UI
     pod 'SnapKit', '~> 5.0.0'
@@ -22,4 +20,15 @@ target 'NewsApp' do
     pod 'R.swift'
     pod 'Kingfisher', '~> 6.0'
     
+end
+
+target 'NewsAppWatch WatchKit Extension' do
+  platform :watchos, '8.0'
+  
+  # Async
+  pod "PromiseKit", "~> 6.8"
+  
+  # Resources
+  pod 'R.swift'
+  
 end

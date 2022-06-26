@@ -94,4 +94,13 @@ extension NetworkService {
         return articleResponse
     }
     
+    static func getImage(with urlString: String) async throws -> Data {
+        guard let url = URL(string: urlString) else {
+            throw NetworkError(code: 400, errorType: .unknown, message: "don'nt have url for image")
+        }
+        
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return data
+    }
+    
 }

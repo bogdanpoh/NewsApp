@@ -46,10 +46,29 @@
             </objects>
             <point key="canvasLocation" x="-16" y="-6"/>
         </scene>
-        <!--Interface Controller-->
+        <!--DetailNewsController-->
         <scene sceneID="T5h-C8-G9I">
             <objects>
-                <controller id="ImZ-Gw-sJw"/>
+                <controller identifier="DetailNewsController" id="ImZ-Gw-sJw" customClass="DetailNewsController" customModule="NewsAppWatch" customModuleProvider="target">
+                    <items>
+                        <group width="1" alignment="left" layout="vertical" id="Nkv-JU-ubE">
+                            <items>
+                                <imageView width="1" alignment="left" contentMode="scaleAspectFit" id="vzt-Cm-D6Y"/>
+                                <label width="1" alignment="left" text="Title" numberOfLines="0" minimumScaleFactor="0.5" id="HKe-fb-EYz">
+                                    <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                                </label>
+                                <label width="1" alignment="left" text="description" numberOfLines="0" minimumScaleFactor="0.40000000000000002" id="knJ-gg-mVj">
+                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                </label>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="newsDescriptionLabel" destination="knJ-gg-mVj" id="u8L-Ob-5ga"/>
+                        <outlet property="newsImage" destination="vzt-Cm-D6Y" id="XnE-i8-RO0"/>
+                        <outlet property="newsTitleLabel" destination="HKe-fb-EYz" id="M3K-33-Acz"/>
+                    </connections>
+                </controller>
             </objects>
             <point key="canvasLocation" x="233" y="-7"/>
         </scene>
