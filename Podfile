@@ -7,7 +7,7 @@ target 'NewsApp' do
     pod 'SnapKit', '~> 5.0.0'
     
     # Arhitecture
-    pod 'Swinject'
+    pod 'Swinject', "~> 2.8.1"
     
     # Rx
     pod 'RxSwift', '~> 5.0'
@@ -17,7 +17,7 @@ target 'NewsApp' do
     pod "PromiseKit", "~> 6.8"
     
     # Resources
-    pod 'R.swift'
+    pod 'R.swift', "~> 6.1.0"
     pod 'Kingfisher', '~> 6.0'
     
 end
@@ -29,6 +29,6 @@ target 'NewsAppWatch WatchKit Extension' do
   pod "PromiseKit", "~> 6.8"
   
   # Resources
-  pod 'R.swift'
+  pod 'R.swift', "~> 6.1.0"
   
 end
