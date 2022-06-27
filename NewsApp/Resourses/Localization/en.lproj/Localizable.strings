@@ -17,3 +17,11 @@
 
 "webSite.title" = "Source";
 "webSite.done" = "Done";
+
+"country.ua" = "Ukraine";
+"country.usa" = "USA";
+"country.gb" = "United Kingdom";
+
+"action.sheet.title" = "Choice country";
+"action.sheet.message" = "Choice country for receive news";
+"action.sheet.cancel" = "Cancel";

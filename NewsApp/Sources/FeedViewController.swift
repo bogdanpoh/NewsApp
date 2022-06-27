@@ -39,6 +39,7 @@ final class FeedViewController: ViewController<FeedView> {
         
         setupView()
         setupNavigationBar()
+        setupNavigationBarItems()
         setupBindingToViewModel()
         
         viewModel.viewDidLoad()
@@ -69,6 +70,10 @@ private extension FeedViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
+    func setupNavigationBarItems() {
+        navigationItem.rightBarButtonItem = .init(image: UIImage(systemName: "globe.europe.africa.fill"), style: .plain, target: self, action: #selector(settingsTap(_:)))
+    }
+    
     func setupBindingToViewModel() {
         viewModel.reloadCells
             .subscribe (onNext: { [weak self] _ in
@@ -83,13 +88,18 @@ private extension FeedViewController {
                 self?.updateView(with: viewState)
             }
             .disposed(by: disposeBag)
+        
+        viewModel.settingsTapped.subscribe(onNext: { [weak self] in
+            self?.showCountryActionSheet()
+        })
+        .disposed(by: disposeBag)
     }
     
 }
 
 // MARK: - User interactions
 
-extension FeedViewController {
+private extension FeedViewController {
     
     @objc
     func didPullToRefresh(_ sender: Any) {
@@ -98,15 +108,16 @@ extension FeedViewController {
         }
     }
     
+    @objc
+    func settingsTap(_ sender: Any) {
+        viewModel.settingsTap()
+    }
+    
 }
 
 // MARK: - UITableViewDataSource
 
 extension FeedViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows()
@@ -115,16 +126,13 @@ extension FeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let article = viewModel.item(for: indexPath)
         let cell = tableView.dequeue(NewsTableViewCell.self, for: indexPath)
-        return cell.set(state: .init(
-            imageUrl: article.urlToImage,
-            author: article.author,
-            title: article.title
-        ))
+        
+        return cell.set(state: .init(imageUrl: article.urlToImage, author: article.author, title: article.title))
     }
     
 }
 
-// MARK: - Delegate
+// MARK: - UITableViewDelegate
 
 extension FeedViewController: UITableViewDelegate {
     
@@ -134,16 +142,15 @@ extension FeedViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if(indexPath.row == viewModel.numberOfRows() - 2) {
-//            print("scroll to end")
             viewModel.scrollToEnd()
         }
     }
     
 }
 
-// MARK: -
+// MARK: - Update view state
 
-extension FeedViewController {
+private extension FeedViewController {
     
     func updateView(with state: ViewState) {
         switch state {
@@ -156,6 +163,34 @@ extension FeedViewController {
         case .error, .empty, .loading:
             contentView.showPlaceholder()
         }
+    }
+    
+}
+
+// MARK: - Country Action Sheet
+
+private extension FeedViewController {
+    
+    func showCountryActionSheet() {
+        let countries = Constants.NewsApi.Countrys.allCases
+        let alertController = UIAlertController(
+            title:  R.string.localizable.actionSheetTitle(),
+            message: R.string.localizable.actionSheetMessage(),
+            preferredStyle: .actionSheet
+        )
+        
+        let action: (_ country: Country) -> Void = { [unowned self] in
+            viewModel.selectedCountry($0)
+        }
+        
+        for country in countries {
+            alertController.addDefaultAction(title: country.title) {
+                action(country)
+            }
+        }
+
+        alertController.addAction(.makeCancelAction())
+        present(alertController, animated: true)
     }
     
 }

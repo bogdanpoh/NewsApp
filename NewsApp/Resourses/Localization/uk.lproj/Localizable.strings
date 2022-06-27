@@ -17,3 +17,12 @@
 
 "webSite.title" = "Джерело";
 "webSite.done" = "Готово";
+
+"country.ua" = "Україна";
+"country.usa" = "Америка";
+"country.gb" = "Англія";
+
+"action.sheet.title" = "Вибір країни";
+"action.sheet.message" = "Виберіть країну для отримання новин";
+"action.sheet.cancel" = "Скасувати";
+

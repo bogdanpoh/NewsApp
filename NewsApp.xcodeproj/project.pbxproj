@@ -48,6 +48,8 @@
 		F7293B12285B72490023FE31 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E846E2625B61500ADF8C3 /* Article.swift */; };
 		F7293B13285B72570023FE31 /* NewsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7919D30262EF83C0056935F /* NewsError.swift */; };
 		F7293B14285B72620023FE31 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7293AE6285B63D50023FE31 /* StorageKeys.swift */; };
+		F72BFAE9286A426E00895B20 /* UIAlertController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72BFAE8286A426E00895B20 /* UIAlertController+Ext.swift */; };
+		F72BFAEB286A435F00895B20 /* UIAlertAction+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72BFAEA286A435F00895B20 /* UIAlertAction+Ext.swift */; };
 		F73166232621D77900208394 /* Translatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73166222621D77900208394 /* Translatable.swift */; };
 		F73166272621D79C00208394 /* CoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73166262621D79C00208394 /* CoordinatorOutput.swift */; };
 		F731662B2621D7CA00208394 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731662A2621D7CA00208394 /* Routable.swift */; };
@@ -229,6 +231,8 @@
 		F7293B00285B6C510023FE31 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		F7293B02285B6C510023FE31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7293B04285B6C510023FE31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F72BFAE8286A426E00895B20 /* UIAlertController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Ext.swift"; sourceTree = "<group>"; };
+		F72BFAEA286A435F00895B20 /* UIAlertAction+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+Ext.swift"; sourceTree = "<group>"; };
 		F73166222621D77900208394 /* Translatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translatable.swift; sourceTree = "<group>"; };
 		F73166262621D79C00208394 /* CoordinatorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorOutput.swift; sourceTree = "<group>"; };
 		F731662A2621D7CA00208394 /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
@@ -540,6 +544,8 @@
 				F70E84392625A83300ADF8C3 /* UILayoutPriority+Ext.swift */,
 				F73166622621E7FF00208394 /* UIColor+Ext.swift */,
 				F70E843D2625A89200ADF8C3 /* UILabel+Ext.swift */,
+				F72BFAE8286A426E00895B20 /* UIAlertController+Ext.swift */,
+				F72BFAEA286A435F00895B20 /* UIAlertAction+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1201,6 +1207,7 @@
 				F731664A2621E30700208394 /* AppTheme.swift in Sources */,
 				F7FA8432262607C100D2FAA5 /* Constants.swift in Sources */,
 				F74E64EF26174C350012728F /* Localization.swift in Sources */,
+				F72BFAEB286A435F00895B20 /* UIAlertAction+Ext.swift in Sources */,
 				F70E843E2625A89200ADF8C3 /* UILabel+Ext.swift in Sources */,
 				F70E84862625B96900ADF8C3 /* FeedViewModel.swift in Sources */,
 				F73166312621D9FC00208394 /* Coordinatable.swift in Sources */,
@@ -1226,6 +1233,7 @@
 				F7919D31262EF83C0056935F /* NewsError.swift in Sources */,
 				F73166722621EEB300208394 /* ActivityView.swift in Sources */,
 				F7293AE7285B63D50023FE31 /* StorageKeys.swift in Sources */,
+				F72BFAE9286A426E00895B20 /* UIAlertController+Ext.swift in Sources */,
 				F714C8432643BF2700ED596D /* ShareToSafariCoordinator.swift in Sources */,
 				F75CF47E2624CC61008AE543 /* SnappingCollectionViewLayout.swift in Sources */,
 				F7E18EDC2860F648004342BC /* NSObject.swift in Sources */,

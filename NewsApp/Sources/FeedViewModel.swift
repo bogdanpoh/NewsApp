@@ -20,10 +20,13 @@ protocol FeedViewModelInput {
     func tapSelectCell(at indexPath: IndexPath)
     func pullToRefresh(completion: (() -> Void)?)
     func scrollToEnd()
+    func settingsTap()
+    func selectedCountry(_ country: Country)
 }
 
 protocol FeedViewModelOutput: ViewModelOutput {
     var reloadCells: Observable<Void> { get }
+    var settingsTapped: Observable<Void> { get }
 }
 
 typealias FeedViewModelProtocol = FeedViewModelInput & FeedViewModelOutput
@@ -46,9 +49,11 @@ final class FeedViewModel: ViewModel {
     
     private let coordinator: FeedCoordinatorProtocol
     private let networkService: NetworkNewsProtocol
+    private var totalResult: Int = -1
     private var articles: [Article] = []
     private let reloadCellsSubj = PublishRelay<Void>()
-    private var totalResult: Int = -1
+    private let settingsTappedSubj = PublishRelay<Void>()
+    private let countrySubj = BehaviorRelay<Country>(value: .ua)
     
 }
 
@@ -57,7 +62,7 @@ final class FeedViewModel: ViewModel {
 extension FeedViewModel: FeedViewModelInput {
     
     func viewDidLoad() {
-        fetchArticles(country: .ua, pageNumber: 1)
+        fetchArticles(country: countrySubj.value, pageNumber: 1)
     }
     
     func numberOfRows() -> Int {
@@ -75,12 +80,23 @@ extension FeedViewModel: FeedViewModelInput {
     
     func pullToRefresh(completion: (() -> Void)?) {
         totalResult = -1
-        fetchArticles(country: .ua, pageNumber: 1)
+        fetchArticles(country: countrySubj.value, pageNumber: 1)
         completion?()
     }
     
     func scrollToEnd() {
-        fetchArticles(country: .ua, pageNumber: 2)
+        fetchArticles(country: countrySubj.value, pageNumber: 2)
+    }
+    
+    func settingsTap() {
+        settingsTappedSubj.accept(())
+    }
+    
+    func selectedCountry(_ country: Country) {
+        totalResult = -1
+        countrySubj.accept(country)
+        viewStateSubj.accept(.loading)
+        fetchArticles(country: country, pageNumber: 1)
     }
     
 }
@@ -91,6 +107,10 @@ extension FeedViewModel: FeedViewModelOutput {
     
     var reloadCells: Observable<Void> {
         return reloadCellsSubj.asObservable()
+    }
+    
+    var settingsTapped: Observable<Void> {
+        return settingsTappedSubj.asObservable()
     }
     
 }
