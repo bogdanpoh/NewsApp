@@ -16,7 +16,7 @@
                                 <tableRow identifier="NewsRow" id="fU2-AU-rG4" customClass="NewsRow" customModule="NewsAppWatch" customModuleProvider="target">
                                     <group key="rootItem" width="1" height="65" alignment="left" id="hMV-yQ-DyC">
                                         <items>
-                                            <label width="1" height="1" alignment="left" text="Very very very very long text for this cell" numberOfLines="0" minimumScaleFactor="0.29999999999999999" id="PTX-SJ-Qf1">
+                                            <label width="1" height="1" alignment="left" text="Very very very very long text " numberOfLines="0" minimumScaleFactor="0.29999999999999999" id="PTX-SJ-Qf1">
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="font" type="system" pointSize="10"/>
                                             </label>
@@ -55,7 +55,7 @@
                             <items>
                                 <imageView width="1" alignment="left" contentMode="scaleAspectFit" id="vzt-Cm-D6Y"/>
                                 <label width="1" alignment="left" text="Title" numberOfLines="0" minimumScaleFactor="0.5" id="HKe-fb-EYz">
-                                    <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                 </label>
                                 <label width="1" alignment="left" text="description" numberOfLines="0" minimumScaleFactor="0.40000000000000002" id="knJ-gg-mVj">
                                     <fontDescription key="font" style="UICTFontTextStyleBody"/>
