@@ -13,15 +13,14 @@ final class NewsTableView: View {
     
     private(set) var refreshControl = UIRefreshControl()
     
-    private(set) lazy var tableView: TableView = {
-        let tableView = TableView()
-        tableView.register(class: NewsTableViewCell.self)
-        tableView.setEmptyFooter()
-        tableView.refreshControl = refreshControl
-        tableView.separatorInset = UIEdgeInsets(horizontal: 16)
-        tableView.setRowHeight(310)
-        return tableView
-    }()
+    private(set) lazy var tableView = TableView()
+        .make {
+            $0.register(class: NewsTableViewCell.self)
+            $0.setEmptyFooter()
+            $0.refreshControl = refreshControl
+            $0.separatorInset = UIEdgeInsets(horizontal: 16)
+            $0.setRowHeight(310)
+        }
     
     // MARK: - Lifecycle
     
@@ -36,8 +35,6 @@ final class NewsTableView: View {
         
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-//            $0.top.equalTo(layoutMarginsGuide)
-//            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
     
@@ -47,7 +44,6 @@ final class NewsTableView: View {
         super.apply(theme: theme)
         
         backgroundColor(color: theme.components.backgroundColor)
-        
         tableView.backgroundColor(color: theme.components.backgroundColor)
     }
     
