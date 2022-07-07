@@ -103,6 +103,13 @@ private extension FeedViewController {
                 self?.updateView(with: viewState)
             }
             .disposed(by: disposeBag)
+        
+        viewModel.scrollToTop.subscribe(onNext: { [weak self] _ in
+            let topRow = IndexPath(row: 0, section: 0)
+            
+            self?.contentView.newsTableView.tableView.scrollToRow(at: topRow, at: .top, animated: true)
+        })
+        .disposed(by: disposeBag)
     }
     
 }

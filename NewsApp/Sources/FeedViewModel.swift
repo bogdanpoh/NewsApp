@@ -26,6 +26,7 @@ protocol FeedViewModelInput {
 
 protocol FeedViewModelOutput: ViewModelOutput {
     var reloadCells: Observable<Void> { get }
+    var scrollToTop: Observable<Void> { get }
 }
 
 typealias FeedViewModelProtocol = FeedViewModelInput & FeedViewModelOutput
@@ -51,6 +52,7 @@ final class FeedViewModel: ViewModel {
     private let networkService: NetworkNewsProtocol
     
     private let reloadCellsSubj = PublishRelay<Void>()
+    private let scrollToTopSubj = PublishRelay<Void>()
     private let countrySubj: BehaviorRelay<Country>
     
     private var totalResult: Int = -1
@@ -74,6 +76,7 @@ extension FeedViewModel: FeedViewModelInput {
         
         lastCountry = countrySubj.value
         viewDidLoad()
+        scrollToTopSubj.accept(())
     }
     
     func numberOfRows() -> Int {
@@ -111,6 +114,10 @@ extension FeedViewModel: FeedViewModelOutput {
     
     var reloadCells: Observable<Void> {
         return reloadCellsSubj.asObservable()
+    }
+    
+    var scrollToTop: Observable<Void> {
+        return scrollToTopSubj.asObservable()
     }
     
 }
