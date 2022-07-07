@@ -16,13 +16,13 @@ protocol WebSiteModuleFactoryProtocol {
 extension ModulesFactory: WebSiteModuleFactoryProtocol {
     
     func makeWebSiteView(coordinator: WebSiteCoordinator, urlString: String) -> Presentable {
-        guard let url = URL(string: urlString) else {
-            return UIViewController()
-        }
+        guard let url = URL(string: urlString) else { return UIViewController() }
         
         let configuration = SFSafariViewController.Configuration()
         configuration.entersReaderIfAvailable = true
-        return SFSafariViewController(url: url, configuration: configuration)
+        let safariViewController = SFSafariViewController(url: url, configuration: configuration)
+        
+        return safariViewController
     }
     
 }

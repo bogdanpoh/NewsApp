@@ -87,6 +87,7 @@ private extension DetailsViewModel {
         let formattedTime = DateFormatter.formatISO8601(string: stringTime)
         let author = articleSubj.value.author ?? R.string.localizable.feedWithoutAuthor()
         let authorCopyrightWithTime = "\(author) | \(formattedTime)"
+        
         authorCopyrightSubj.accept(authorCopyrightWithTime)
     }
     

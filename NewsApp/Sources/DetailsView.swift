@@ -52,12 +52,6 @@ final class DetailsView: View {
         openButton
     )
     
-//    private lazy var swipeDown: UISwipeGestureRecognizer = {
-//        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipe(_:)))
-//        swipe.direction = .down
-//        return swipe
-//    }()
-    
     private(set) var swipeDown = SwipeGestureRecognizer()
         .set(swipeDirection: .down)
     
