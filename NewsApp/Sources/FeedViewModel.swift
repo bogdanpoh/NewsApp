@@ -13,6 +13,7 @@ private let logger = Logger(identifier: "FeedViewModel")
 
 protocol FeedViewModelInput {
     func viewDidLoad()
+    func viewWillAppper()
     
     func numberOfRows() -> Int
     func item(for indexPath: IndexPath) -> Article
@@ -21,23 +22,22 @@ protocol FeedViewModelInput {
     func pullToRefresh(completion: (() -> Void)?)
     func scrollToEnd()
     func settingsTap()
-    func selectedCountry(_ country: Country)
 }
 
 protocol FeedViewModelOutput: ViewModelOutput {
     var reloadCells: Observable<Void> { get }
-    var settingsTapped: Observable<Void> { get }
 }
 
 typealias FeedViewModelProtocol = FeedViewModelInput & FeedViewModelOutput
 
 final class FeedViewModel: ViewModel {
     
-    // MARK: - Lifecycle
+    // MARK: - Initializers
     
     init(coordinator: FeedCoordinatorProtocol, networkService: NetworkNewsProtocol) {
         self.coordinator = coordinator
         self.networkService = networkService
+        self.countrySubj = BehaviorRelay<Country>(value: .ua)
         
         super.init()
         
@@ -49,11 +49,13 @@ final class FeedViewModel: ViewModel {
     
     private let coordinator: FeedCoordinatorProtocol
     private let networkService: NetworkNewsProtocol
+    
+    private let reloadCellsSubj = PublishRelay<Void>()
+    private let countrySubj: BehaviorRelay<Country>
+    
     private var totalResult: Int = -1
     private var articles: [Article] = []
-    private let reloadCellsSubj = PublishRelay<Void>()
-    private let settingsTappedSubj = PublishRelay<Void>()
-    private let countrySubj = BehaviorRelay<Country>(value: .ua)
+    private var lastCountry: Country?
     
 }
 
@@ -62,7 +64,16 @@ final class FeedViewModel: ViewModel {
 extension FeedViewModel: FeedViewModelInput {
     
     func viewDidLoad() {
+        lastCountry = countrySubj.value
+        
         fetchArticles(country: countrySubj.value, pageNumber: 1)
+    }
+    
+    func viewWillAppper() {
+        guard countrySubj.value != lastCountry else { return }
+        
+        lastCountry = countrySubj.value
+        viewDidLoad()
     }
     
     func numberOfRows() -> Int {
@@ -89,14 +100,7 @@ extension FeedViewModel: FeedViewModelInput {
     }
     
     func settingsTap() {
-        settingsTappedSubj.accept(())
-    }
-    
-    func selectedCountry(_ country: Country) {
-        totalResult = -1
-        countrySubj.accept(country)
-        viewStateSubj.accept(.loading)
-        fetchArticles(country: country, pageNumber: 1)
+        coordinator.openSettings(countrySubject: countrySubj)
     }
     
 }
@@ -107,10 +111,6 @@ extension FeedViewModel: FeedViewModelOutput {
     
     var reloadCells: Observable<Void> {
         return reloadCellsSubj.asObservable()
-    }
-    
-    var settingsTapped: Observable<Void> {
-        return settingsTappedSubj.asObservable()
     }
     
 }
