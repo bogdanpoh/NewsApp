@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import RxRelay
 
 protocol FeedCoordinatorProtocol {
     func open(article: Article)
+    func openSettings(countrySubject: BehaviorRelay<Country>)
 }
 
 final class FeedCoordinator: BaseCoordinator, CoordinatorOutput {
@@ -53,6 +55,15 @@ extension FeedCoordinator: FeedCoordinatorProtocol {
     
     func open(article: Article) {
         let coordinator = coordinatorFactory.makeDetailsCoordinator(with: router, article: article)
+        coordinator.finishFlow = { [unowned self, unowned coordinator] in
+            remove(dependency: coordinator)
+        }
+        add(dependency: coordinator)
+        coordinator.start()
+    }
+    
+    func openSettings(countrySubject: BehaviorRelay<Country>) {
+        let coordinator = coordinatorFactory.makeSettingsCoordinator(with: router, countrySubject: countrySubject)
         coordinator.finishFlow = { [unowned self, unowned coordinator] in
             remove(dependency: coordinator)
         }

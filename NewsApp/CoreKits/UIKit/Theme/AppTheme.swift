@@ -36,6 +36,14 @@ extension AppTheme {
                 text: .init(color: UIStyleGuide.ColorPalette.blue, font: .title1),
                 background: .init(color: UIStyleGuide.ColorPalette.spaceGray)
             )
+        ),
+        settings: .init(
+            headerFooter: .init(
+                color: UIStyleGuide.ColorPalette.systemGray,
+                font: UIStyleGuide.Typography.roboto(weight: .light, size: 14)
+            ),
+            backgroundCell: .systemBackground,
+            background: .systemGroupedBackground
         )
     ))
     
@@ -66,6 +74,14 @@ extension AppTheme {
                 text: .init(color: UIStyleGuide.ColorPalette.white, font: .title1),
                 background: .init(color: UIStyleGuide.ColorPalette.darkGray)
             )
+        ),
+        settings: .init(
+            headerFooter: .init(
+                color: UIStyleGuide.ColorPalette.gray,
+                font: UIStyleGuide.Typography.roboto(weight: .light, size: 14)
+            ),
+            backgroundCell: UIStyleGuide.ColorPalette.tinyBlack,
+            background: .systemGroupedBackground
         )
     ))
     

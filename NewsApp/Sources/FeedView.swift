@@ -11,7 +11,7 @@ final class FeedView: View {
     
     // MARK: - UI
     
-    let newsTableView = NewsTableView()
+    private(set) var newsTableView = NewsTableView()
     
     private var placeholderView: PlaceholderView?
     

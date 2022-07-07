@@ -49,7 +49,12 @@
 		F7293B13285B72570023FE31 /* NewsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7919D30262EF83C0056935F /* NewsError.swift */; };
 		F7293B14285B72620023FE31 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7293AE6285B63D50023FE31 /* StorageKeys.swift */; };
 		F72BFAE9286A426E00895B20 /* UIAlertController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72BFAE8286A426E00895B20 /* UIAlertController+Ext.swift */; };
-		F72BFAEB286A435F00895B20 /* UIAlertAction+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72BFAEA286A435F00895B20 /* UIAlertAction+Ext.swift */; };
+		F72F0ABF28733CF900591386 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72F0ABE28733CF900591386 /* SettingsView.swift */; };
+		F72F0AC228733D1200591386 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72F0AC128733D1200591386 /* SettingsViewController.swift */; };
+		F72F0AC428733E2D00591386 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72F0AC328733E2D00591386 /* SettingsViewModel.swift */; };
+		F72F0AC6287345DC00591386 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72F0AC5287345DC00591386 /* SettingsCoordinator.swift */; };
+		F72F0AC82873474400591386 /* SettingsModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72F0AC72873474400591386 /* SettingsModuleFactory.swift */; };
+		F72F0ACA28734BC200591386 /* SettingsCountryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72F0AC928734BC200591386 /* SettingsCountryTableView.swift */; };
 		F73166232621D77900208394 /* Translatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73166222621D77900208394 /* Translatable.swift */; };
 		F73166272621D79C00208394 /* CoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73166262621D79C00208394 /* CoordinatorOutput.swift */; };
 		F731662B2621D7CA00208394 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731662A2621D7CA00208394 /* Routable.swift */; };
@@ -112,6 +117,14 @@
 		F75CF49A2624D800008AE543 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75CF4992624D800008AE543 /* Button.swift */; };
 		F75CF49D2624DDC7008AE543 /* UIControl+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75CF49C2624DDC7008AE543 /* UIControl+Ext.swift */; };
 		F77AE2712868C9CB00573FB5 /* WKInterfaceImage.Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77AE2702868C9CB00573FB5 /* WKInterfaceImage.Ext.swift */; };
+		F78BE2852874C41B00A4C7D7 /* SettingsHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78BE2842874C41B00A4C7D7 /* SettingsHeaderFooterView.swift */; };
+		F78BE2872874C9A900A4C7D7 /* UIComponentsLibrary.Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78BE2862874C9A900A4C7D7 /* UIComponentsLibrary.Settings.swift */; };
+		F78D43AD2875EC620012DD98 /* SettingsCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D43AC2875EC620012DD98 /* SettingsCountryView.swift */; };
+		F78D43AF2875EC780012DD98 /* SettingsCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D43AE2875EC780012DD98 /* SettingsCountryViewController.swift */; };
+		F78D43B22875F1510012DD98 /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D43B12875F1510012DD98 /* SettingsTableView.swift */; };
+		F78D43B42875F4B60012DD98 /* SettingsTableViewSingleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D43B32875F4B60012DD98 /* SettingsTableViewSingleCell.swift */; };
+		F78D43B62875FD120012DD98 /* SettingsMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D43B52875FD120012DD98 /* SettingsMenuItem.swift */; };
+		F78D43B8287604210012DD98 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D43B7287604210012DD98 /* SettingsTableViewCell.swift */; };
 		F7919D31262EF83C0056935F /* NewsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7919D30262EF83C0056935F /* NewsError.swift */; };
 		F797BB782868D3F10034FA97 /* R.generated_watch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F797BB772868D3F10034FA97 /* R.generated_watch.swift */; };
 		F797BB7B2868D98E0034FA97 /* Array.Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F797BB7A2868D98E0034FA97 /* Array.Ext.swift */; };
@@ -232,7 +245,12 @@
 		F7293B02285B6C510023FE31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7293B04285B6C510023FE31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F72BFAE8286A426E00895B20 /* UIAlertController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Ext.swift"; sourceTree = "<group>"; };
-		F72BFAEA286A435F00895B20 /* UIAlertAction+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+Ext.swift"; sourceTree = "<group>"; };
+		F72F0ABE28733CF900591386 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F72F0AC128733D1200591386 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F72F0AC328733E2D00591386 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		F72F0AC5287345DC00591386 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		F72F0AC72873474400591386 /* SettingsModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleFactory.swift; sourceTree = "<group>"; };
+		F72F0AC928734BC200591386 /* SettingsCountryTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCountryTableView.swift; sourceTree = "<group>"; };
 		F73166222621D77900208394 /* Translatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translatable.swift; sourceTree = "<group>"; };
 		F73166262621D79C00208394 /* CoordinatorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorOutput.swift; sourceTree = "<group>"; };
 		F731662A2621D7CA00208394 /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
@@ -297,6 +315,14 @@
 		F75CF4992624D800008AE543 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		F75CF49C2624DDC7008AE543 /* UIControl+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Ext.swift"; sourceTree = "<group>"; };
 		F77AE2702868C9CB00573FB5 /* WKInterfaceImage.Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKInterfaceImage.Ext.swift; sourceTree = "<group>"; };
+		F78BE2842874C41B00A4C7D7 /* SettingsHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeaderFooterView.swift; sourceTree = "<group>"; };
+		F78BE2862874C9A900A4C7D7 /* UIComponentsLibrary.Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponentsLibrary.Settings.swift; sourceTree = "<group>"; };
+		F78D43AC2875EC620012DD98 /* SettingsCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCountryView.swift; sourceTree = "<group>"; };
+		F78D43AE2875EC780012DD98 /* SettingsCountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCountryViewController.swift; sourceTree = "<group>"; };
+		F78D43B12875F1510012DD98 /* SettingsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
+		F78D43B32875F4B60012DD98 /* SettingsTableViewSingleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewSingleCell.swift; sourceTree = "<group>"; };
+		F78D43B52875FD120012DD98 /* SettingsMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenuItem.swift; sourceTree = "<group>"; };
+		F78D43B7287604210012DD98 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		F7919D30262EF83C0056935F /* NewsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsError.swift; sourceTree = "<group>"; };
 		F797BB772868D3F10034FA97 /* R.generated_watch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated_watch.swift; sourceTree = "<group>"; };
 		F797BB7A2868D98E0034FA97 /* Array.Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.Ext.swift; sourceTree = "<group>"; };
@@ -410,6 +436,7 @@
 				F7C87B1F263C2E9100CFF6CA /* WebSiteCoordinator.swift */,
 				F714C8422643BF2700ED596D /* ShareToSafariCoordinator.swift */,
 				F7F9F3302649448A0082CDB6 /* ShareTextCoordinator.swift */,
+				F72F0AC5287345DC00591386 /* SettingsCoordinator.swift */,
 			);
 			name = Coordinators;
 			sourceTree = "<group>";
@@ -443,6 +470,7 @@
 				F7FC1EF42629F2C200B687DA /* DetailsModuleFactory.swift */,
 				F7C87B21263C2FAB00CFF6CA /* WebSiteModuleFactory.swift */,
 				F7F9F332264946870082CDB6 /* ShareTextModuleFactory.swift */,
+				F72F0AC72873474400591386 /* SettingsModuleFactory.swift */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -469,6 +497,7 @@
 				F70E84792625B86500ADF8C3 /* ViewModel.swift */,
 				F70E84852625B96900ADF8C3 /* FeedViewModel.swift */,
 				F7FC1EEF2629F03100B687DA /* DetailsViewModel.swift */,
+				F72F0AC328733E2D00591386 /* SettingsViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -478,6 +507,7 @@
 			children = (
 				F70E848A2625BA6E00ADF8C3 /* Feed */,
 				F7FC1EED2629EDFA00B687DA /* Details */,
+				F72F0AC028733D0200591386 /* Settings */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -516,6 +546,30 @@
 			path = "NewsAppWatch WatchKit Extension";
 			sourceTree = "<group>";
 		};
+		F72F0AC028733D0200591386 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F72F0ACB28734BC600591386 /* Components */,
+				F78D43B02875ED500012DD98 /* Language */,
+				F72F0ABE28733CF900591386 /* SettingsView.swift */,
+				F72F0AC128733D1200591386 /* SettingsViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		F72F0ACB28734BC600591386 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F78D43B52875FD120012DD98 /* SettingsMenuItem.swift */,
+				F78BE2842874C41B00A4C7D7 /* SettingsHeaderFooterView.swift */,
+				F78D43B32875F4B60012DD98 /* SettingsTableViewSingleCell.swift */,
+				F78D43B7287604210012DD98 /* SettingsTableViewCell.swift */,
+				F78D43B12875F1510012DD98 /* SettingsTableView.swift */,
+				F72F0AC928734BC200591386 /* SettingsCountryTableView.swift */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
 		F73166252621D78900208394 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,7 +599,6 @@
 				F73166622621E7FF00208394 /* UIColor+Ext.swift */,
 				F70E843D2625A89200ADF8C3 /* UILabel+Ext.swift */,
 				F72BFAE8286A426E00895B20 /* UIAlertController+Ext.swift */,
-				F72BFAEA286A435F00895B20 /* UIAlertAction+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -569,6 +622,7 @@
 				F731664D2621E33B00208394 /* UIComponentsLibrary.swift */,
 				F7E384232630799E007E3C76 /* UIComponentsLibrary.Feed.swift */,
 				F7FC1F03262A1D5600B687DA /* UIComponentsLibrary.Details.swift */,
+				F78BE2862874C9A900A4C7D7 /* UIComponentsLibrary.Settings.swift */,
 			);
 			path = UIComponentsLibrary;
 			sourceTree = "<group>";
@@ -818,6 +872,15 @@
 				F75CF47D2624CC61008AE543 /* SnappingCollectionViewLayout.swift */,
 			);
 			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		F78D43B02875ED500012DD98 /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				F78D43AC2875EC620012DD98 /* SettingsCountryView.swift */,
+				F78D43AE2875EC780012DD98 /* SettingsCountryViewController.swift */,
+			);
+			name = Language;
 			sourceTree = "<group>";
 		};
 		F7E18ED92860F46E004342BC /* Views */ = {
@@ -1166,16 +1229,19 @@
 				F74E6522261756430012728F /* UIScreen.Ext.swift in Sources */,
 				F7E384242630799E007E3C76 /* UIComponentsLibrary.Feed.swift in Sources */,
 				F74E64E2261745AC0012728F /* Logger.swift in Sources */,
+				F78D43AF2875EC780012DD98 /* SettingsCountryViewController.swift in Sources */,
 				F75CF4922624D459008AE543 /* TextField.swift in Sources */,
 				F70E848F2625BA8E00ADF8C3 /* FeedViewController.swift in Sources */,
 				F70E84362625A73D00ADF8C3 /* UIEdgeInsets+Ext.swift in Sources */,
 				F73166382621DADA00208394 /* UIViewController+Ext.swift in Sources */,
 				F74E652C261758140012728F /* MakeProtocol.swift in Sources */,
+				F78D43B8287604210012DD98 /* SettingsTableViewCell.swift in Sources */,
 				F74E650826174E6F0012728F /* AnyOptional.swift in Sources */,
 				F73166272621D79C00208394 /* CoordinatorOutput.swift in Sources */,
 				F70E84322625A48300ADF8C3 /* UIBarButtonItem+Ext.swift in Sources */,
 				F714C8452643C0E800ED596D /* WebSiteCoordinatorFactory.swift in Sources */,
 				F71E09752647193F007FB6AB /* ButtonsFactory.swift in Sources */,
+				F78D43B62875FD120012DD98 /* SettingsMenuItem.swift in Sources */,
 				F74E64F726174D620012728F /* EmbeddedLocalizationSource.swift in Sources */,
 				F74E64F426174D450012728F /* LocalizationSource.swift in Sources */,
 				F7FA84232626035800D2FAA5 /* FakeParser.swift in Sources */,
@@ -1207,8 +1273,8 @@
 				F731664A2621E30700208394 /* AppTheme.swift in Sources */,
 				F7FA8432262607C100D2FAA5 /* Constants.swift in Sources */,
 				F74E64EF26174C350012728F /* Localization.swift in Sources */,
-				F72BFAEB286A435F00895B20 /* UIAlertAction+Ext.swift in Sources */,
 				F70E843E2625A89200ADF8C3 /* UILabel+Ext.swift in Sources */,
+				F72F0AC428733E2D00591386 /* SettingsViewModel.swift in Sources */,
 				F70E84862625B96900ADF8C3 /* FeedViewModel.swift in Sources */,
 				F73166312621D9FC00208394 /* Coordinatable.swift in Sources */,
 				F73166422621E0AC00208394 /* BaseCoordinator.swift in Sources */,
@@ -1222,6 +1288,7 @@
 				F75CF47B2624CBE1008AE543 /* CollectionViewCell.swift in Sources */,
 				F707EF202621F08600B486D9 /* ViewController.swift in Sources */,
 				F73D03E62621F2DA00BAA802 /* TableViewCell.swift in Sources */,
+				F78BE2852874C41B00A4C7D7 /* SettingsHeaderFooterView.swift in Sources */,
 				F75CF4812624CE5E008AE543 /* TappableView.swift in Sources */,
 				F70E84592625B1C000ADF8C3 /* ModulesFactory.swift in Sources */,
 				F731663F2621E07C00208394 /* Navigatable.swift in Sources */,
@@ -1230,6 +1297,7 @@
 				F738D4BB2628C495006242DD /* NewsTableViewCell.swift in Sources */,
 				F74E65132617526D0012728F /* NumberFormatting.swift in Sources */,
 				F73166522621E3E100208394 /* UIStyleGuide.swift in Sources */,
+				F72F0ACA28734BC200591386 /* SettingsCountryTableView.swift in Sources */,
 				F7919D31262EF83C0056935F /* NewsError.swift in Sources */,
 				F73166722621EEB300208394 /* ActivityView.swift in Sources */,
 				F7293AE7285B63D50023FE31 /* StorageKeys.swift in Sources */,
@@ -1238,13 +1306,19 @@
 				F75CF47E2624CC61008AE543 /* SnappingCollectionViewLayout.swift in Sources */,
 				F7E18EDC2860F648004342BC /* NSObject.swift in Sources */,
 				F7A777302669733C00446402 /* SwipeGestureRecognizer.swift in Sources */,
+				F78D43AD2875EC620012DD98 /* SettingsCountryView.swift in Sources */,
 				F7FC1EE82629EDE900B687DA /* DetailsView.swift in Sources */,
 				F70E844F2625ADED00ADF8C3 /* AppCoordinator.swift in Sources */,
+				F78D43B42875F4B60012DD98 /* SettingsTableViewSingleCell.swift in Sources */,
 				F7FC1EF52629F2C200B687DA /* DetailsModuleFactory.swift in Sources */,
 				F70E847A2625B86500ADF8C3 /* ViewModel.swift in Sources */,
 				F7C87B20263C2E9100CFF6CA /* WebSiteCoordinator.swift in Sources */,
+				F72F0AC82873474400591386 /* SettingsModuleFactory.swift in Sources */,
+				F78BE2872874C9A900A4C7D7 /* UIComponentsLibrary.Settings.swift in Sources */,
 				F7C87B24263C316300CFF6CA /* DetailsCoordinatorFactory.swift in Sources */,
 				F7FC1F04262A1D5600B687DA /* UIComponentsLibrary.Details.swift in Sources */,
+				F72F0AC6287345DC00591386 /* SettingsCoordinator.swift in Sources */,
+				F72F0ABF28733CF900591386 /* SettingsView.swift in Sources */,
 				F7F9F3312649448A0082CDB6 /* ShareTextCoordinator.swift in Sources */,
 				F7FC1EF02629F03100B687DA /* DetailsViewModel.swift in Sources */,
 				F7CEA45A262213D7007648E1 /* R.generated.swift in Sources */,
@@ -1259,6 +1333,7 @@
 				F74E650526174E590012728F /* CacheStorage.swift in Sources */,
 				F73166462621E29600208394 /* LegacyThemeProvider.swift in Sources */,
 				F731666B2621ECC200208394 /* Label.swift in Sources */,
+				F78D43B22875F1510012DD98 /* SettingsTableView.swift in Sources */,
 				F70E846F2625B61500ADF8C3 /* Article.swift in Sources */,
 				F74E64E5261748090012728F /* Logger.ConsoleOutput.swift in Sources */,
 				F73D03ED2621F38D00BAA802 /* TableViewHeaderFooterView.swift in Sources */,
@@ -1267,6 +1342,7 @@
 				F7F9F333264946870082CDB6 /* ShareTextModuleFactory.swift in Sources */,
 				F714C84E2643E88100ED596D /* PlaceholderView.swift in Sources */,
 				F74E6529261757BE0012728F /* ViewLayoutableProtocol.swift in Sources */,
+				F72F0AC228733D1200591386 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

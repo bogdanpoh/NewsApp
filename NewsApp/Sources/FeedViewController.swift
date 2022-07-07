@@ -45,6 +45,14 @@ final class FeedViewController: ViewController<FeedView> {
         viewModel.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.viewWillAppper()
+        
+        let isDarkMode = traitCollection.userInterfaceStyle == .dark
+        setupNavigationBarColor(isDarkMode: isDarkMode)
+    }
+    
     // MARK: - Private
     
     private let viewModel: FeedViewModelProtocol
@@ -65,13 +73,20 @@ private extension FeedViewController {
         contentView.newsTableView.refreshControl.addTarget(self, action: #selector(didPullToRefresh(_:)), for: .valueChanged)
     }
     
-    func setupNavigationBar() {
+    func setupNavigationBar(navigationBarColor: UIColor? = nil) {
         navigationItem.title = R.string.localizable.feedTitle()
+        navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     func setupNavigationBarItems() {
-        navigationItem.rightBarButtonItem = .init(image: UIImage(systemName: "globe.europe.africa.fill"), style: .plain, target: self, action: #selector(settingsTap(_:)))
+        navigationItem.rightBarButtonItem = .init(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(settingsTap(_:)))
+    }
+    
+    func setupNavigationBarColor(isDarkMode: Bool) {
+        let theme: AppTheme = isDarkMode ? .dark : .light
+        
+        navigationController?.navigationBar.backgroundColor = theme.components.backgroundColor
     }
     
     func setupBindingToViewModel() {
@@ -88,11 +103,6 @@ private extension FeedViewController {
                 self?.updateView(with: viewState)
             }
             .disposed(by: disposeBag)
-        
-        viewModel.settingsTapped.subscribe(onNext: { [weak self] in
-            self?.showCountryActionSheet()
-        })
-        .disposed(by: disposeBag)
     }
     
 }
@@ -163,34 +173,6 @@ private extension FeedViewController {
         case .error, .empty, .loading:
             contentView.showPlaceholder()
         }
-    }
-    
-}
-
-// MARK: - Country Action Sheet
-
-private extension FeedViewController {
-    
-    func showCountryActionSheet() {
-        let countries = Constants.NewsApi.Countrys.allCases
-        let alertController = UIAlertController(
-            title:  R.string.localizable.actionSheetTitle(),
-            message: R.string.localizable.actionSheetMessage(),
-            preferredStyle: .actionSheet
-        )
-        
-        let action: (_ country: Country) -> Void = { [unowned self] in
-            viewModel.selectedCountry($0)
-        }
-        
-        for country in countries {
-            alertController.addDefaultAction(title: country.title) {
-                action(country)
-            }
-        }
-
-        alertController.addAction(.makeCancelAction())
-        present(alertController, animated: true)
     }
     
 }

@@ -7,7 +7,7 @@
 
 import PromiseKit
 
-typealias Country = Constants.NewsApi.Countrys
+typealias Country = Constants.NewsApi.Countries
 
 protocol NetworkNewsProtocol {
     func getNews(country: Country, pageNumber: Int?, pageSize: Int?) -> Promise<ArticleResponse>

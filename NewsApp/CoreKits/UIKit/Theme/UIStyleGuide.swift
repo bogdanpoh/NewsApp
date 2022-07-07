@@ -10,7 +10,6 @@ import UIKit
 enum UIStyleGuide {
     
     enum Typography {
-        
         static func roboto(weight: UIFont.Weight, size: CGFloat) -> UIFont {
             let sWeight = stringFrom(weight: weight)
             guard let font = UIFont(name: "Roboto-" + sWeight, size: size) else {
@@ -56,6 +55,7 @@ extension UIStyleGuide {
         static let lightGray: UIColor = .init(hex: "#767676")
         static let spaceGray: UIColor = .init(hex: "#F2F2F6")
         static let darkGray: UIColor = .init(hex: "#2C2C2E")
+        static let systemGray: UIColor = .init(hex: "#929299")
     }
     
 }

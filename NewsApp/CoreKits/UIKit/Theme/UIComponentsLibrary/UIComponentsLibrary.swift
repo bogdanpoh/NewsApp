@@ -35,4 +35,5 @@ struct UIComponentsLibrary {
     var placeholder: TextComponent
     var feed: Feed
     var details: Details
+    var settings: Settings
 }
