@@ -1,7 +1,7 @@
 use_frameworks!
 
 target 'NewsApp' do
-    platform :ios, '13.0'
+    platform :ios, '14.0'
     
     # UI
     pod 'SnapKit', '~> 5.0.0'
