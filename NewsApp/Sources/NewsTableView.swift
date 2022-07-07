@@ -43,8 +43,10 @@ final class NewsTableView: View {
     override func apply(theme: AppTheme) {
         super.apply(theme: theme)
         
-        backgroundColor(color: theme.components.backgroundColor)
-        tableView.backgroundColor(color: theme.components.backgroundColor)
+        let themeBackgroundColor = theme.components.backgroundColor
+        
+        backgroundColor(color: themeBackgroundColor)
+        tableView.backgroundColor(color: themeBackgroundColor)
     }
     
 }
