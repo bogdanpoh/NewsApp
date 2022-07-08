@@ -65,9 +65,12 @@ extension SettingsViewModel: SettingsViewModelInput {
     func tapSelectMenuItem(at indexPath: IndexPath) {
         guard let menuItem = SettingsMenuItem(rawValue: indexPath.row) else { return }
         
-        logger.info("Tapped on \(menuItem.title)")
+        switch menuItem {
+        case .country:
+            coordinator.openLanguage()
+        }
         
-        coordinator.openLanguage()
+        logger.info("Tapped on \(menuItem.title)")
     }
     
     func countCountries() -> Int {
