@@ -25,7 +25,8 @@ final class SettingsCountryView: View {
         super.defineLayout()
         
         settingsCountryTableView.snp.makeConstraints {
-            $0.edges.equalTo(layoutMarginsGuide).inset(UIEdgeInsets(aTop: 12))
+            $0.top.equalTo(layoutMarginsGuide)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
     
@@ -35,7 +36,6 @@ final class SettingsCountryView: View {
         super.apply(theme: theme)
         
         backgroundColor(color: theme.components.settings.background)
-        backgroundColor = theme.components.settings.background
     }
     
 }

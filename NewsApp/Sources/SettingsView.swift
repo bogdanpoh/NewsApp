@@ -25,8 +25,7 @@ final class SettingsView: View {
         super.defineLayout()
         
         settingsTableView.snp.makeConstraints {
-            $0.top.leading.trailing.equalTo(layoutMarginsGuide).inset(UIEdgeInsets(aTop: 36))
-            $0.bottom.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
     }
     

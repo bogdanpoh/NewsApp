@@ -7,15 +7,58 @@
 
 import UIKit
 
-final class SettingsTableViewCell: SettingsTableViewSingleCell {
+class SettingsTableViewCell: TableViewCell {
     
-    // MARK: - Lifecycle
+    struct State {
+        let title: String
+        let image: UIImage?
+        let accesoryType: UITableViewCell.AccessoryType?
+    }
+    
+    // MARK: - UI
+    
+    private var config: UIListContentConfiguration?
+    
+    // MARK: - Initializers
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        config = defaultContentConfiguration()
+    }
+    
+    // MARK: - Initializers
     
     override func setup() {
         super.setup()
         
-        clipsToBounds = false
-        layer.cornerRadius = 0
+    }
+    
+    // MARK: - Override methods
+    
+    override func apply(theme: AppTheme) {
+        super.apply(theme: theme)
+        
+        backgroundColor(color: theme.components.settings.backgroundCell)
+    }
+    
+}
+
+// MARK: - Set
+
+extension SettingsTableViewCell {
+    
+    @discardableResult
+    func set(state: State) -> Self {
+        config?.text = state.title
+        config?.image = state.image
+        
+        if let accecoryView = state.accesoryType {
+            accessoryType = accecoryView
+        }
+        
+        contentConfiguration = config
+        return self
     }
     
 }

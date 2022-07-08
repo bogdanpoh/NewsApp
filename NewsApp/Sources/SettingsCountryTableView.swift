@@ -10,21 +10,13 @@ import UIKit
 final class SettingsCountryTableView: View {
     
     // MARK: - UI
-
-    private let footerView = SettingsHeaderFooterView()
-        .set(R.string.localizable.settingsListCountriesFooter(), style: .footer)
-        .make {
-            $0.frame.size.height = 50
-        }
     
-    private(set) lazy var tableView = UITableView()
+    private(set) lazy var tableView = TableView(frame: .zero, style: .insetGrouped)
         .make {
             $0.register(class: SettingsTableViewCell.self)
             $0.register(classForHeaderFooter: SettingsHeaderFooterView.self)
-            $0.sectionHeaderHeight = 30
+            $0.sectionHeaderHeight = 50
             $0.sectionFooterHeight = 50
-            $0.tableFooterView = footerView
-            $0.showsVerticalScrollIndicator = false
         }
     
     // MARK: - Lifecycle

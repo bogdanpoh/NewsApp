@@ -98,16 +98,15 @@ extension SettingsCountryViewController: UITableViewDataSource {
 
         return cell.set(state: .init(title: country.title, image: nil, accesoryType: nil))
     }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let header = view as? SettingsHeaderFooterView else { return }
-
-        header.contentView.backgroundColor(color: .systemGroupedBackground)
-    }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withClass: SettingsHeaderFooterView.self)
-        return view.set(R.string.localizable.settingsListCountriesHeader(), style: .header)
+        let headerView = tableView.dequeueReusableHeaderFooterView(withClass: SettingsHeaderFooterView.self)
+        return headerView.set(text: R.string.localizable.settingsListCountriesHeader(), style: .header)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = tableView.dequeueReusableHeaderFooterView(withClass: SettingsHeaderFooterView.self)
+        return footerView.set(text: R.string.localizable.settingsListCountriesFooter(), style: .footer)
     }
     
 }

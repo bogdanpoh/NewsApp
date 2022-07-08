@@ -7,18 +7,26 @@
 
 import UIKit
 
-class SettingsHeaderFooterView: UITableViewHeaderFooterView, ViewLayoutableProtocol, Themeable {
+class SettingsHeaderFooterView: UITableViewHeaderFooterView, ViewLayoutableProtocol, Themeable { //View {
 
-    enum ViewStyle {
+    enum TextStyle {
         case header
         case footer
     }
+    
+    // MARK: - UI
+    
+    private let view = View()
+    
+    private let titleLabel = Label()
+        .set(numberOfLines: 0)
+        .text(alignment: .justified)
+        .adjustsFontSizeToFitWidth(scale: 0.3)
     
     // MARK: - Initializers
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        
         setup()
         setupSubviews()
         defineLayout()
@@ -29,13 +37,6 @@ class SettingsHeaderFooterView: UITableViewHeaderFooterView, ViewLayoutableProto
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - UI
-
-    private let titleLabel = Label()
-        .set(numberOfLines: 0)
-        .text(alignment: .justified)
-        .adjustsFontSizeToFitWidth(scale: 0.3)
-    
     // MARK: - Lifecycle
 
     func setup() {
@@ -43,12 +44,18 @@ class SettingsHeaderFooterView: UITableViewHeaderFooterView, ViewLayoutableProto
     }
 
     func setupSubviews() {
-        addSubview(titleLabel)
+        addSubview(view)
+        view.addSubview(titleLabel)
     }
 
     func defineLayout() {
-        titleLabel.snp.makeConstraints {
+        view.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(UIEdgeInsets(horizontal: 22))
         }
     }
 
@@ -67,7 +74,7 @@ class SettingsHeaderFooterView: UITableViewHeaderFooterView, ViewLayoutableProto
 extension SettingsHeaderFooterView {
 
     @discardableResult
-    func set(_ text: String, style: ViewStyle) -> Self {
+    func set(text: String, style: TextStyle) -> Self {
         var valueText: String?
 
         switch style {

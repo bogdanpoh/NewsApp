@@ -76,13 +76,18 @@ extension SettingsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let menuItem = viewModel.menuItem(for: indexPath)
-        let cell = tableView.dequeue(SettingsTableViewSingleCell.self, for: indexPath)
+        let cell = tableView.dequeue(SettingsTableViewCell.self, for: indexPath)
         
         return cell.set(state: .init(
             title: menuItem.title,
             image: menuItem.icon,
             accesoryType: menuItem.accessoryType
         ))
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = tableView.dequeueReusableHeaderFooterView(withClass: SettingsHeaderFooterView.self)
+        return footerView.set(text: R.string.localizable.settingsCountryFooter(), style: .footer)
     }
     
 }

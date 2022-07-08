@@ -122,7 +122,6 @@
 		F78D43AD2875EC620012DD98 /* SettingsCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D43AC2875EC620012DD98 /* SettingsCountryView.swift */; };
 		F78D43AF2875EC780012DD98 /* SettingsCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D43AE2875EC780012DD98 /* SettingsCountryViewController.swift */; };
 		F78D43B22875F1510012DD98 /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D43B12875F1510012DD98 /* SettingsTableView.swift */; };
-		F78D43B42875F4B60012DD98 /* SettingsTableViewSingleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D43B32875F4B60012DD98 /* SettingsTableViewSingleCell.swift */; };
 		F78D43B62875FD120012DD98 /* SettingsMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D43B52875FD120012DD98 /* SettingsMenuItem.swift */; };
 		F78D43B8287604210012DD98 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D43B7287604210012DD98 /* SettingsTableViewCell.swift */; };
 		F7919D31262EF83C0056935F /* NewsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7919D30262EF83C0056935F /* NewsError.swift */; };
@@ -320,7 +319,6 @@
 		F78D43AC2875EC620012DD98 /* SettingsCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCountryView.swift; sourceTree = "<group>"; };
 		F78D43AE2875EC780012DD98 /* SettingsCountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCountryViewController.swift; sourceTree = "<group>"; };
 		F78D43B12875F1510012DD98 /* SettingsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
-		F78D43B32875F4B60012DD98 /* SettingsTableViewSingleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewSingleCell.swift; sourceTree = "<group>"; };
 		F78D43B52875FD120012DD98 /* SettingsMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenuItem.swift; sourceTree = "<group>"; };
 		F78D43B7287604210012DD98 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		F7919D30262EF83C0056935F /* NewsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsError.swift; sourceTree = "<group>"; };
@@ -562,7 +560,6 @@
 			children = (
 				F78D43B52875FD120012DD98 /* SettingsMenuItem.swift */,
 				F78BE2842874C41B00A4C7D7 /* SettingsHeaderFooterView.swift */,
-				F78D43B32875F4B60012DD98 /* SettingsTableViewSingleCell.swift */,
 				F78D43B7287604210012DD98 /* SettingsTableViewCell.swift */,
 				F78D43B12875F1510012DD98 /* SettingsTableView.swift */,
 				F72F0AC928734BC200591386 /* SettingsCountryTableView.swift */,
@@ -1309,7 +1306,6 @@
 				F78D43AD2875EC620012DD98 /* SettingsCountryView.swift in Sources */,
 				F7FC1EE82629EDE900B687DA /* DetailsView.swift in Sources */,
 				F70E844F2625ADED00ADF8C3 /* AppCoordinator.swift in Sources */,
-				F78D43B42875F4B60012DD98 /* SettingsTableViewSingleCell.swift in Sources */,
 				F7FC1EF52629F2C200B687DA /* DetailsModuleFactory.swift in Sources */,
 				F70E847A2625B86500ADF8C3 /* ViewModel.swift in Sources */,
 				F7C87B20263C2E9100CFF6CA /* WebSiteCoordinator.swift in Sources */,
