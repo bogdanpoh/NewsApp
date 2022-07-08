@@ -16,7 +16,6 @@ final class SettingsTableView: View {
             $0.register(class: SettingsTableViewCell.self)
             $0.register(classForHeaderFooter: SettingsHeaderFooterView.self)
             $0.sectionFooterHeight = 30
-            $0.separatorStyle = .none
             $0.showsVerticalScrollIndicator = false
             $0.isScrollEnabled = false
         }
