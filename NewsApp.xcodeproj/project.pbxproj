@@ -82,6 +82,9 @@
 		F73D03EA2621F36800BAA802 /* FullSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73D03E92621F36800BAA802 /* FullSizedTableView.swift */; };
 		F73D03ED2621F38D00BAA802 /* TableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73D03EC2621F38D00BAA802 /* TableViewHeaderFooterView.swift */; };
 		F73D03F02621F3FB00BAA802 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73D03EF2621F3FB00BAA802 /* TableView.swift */; };
+		F747ADD2287B124E00B425CA /* CacheStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F747ADCF287B124E00B425CA /* CacheStorage.swift */; };
+		F747ADD3287B124E00B425CA /* AnyOptional.swift in Sources */ = {isa = PBXBuildFile; fileRef = F747ADD0287B124E00B425CA /* AnyOptional.swift */; };
+		F747ADD4287B124E00B425CA /* CachedProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = F747ADD1287B124E00B425CA /* CachedProperty.swift */; };
 		F74E64C7261743790012728F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74E64C6261743790012728F /* AppDelegate.swift */; };
 		F74E64D02617437A0012728F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F74E64CF2617437A0012728F /* Assets.xcassets */; };
 		F74E64D32617437A0012728F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F74E64D12617437A0012728F /* LaunchScreen.storyboard */; };
@@ -95,9 +98,6 @@
 		F74E64FB26174D810012728F /* Localization.Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74E64FA26174D810012728F /* Localization.Manager.swift */; };
 		F74E64FE26174D9D0012728F /* LocalizableManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74E64FD26174D9D0012728F /* LocalizableManagerProtocol.swift */; };
 		F74E650126174DBA0012728F /* Localization.Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74E650026174DBA0012728F /* Localization.Error.swift */; };
-		F74E650526174E590012728F /* CacheStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74E650426174E590012728F /* CacheStorage.swift */; };
-		F74E650826174E6F0012728F /* AnyOptional.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74E650726174E6F0012728F /* AnyOptional.swift */; };
-		F74E650B26174E8D0012728F /* CachedProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74E650A26174E8D0012728F /* CachedProperty.swift */; };
 		F74E650F2617522A0012728F /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74E650E2617522A0012728F /* DateFormatting.swift */; };
 		F74E65132617526D0012728F /* NumberFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74E65122617526D0012728F /* NumberFormatting.swift */; };
 		F74E6516261753C40012728F /* Optional.String.Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74E6515261753C40012728F /* Optional.String.Ext.swift */; };
@@ -277,6 +277,9 @@
 		F73D03E92621F36800BAA802 /* FullSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullSizedTableView.swift; sourceTree = "<group>"; };
 		F73D03EC2621F38D00BAA802 /* TableViewHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderFooterView.swift; sourceTree = "<group>"; };
 		F73D03EF2621F3FB00BAA802 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		F747ADCF287B124E00B425CA /* CacheStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheStorage.swift; sourceTree = "<group>"; };
+		F747ADD0287B124E00B425CA /* AnyOptional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyOptional.swift; sourceTree = "<group>"; };
+		F747ADD1287B124E00B425CA /* CachedProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedProperty.swift; sourceTree = "<group>"; };
 		F74E64C3261743790012728F /* NewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F74E64C6261743790012728F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F74E64CF2617437A0012728F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -292,9 +295,6 @@
 		F74E64FA26174D810012728F /* Localization.Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.Manager.swift; sourceTree = "<group>"; };
 		F74E64FD26174D9D0012728F /* LocalizableManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableManagerProtocol.swift; sourceTree = "<group>"; };
 		F74E650026174DBA0012728F /* Localization.Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.Error.swift; sourceTree = "<group>"; };
-		F74E650426174E590012728F /* CacheStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheStorage.swift; sourceTree = "<group>"; };
-		F74E650726174E6F0012728F /* AnyOptional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyOptional.swift; sourceTree = "<group>"; };
-		F74E650A26174E8D0012728F /* CachedProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedProperty.swift; sourceTree = "<group>"; };
 		F74E650E2617522A0012728F /* DateFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
 		F74E65122617526D0012728F /* NumberFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatting.swift; sourceTree = "<group>"; };
 		F74E6515261753C40012728F /* Optional.String.Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.String.Ext.swift; sourceTree = "<group>"; };
@@ -695,6 +695,16 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
+		F747ADCE287B124E00B425CA /* CachedProperty */ = {
+			isa = PBXGroup;
+			children = (
+				F747ADCF287B124E00B425CA /* CacheStorage.swift */,
+				F747ADD0287B124E00B425CA /* AnyOptional.swift */,
+				F747ADD1287B124E00B425CA /* CachedProperty.swift */,
+			);
+			path = CachedProperty;
+			sourceTree = "<group>";
+		};
 		F74E64BA261743790012728F = {
 			isa = PBXGroup;
 			children = (
@@ -808,16 +818,6 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
-		F74E650326174E480012728F /* CachedProperty */ = {
-			isa = PBXGroup;
-			children = (
-				F74E650426174E590012728F /* CacheStorage.swift */,
-				F74E650726174E6F0012728F /* AnyOptional.swift */,
-				F74E650A26174E8D0012728F /* CachedProperty.swift */,
-			);
-			path = CachedProperty;
-			sourceTree = "<group>";
-		};
 		F74E650D261752140012728F /* Formatters */ = {
 			isa = PBXGroup;
 			children = (
@@ -840,8 +840,8 @@
 			isa = PBXGroup;
 			children = (
 				F74E64DD261745460012728F /* Logger */,
-				F74E650326174E480012728F /* CachedProperty */,
 				F74E650D261752140012728F /* Formatters */,
+				F747ADCE287B124E00B425CA /* CachedProperty */,
 				F74E64E726174ADC0012728F /* Extensions */,
 				F74E64ED26174C210012728F /* Localization */,
 			);
@@ -1233,7 +1233,6 @@
 				F73166382621DADA00208394 /* UIViewController+Ext.swift in Sources */,
 				F74E652C261758140012728F /* MakeProtocol.swift in Sources */,
 				F78D43B8287604210012DD98 /* SettingsTableViewCell.swift in Sources */,
-				F74E650826174E6F0012728F /* AnyOptional.swift in Sources */,
 				F73166272621D79C00208394 /* CoordinatorOutput.swift in Sources */,
 				F70E84322625A48300ADF8C3 /* UIBarButtonItem+Ext.swift in Sources */,
 				F714C8452643C0E800ED596D /* WebSiteCoordinatorFactory.swift in Sources */,
@@ -1244,6 +1243,7 @@
 				F7FA84232626035800D2FAA5 /* FakeParser.swift in Sources */,
 				F74E64FE26174D9D0012728F /* LocalizableManagerProtocol.swift in Sources */,
 				F7FC1F2B262A398700B687DA /* KFImageView.swift in Sources */,
+				F747ADD4287B124E00B425CA /* CachedProperty.swift in Sources */,
 				F738D4B82628C059006242DD /* NewsTableView.swift in Sources */,
 				F74E6516261753C40012728F /* Optional.String.Ext.swift in Sources */,
 				F731666F2621EE6700208394 /* View.swift in Sources */,
@@ -1252,6 +1252,7 @@
 				F73D03F02621F3FB00BAA802 /* TableView.swift in Sources */,
 				F74E64EA26174B090012728F /* Date.Ext.swift in Sources */,
 				F75CF4892624CF7B008AE543 /* UIStackView+Ext.swift in Sources */,
+				F747ADD2287B124E00B425CA /* CacheStorage.swift in Sources */,
 				F74E64C7261743790012728F /* AppDelegate.swift in Sources */,
 				F731662E2621D84300208394 /* Presentable.swift in Sources */,
 				F70E84752625B70100ADF8C3 /* FeedModuleFactory.swift in Sources */,
@@ -1266,7 +1267,6 @@
 				F70E846B2625B58900ADF8C3 /* FeedCoordinator.swift in Sources */,
 				F75CF49D2624DDC7008AE543 /* UIControl+Ext.swift in Sources */,
 				F74E64FB26174D810012728F /* Localization.Manager.swift in Sources */,
-				F74E650B26174E8D0012728F /* CachedProperty.swift in Sources */,
 				F731664A2621E30700208394 /* AppTheme.swift in Sources */,
 				F7FA8432262607C100D2FAA5 /* Constants.swift in Sources */,
 				F74E64EF26174C350012728F /* Localization.swift in Sources */,
@@ -1326,10 +1326,10 @@
 				F731664E2621E33B00208394 /* UIComponentsLibrary.swift in Sources */,
 				F70E848C2625BA8000ADF8C3 /* FeedView.swift in Sources */,
 				F73166632621E7FF00208394 /* UIColor+Ext.swift in Sources */,
-				F74E650526174E590012728F /* CacheStorage.swift in Sources */,
 				F73166462621E29600208394 /* LegacyThemeProvider.swift in Sources */,
 				F731666B2621ECC200208394 /* Label.swift in Sources */,
 				F78D43B22875F1510012DD98 /* SettingsTableView.swift in Sources */,
+				F747ADD3287B124E00B425CA /* AnyOptional.swift in Sources */,
 				F70E846F2625B61500ADF8C3 /* Article.swift in Sources */,
 				F74E64E5261748090012728F /* Logger.ConsoleOutput.swift in Sources */,
 				F73D03ED2621F38D00BAA802 /* TableViewHeaderFooterView.swift in Sources */,

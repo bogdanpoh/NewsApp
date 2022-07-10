@@ -9,12 +9,6 @@ import Foundation
 
 enum CachedPropertyKey: String {
     case lastUsedLanguageCode
-    case isUserSeenOnboarding
-    case isUserSeenTrialPremium
-    case isLoadedHashtagsLibrary
-    case userCopyTutorialStep
-    case activeUserId
-    case hasUserPremiumSubscription
 }
 
 protocol PropertyStorage {
