@@ -35,10 +35,11 @@ final class FeedViewModel: ViewModel {
     
     // MARK: - Initializers
     
-    init(coordinator: FeedCoordinatorProtocol, networkService: NetworkNewsProtocol) {
+    init(coordinator: FeedCoordinatorProtocol, networkService: NetworkNewsProtocol, userManager: UserManagerProtocol) {
         self.coordinator = coordinator
         self.networkService = networkService
-        self.countrySubj = BehaviorRelay<Country>(value: .ua)
+        self.userManager = userManager
+        self.countrySubj = BehaviorRelay<Country>(value: userManager.country)
         
         super.init()
         
@@ -50,6 +51,7 @@ final class FeedViewModel: ViewModel {
     
     private let coordinator: FeedCoordinatorProtocol
     private let networkService: NetworkNewsProtocol
+    private var userManager: UserManagerProtocol
     
     private let reloadCellsSubj = PublishRelay<Void>()
     private let scrollToTopSubj = PublishRelay<Void>()
@@ -72,13 +74,14 @@ extension FeedViewModel: FeedViewModelInput {
     }
     
     func viewWillAppper() {
-        guard countrySubj.value != lastCountry else { return }
-        articles.removeAll()
+        let newCountry = countrySubj.value
+        guard newCountry != lastCountry else { return }
         
         viewStateSubj.accept(.loading)
-        lastCountry = countrySubj.value
-        viewDidLoad()
-        scrollToTopSubj.accept(())
+        lastCountry = newCountry
+        userManager.selectedCountry = newCountry.rawValue
+        
+        fetchArticles(forNewCountry: newCountry)
     }
     
     func numberOfRows() -> Int {
@@ -160,6 +163,23 @@ private extension FeedViewModel {
             self.totalResult = newsResponse.totalResults
             self.reloadCellsSubj.accept(())
             self.viewStateSubj.accept(self.numberOfRows() == 0 ? .empty : .ready)
+        }.catch { error in
+            logger.error(error.localizedDescription)
+            self.viewStateSubj.accept(.error)
+        }
+    }
+    
+    func fetchArticles(forNewCountry country: Country, pageNumber: Int = 1, pageSize: Int? = nil) {
+        firstly {
+            networkService.getNews(country: country, pageNumber: pageNumber, pageSize: pageSize)
+        }.done { newsResponse in
+            self.articles.removeAll()
+            self.articles = newsResponse.articles
+            
+            self.totalResult = newsResponse.totalResults
+            self.viewStateSubj.accept(self.numberOfRows() == 0 ? .empty : .ready)
+            self.reloadCellsSubj.accept(())
+            self.scrollToTopSubj.accept(())
         }.catch { error in
             logger.error(error.localizedDescription)
             self.viewStateSubj.accept(.error)

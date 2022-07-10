@@ -85,6 +85,8 @@
 		F747ADD2287B124E00B425CA /* CacheStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F747ADCF287B124E00B425CA /* CacheStorage.swift */; };
 		F747ADD3287B124E00B425CA /* AnyOptional.swift in Sources */ = {isa = PBXBuildFile; fileRef = F747ADD0287B124E00B425CA /* AnyOptional.swift */; };
 		F747ADD4287B124E00B425CA /* CachedProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = F747ADD1287B124E00B425CA /* CachedProperty.swift */; };
+		F747ADD6287B14F500B425CA /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F747ADD5287B14F500B425CA /* UserManager.swift */; };
+		F747ADD9287B151E00B425CA /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = F747ADD8287B151E00B425CA /* UserDefault.swift */; };
 		F74E64C7261743790012728F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74E64C6261743790012728F /* AppDelegate.swift */; };
 		F74E64D02617437A0012728F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F74E64CF2617437A0012728F /* Assets.xcassets */; };
 		F74E64D32617437A0012728F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F74E64D12617437A0012728F /* LaunchScreen.storyboard */; };
@@ -280,6 +282,8 @@
 		F747ADCF287B124E00B425CA /* CacheStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheStorage.swift; sourceTree = "<group>"; };
 		F747ADD0287B124E00B425CA /* AnyOptional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyOptional.swift; sourceTree = "<group>"; };
 		F747ADD1287B124E00B425CA /* CachedProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedProperty.swift; sourceTree = "<group>"; };
+		F747ADD5287B14F500B425CA /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		F747ADD8287B151E00B425CA /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		F74E64C3261743790012728F /* NewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F74E64C6261743790012728F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F74E64CF2617437A0012728F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -705,6 +709,15 @@
 			path = CachedProperty;
 			sourceTree = "<group>";
 		};
+		F747ADD7287B14F900B425CA /* UserManager */ = {
+			isa = PBXGroup;
+			children = (
+				F747ADD8287B151E00B425CA /* UserDefault.swift */,
+				F747ADD5287B14F500B425CA /* UserManager.swift */,
+			);
+			path = UserManager;
+			sourceTree = "<group>";
+		};
 		F74E64BA261743790012728F = {
 			isa = PBXGroup;
 			children = (
@@ -844,6 +857,7 @@
 				F747ADCE287B124E00B425CA /* CachedProperty */,
 				F74E64E726174ADC0012728F /* Extensions */,
 				F74E64ED26174C210012728F /* Localization */,
+				F747ADD7287B14F900B425CA /* UserManager */,
 			);
 			path = CoreKit;
 			sourceTree = "<group>";
@@ -1237,6 +1251,7 @@
 				F70E84322625A48300ADF8C3 /* UIBarButtonItem+Ext.swift in Sources */,
 				F714C8452643C0E800ED596D /* WebSiteCoordinatorFactory.swift in Sources */,
 				F71E09752647193F007FB6AB /* ButtonsFactory.swift in Sources */,
+				F747ADD6287B14F500B425CA /* UserManager.swift in Sources */,
 				F78D43B62875FD120012DD98 /* SettingsMenuItem.swift in Sources */,
 				F74E64F726174D620012728F /* EmbeddedLocalizationSource.swift in Sources */,
 				F74E64F426174D450012728F /* LocalizationSource.swift in Sources */,
@@ -1252,6 +1267,7 @@
 				F73D03F02621F3FB00BAA802 /* TableView.swift in Sources */,
 				F74E64EA26174B090012728F /* Date.Ext.swift in Sources */,
 				F75CF4892624CF7B008AE543 /* UIStackView+Ext.swift in Sources */,
+				F747ADD9287B151E00B425CA /* UserDefault.swift in Sources */,
 				F747ADD2287B124E00B425CA /* CacheStorage.swift in Sources */,
 				F74E64C7261743790012728F /* AppDelegate.swift in Sources */,
 				F731662E2621D84300208394 /* Presentable.swift in Sources */,
