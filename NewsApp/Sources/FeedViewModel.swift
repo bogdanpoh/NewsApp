@@ -73,7 +73,9 @@ extension FeedViewModel: FeedViewModelInput {
     
     func viewWillAppper() {
         guard countrySubj.value != lastCountry else { return }
+        articles.removeAll()
         
+        viewStateSubj.accept(.loading)
         lastCountry = countrySubj.value
         viewDidLoad()
         scrollToTopSubj.accept(())
