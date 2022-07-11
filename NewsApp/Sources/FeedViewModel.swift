@@ -136,20 +136,23 @@ private extension FeedViewModel {
             return
         }
         
+        #if DEBUG
         //TODO: - code for debug application
         
-//        firstly {
-//            FakeParsser().getArticlesResponse()
-//        }.done { response in
-//            self.articles = response.articles
-//            self.reloadCellsSubj.accept(())
-//            self.viewStateSubj.accept(self.numberOfRows() == 0 ? .empty : .ready)
-//        }
-//        .catch { error in
-//            logger.error(error.localizedDescription)
-//            self.viewStateSubj.accept(.error)
-//        }
-
+        firstly {
+            FakeParsser().getArticlesResponse()
+        }.done { response in
+            self.articles = response.articles
+            self.reloadCellsSubj.accept(())
+            self.viewStateSubj.accept(self.numberOfRows() == 0 ? .empty : .ready)
+        }
+        .catch { error in
+            logger.error(error.localizedDescription)
+            self.viewStateSubj.accept(.error)
+        }
+        #else
+        //TODO: - code for release application
+        
         firstly {
             networkService.getNews(country: country, pageNumber: pageNumber, pageSize: nil)
         }.done { newsResponse in
@@ -167,6 +170,7 @@ private extension FeedViewModel {
             logger.error(error.localizedDescription)
             self.viewStateSubj.accept(.error)
         }
+        #endif
     }
     
     func fetchArticles(forNewCountry country: Country, pageNumber: Int = 1, pageSize: Int? = nil) {
