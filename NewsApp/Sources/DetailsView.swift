@@ -66,7 +66,6 @@ final class DetailsView: View {
         super.setupSubviews()
         
         addSubviews(articleImage, closeButton, contentStack)
-        
         addGestureRecognizer(swipeDown)
     }
     
@@ -137,7 +136,17 @@ extension DetailsView {
     
     @discardableResult
     func set(state: State) -> Self {
-        articleImage.setImage(path: state.articleImageUrl, placeholder: R.image.newsPlaceholder())
+        articleImage.setImage(path: state.articleImageUrl, placeholder: R.image.newsPlaceholder()) { [weak self] result in
+            switch result {
+            case .failure(_):
+                self?.articleImage.image = R.image.newsPlaceholder()
+                
+            default:
+                break
+            }
+            
+        }
+        
         titleLabel.text(state.title)
         authorLabel.text(state.author ?? R.string.localizable.feedWithoutAuthor())
         descriptionLabel.text(state.description ?? R.string.localizable.detailsWithoutDescription())
