@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UIImageColors
 
 final class DetailsView: View {
     
@@ -19,6 +20,11 @@ final class DetailsView: View {
     }
     
     // MARK: - UI
+    
+    private lazy var imageContentStack = makeStackView(axis: .vertical) (
+        View(),
+        articleImage
+    )
     
     private let articleImage = KFImageView()
         .backgroundColor(color: .gray)
@@ -64,7 +70,7 @@ final class DetailsView: View {
     override func setupSubviews() {
         super.setupSubviews()
         
-        addSubviews(articleImage, closeButton, contentStack)
+        addSubviews(imageContentStack, closeButton, contentStack)
         addGestureRecognizer(swipeDown)
     }
     
@@ -77,10 +83,14 @@ final class DetailsView: View {
             $0.width.height.equalTo(36)
         }
         
+        imageContentStack.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(articleImageHeight + topInstet)
+        }
+        
         articleImage.snp.makeConstraints {
-            $0.top.equalTo(layoutMarginsGuide).inset(UIEdgeInsets(aTop: 8))
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(230)
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalTo(articleImageHeight)
         }
         
         contentStack.snp.makeConstraints {
@@ -124,10 +134,12 @@ final class DetailsView: View {
             $0.background(color: detailsStyle.button.background.color)
             $0.background(color: detailsStyle.button.background.color.withAlphaComponent(0.8), for: .highlighted)
         }
-        
-        ///bopo: remove after replace upload icon
-        shareButton.tint(color: detailsStyle.button.text.color)
     }
+    
+    // MARK: - Private
+    
+    let topInstet = UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0
+    let articleImageHeight: CGFloat = 230.0
     
 }
 
@@ -141,11 +153,33 @@ extension DetailsView {
             switch result {
             case .failure(_):
                 self?.articleImage.image = R.image.newsPlaceholder()
+                R.image.newsPlaceholder()?.getColors() { colors in
+                    self?.imageContentStack.backgroundColor = colors?.background
+                }
                 
             default:
                 break
             }
             
+        }
+        
+        articleImage.image?.getColors { [weak self] colors in
+            guard let self = self else { return }
+            guard let imageBackgroundColor = colors?.background else { return }
+            let isLightImageBackgroundColor = imageBackgroundColor.isLight() ?? false
+            
+            switch self.traitCollection.userInterfaceStyle {
+            case .light:
+                if isLightImageBackgroundColor {
+                    self.imageContentStack.backgroundColor = imageBackgroundColor
+                }
+                
+            case .dark:
+                self.imageContentStack.backgroundColor = imageBackgroundColor
+                
+            default:
+                break
+            }
         }
         
         titleLabel.text(state.title)
