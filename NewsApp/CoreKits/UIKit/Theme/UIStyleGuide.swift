@@ -80,4 +80,7 @@ extension UIFont {
     ///roboto, .regular, size: 16
     static let descriptionDetails = UIStyleGuide.Typography.roboto(weight: .regular, size: 16)
     
+    ///roboto, .medium, size: 18
+    static let buttonDetails = UIStyleGuide.Typography.roboto(weight: .medium, size: 18)
+    
 }

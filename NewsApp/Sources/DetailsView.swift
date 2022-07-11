@@ -23,7 +23,6 @@ final class DetailsView: View {
     private let articleImage = KFImageView()
         .backgroundColor(color: .gray)
         .setContentMode(.scaleToFill)
-        .maskToBounds(true)
     
     private(set) var closeButton = Button()
         .setImage(R.image.icNavBarClose())
@@ -58,7 +57,7 @@ final class DetailsView: View {
     private(set) var shareButton = ButtonsFactory.makeActionButton(image: UIImage(systemName: "square.and.arrow.up"))
         .title(R.string.localizable.detailsShareArticle())
     
-    private(set) var openButton = ButtonsFactory.makeActionButton(image: R.image.icExternalLink())
+    private(set) var openButton = ButtonsFactory.makeActionButton(image: UIImage(systemName: "link"))
     
     // MARK: - Lifecycle
     
@@ -73,19 +72,20 @@ final class DetailsView: View {
         super.defineLayout()
         
         closeButton.snp.makeConstraints {
-            $0.top.equalTo(layoutMarginsGuide).inset(UIEdgeInsets(aTop: 8))
-            $0.trailing.equalToSuperview().inset(UIEdgeInsets(aRight: 18))
+            $0.top.equalTo(layoutMarginsGuide).inset(UIEdgeInsets(aTop: 16))
+            $0.trailing.equalToSuperview().inset(UIEdgeInsets(aRight: 16))
             $0.width.height.equalTo(36)
         }
         
         articleImage.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(250)
+            $0.top.equalTo(layoutMarginsGuide).inset(UIEdgeInsets(aTop: 8))
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(230)
         }
         
         contentStack.snp.makeConstraints {
             $0.top.equalTo(articleImage.snp.bottom).offset(20)
-            $0.leading.trailing.equalToSuperview().inset(UIEdgeInsets(horizontal: 18))
+            $0.leading.trailing.equalToSuperview().inset(UIEdgeInsets(horizontal: 16))
             $0.bottom.equalTo(layoutMarginsGuide).inset(UIEdgeInsets(aBottom: 10))
         }
         
@@ -119,8 +119,10 @@ final class DetailsView: View {
         [shareButton, openButton].forEach {
             $0.titleColor(detailsStyle.button.text.color)
             $0.titleColor(detailsStyle.button.text.color.withAlphaComponent(0.6), for: .highlighted)
+            $0.tint(color: detailsStyle.button.text.color)
             $0.text(font: detailsStyle.button.text.font)
             $0.background(color: detailsStyle.button.background.color)
+            $0.background(color: detailsStyle.button.background.color.withAlphaComponent(0.8), for: .highlighted)
         }
         
         ///bopo: remove after replace upload icon
