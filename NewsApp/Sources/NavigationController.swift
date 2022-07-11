@@ -21,7 +21,7 @@ final class NavigationController: UINavigationController {
 extension NavigationController: Themeable {
     
     func apply(theme: AppTheme) {
-        navigationBar.backgroundColor = theme.components.navigationBar.background.color
+        navigationBar.backgroundColor = theme.components.navigationBar.background
     }
     
 }

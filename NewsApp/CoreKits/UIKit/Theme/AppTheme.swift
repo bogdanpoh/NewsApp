@@ -19,9 +19,9 @@ extension AppTheme {
                 color: UIStyleGuide.ColorPalette.tblack,
                 font: .title1
             ),
-            background: .init(color: UIStyleGuide.ColorPalette.white)
+            background: .systemGroupedBackground
         ),
-        backgroundColor: UIStyleGuide.ColorPalette.white,
+        backgroundColor: .systemGroupedBackground,
         placeholder: .init(color: UIStyleGuide.ColorPalette.black, font: .titleFeed),
         feed: .init(cell: .init(
             title: .init(color: UIStyleGuide.ColorPalette.tblack, font: .titleFeed),
@@ -35,7 +35,8 @@ extension AppTheme {
             button: .init(
                 text: .init(color: UIStyleGuide.ColorPalette.blue, font: .title1),
                 background: .init(color: UIStyleGuide.ColorPalette.spaceGray)
-            )
+            ),
+            background: UIStyleGuide.ColorPalette.white
         ),
         settings: .init(
             headerFooter: .init(
@@ -57,9 +58,9 @@ extension AppTheme {
                 color: UIStyleGuide.ColorPalette.white,
                 font: .title1
             ),
-            background: .init(color: UIStyleGuide.ColorPalette.dBlack)
+            background: UIStyleGuide.ColorPalette.dBlack
         ),
-        backgroundColor: UIStyleGuide.ColorPalette.black,
+        backgroundColor: .systemGroupedBackground,
         placeholder: .init(color: UIStyleGuide.ColorPalette.white, font: .titleFeed),
         feed: .init(cell: .init(
             title: .init(color: UIStyleGuide.ColorPalette.white, font: .titleFeed),
@@ -73,7 +74,8 @@ extension AppTheme {
             button: .init(
                 text: .init(color: UIStyleGuide.ColorPalette.white, font: .title1),
                 background: .init(color: UIStyleGuide.ColorPalette.darkGray)
-            )
+            ),
+            background: UIStyleGuide.ColorPalette.tblack
         ),
         settings: .init(
             headerFooter: .init(

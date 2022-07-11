@@ -21,7 +21,7 @@ struct UIComponentsLibrary {
     
     struct NavigationBar {
         var text: TextComponent
-        var background: Component
+        var background: UIColor
     }
 
     struct Button {

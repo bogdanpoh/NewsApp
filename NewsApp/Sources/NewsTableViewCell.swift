@@ -35,13 +35,11 @@ final class NewsTableViewCell: TableViewCell {
     override func setup() {
         super.setup()
         
-        applyShadow()
+        selectionStyle = .none
     }
     
     override func setupSubviews() {
         super.setupSubviews()
-        
-        selectionStyle = .none
         
         contentView.addSubview(containerView)
         containerView.addSubviews(
@@ -78,7 +76,7 @@ final class NewsTableViewCell: TableViewCell {
         super.apply(theme: theme)
         
         let feedCellStyle = theme.components.feed.cell
-        
+        backgroundColor(color: theme.components.backgroundColor)
         containerView.backgroundColor(color: feedCellStyle.background)
         
         titleLabel
@@ -88,23 +86,6 @@ final class NewsTableViewCell: TableViewCell {
         authorLabel
             .textColor(feedCellStyle.author.color)
             .text(font: feedCellStyle.author.font)
-    }
-    
-}
-
-// MARK: -
-
-private extension NewsTableViewCell {
-    
-    func applyShadow() {
-        let shadowWidth = bounds.width
-        let shadowHeight = bounds.height / 2
-        let rect = CGRect(x: 0, y: shadowHeight, width: shadowWidth, height: shadowHeight)
-        layer.shadowPath = UIBezierPath(roundedRect: rect, cornerRadius: 10).cgPath
-        layer.backgroundColor = UIColor.clear.cgColor
-        layer.shadowColor = UIStyleGuide.ColorPalette.black.cgColor
-        layer.shadowOpacity = 0.2
-        layer.shadowRadius = 8
     }
     
 }
@@ -142,6 +123,24 @@ private extension NewsTableViewCell {
             .backgroundColor(color: backgroundColor)
             .setCornerRadius(5)
             .maskToBounds(true)
+    }
+    
+}
+
+//TODO: - Deprecated
+// MARK: - Setup shadow
+
+private extension NewsTableViewCell {
+    
+    func applyShadow() {
+        let shadowWidth = bounds.width
+        let shadowHeight = bounds.height / 2
+        let rect = CGRect(x: 0, y: shadowHeight, width: shadowWidth, height: shadowHeight)
+        layer.shadowPath = UIBezierPath(roundedRect: rect, cornerRadius: 10).cgPath
+        layer.backgroundColor = UIColor.clear.cgColor
+        layer.shadowColor = UIStyleGuide.ColorPalette.black.cgColor
+        layer.shadowOpacity = 0.2
+        layer.shadowRadius = 8
     }
     
 }

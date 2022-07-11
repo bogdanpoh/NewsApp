@@ -42,7 +42,6 @@ final class SettingsTableView: View {
         super.apply(theme: theme)
         
         backgroundColor(color: theme.components.backgroundColor)
-        tableView.backgroundColor = .systemGroupedBackground
     }
     
 }

@@ -51,7 +51,7 @@ class ViewController<ContentView: View>: UIViewController {
 extension ViewController: Themeable {
     
     func apply(theme: AppTheme) {
-        navigationController?.navigationBar.backgroundColor = theme.components.navigationBar.background.color
+        navigationController?.navigationBar.backgroundColor = theme.components.navigationBar.background
     }
     
 }

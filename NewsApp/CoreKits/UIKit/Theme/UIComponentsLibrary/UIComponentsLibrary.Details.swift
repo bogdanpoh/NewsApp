@@ -5,7 +5,7 @@
 //  Created by Bogdan Pohidnya on 16.04.2021.
 //
 
-import Foundation
+import UIKit
 
 extension UIComponentsLibrary {
     
@@ -14,6 +14,7 @@ extension UIComponentsLibrary {
         var author: TextComponent
         var description: TextComponent
         var button: Button
+        var background: UIColor
     }
     
 }

@@ -55,7 +55,6 @@ private extension SettingsCountryViewController {
     
     func setupNavigationBar() {
         navigationItem.title = R.string.localizable.settingsCountry()
-        navigationController?.navigationBar.backgroundColor = .systemGroupedBackground
         navigationItem.largeTitleDisplayMode = .never
     }
     

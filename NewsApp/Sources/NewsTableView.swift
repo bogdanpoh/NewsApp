@@ -18,7 +18,7 @@ final class NewsTableView: View {
             $0.register(class: NewsTableViewCell.self)
             $0.setEmptyFooter()
             $0.refreshControl = refreshControl
-            $0.separatorInset = UIEdgeInsets(horizontal: 16)
+            $0.separatorStyle = .none
             $0.setRowHeight(310)
         }
     
@@ -43,10 +43,7 @@ final class NewsTableView: View {
     override func apply(theme: AppTheme) {
         super.apply(theme: theme)
         
-        let themeBackgroundColor = theme.components.backgroundColor
-        
-        backgroundColor(color: themeBackgroundColor)
-        tableView.backgroundColor(color: themeBackgroundColor)
+        tableView.backgroundColor(color: theme.components.backgroundColor)
     }
     
 }

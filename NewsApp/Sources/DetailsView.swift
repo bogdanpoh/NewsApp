@@ -101,9 +101,8 @@ final class DetailsView: View {
     override func apply(theme: AppTheme) {
         super.apply(theme: theme)
         
-        backgroundColor(color: theme.components.backgroundColor)
-        
         let detailsStyle = theme.components.details
+        backgroundColor(color: detailsStyle.background)
         
         titleLabel
             .textColor(detailsStyle.title.color)
