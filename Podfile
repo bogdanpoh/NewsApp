@@ -26,9 +26,6 @@ end
 target 'NewsAppWatch WatchKit Extension' do
   platform :watchos, '8.0'
   
-  # Async
-  pod "PromiseKit", "~> 6.8"
-  
   # Resources
   pod 'R.swift', "~> 6.1.0"
   
