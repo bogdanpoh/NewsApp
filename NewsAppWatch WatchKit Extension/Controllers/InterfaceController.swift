@@ -20,7 +20,7 @@ final class InterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        WatchManager.shared.onReceiveCountry = { [weak self] country in
+        watchManager.onReceiveCountry = { [weak self] country in
             self?.userManager.selectedCountry = country.rawValue
             self?.fetchNews(onCountry: country)
         }
@@ -39,7 +39,7 @@ final class InterfaceController: WKInterfaceController {
     
     private let networkService = NetworkService()
     private var userManager = UserManager()
-    private let watchManager = WatchManager.shared
+    private let watchManager = WatchManager()
     private var articles = [Article]()
 
 }

@@ -19,9 +19,7 @@ final class WatchManager: NSObject {
     
     // MARK: - Initializers
     
-    static let shared = WatchManager()
-    
-    private override init() {
+    override init() {
         super.init()
         
         activate()

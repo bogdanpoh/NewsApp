@@ -13,7 +13,7 @@ final class ModulesFactory {
         let container = Container()
         container.register(NetworkNewsProtocol.self) { _ in NetworkService() }
         container.register(UserManagerProtocol.self) { _ in UserManager() }
-        container.register(WatchManagerProtocol.self) { _ in WatchManager.shared }
+        container.register(WatchManagerProtocol.self) { _ in WatchManager() }
         container.register(Loggable.self) { _ in Logger() }
         return container
     }()
