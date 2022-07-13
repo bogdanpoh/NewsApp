@@ -16,14 +16,22 @@ protocol SettingsModuleFactoryProtocol {
 extension ModulesFactory: SettingsModuleFactoryProtocol {
     
     func makeSettingsView(coordinaor: SettingsCoordinatorProtocol, countrySubject: BehaviorRelay<Country>) -> Presentable {
-        let viewModel = SettingsViewModel(coordinator: coordinaor, countrySubject: countrySubject)
+        let viewModel = SettingsViewModel(
+            coordinator: coordinaor,
+            watchManager: dependencyContainer.resolve(WatchManagerProtocol.self)!,
+                                          countrySubject: countrySubject
+        )
         let viewController = SettingsViewController(viewModel: viewModel)
         
         return viewController
     }
     
     func makeCountryView(coordinator: SettingsCoordinatorProtocol, countrySubject: BehaviorRelay<Country>) -> Presentable {
-        let viewModel = SettingsViewModel(coordinator: coordinator, countrySubject: countrySubject)
+        let viewModel = SettingsViewModel(
+            coordinator: coordinator,
+            watchManager: dependencyContainer.resolve(WatchManagerProtocol.self)!,
+            countrySubject: countrySubject
+        )
         let viewController = SettingsCountryViewController(viewModel: viewModel)
         
         return viewController

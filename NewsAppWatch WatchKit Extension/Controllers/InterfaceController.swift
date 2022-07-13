@@ -7,6 +7,8 @@
 
 import WatchKit
 
+let mainLogger = Logger(identifier: "InterfaceController")
+
 final class InterfaceController: WKInterfaceController {
     
     // MARK: - IBOutlets
@@ -18,28 +20,47 @@ final class InterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        Task {
-            do {
-                let articleResponse = try await networkService.getNews(country: .ua, pageSize: 100)
-                articles = articleResponse.articles
-                setupTable(articleResponse)
-            } catch {
-                setupError(error.localizedDescription)
-                print("[dev] \(error)")
-            }
+        WatchManager.shared.onReceiveCountry = { [weak self] country in
+            self?.userManager.selectedCountry = country.rawValue
+            self?.fetchNews(onCountry: country)
         }
     }
     
     override func willActivate() {
         super.willActivate()
         
+        let country = userManager.country
+        fetchNews(onCountry: country)
+        
+        mainLogger.info("fetching data on country: \(country)")
     }
     
     // MARK: - Private
     
     private let networkService = NetworkService()
+    private var userManager = UserManager()
+    private let watchManager = WatchManager.shared
     private var articles = [Article]()
 
+}
+
+// MARK: - Fetching data
+
+private extension InterfaceController {
+    
+    func fetchNews(onCountry country: Country) {
+        Task {
+            do {
+                let articleResponse = try await networkService.getNews(country: country, pageSize: 100)
+                articles = articleResponse.articles
+                setupTable(articleResponse)
+            } catch {
+                setupError(error.localizedDescription)
+                mainLogger.error("Error when fetching data: \(error)")
+            }
+        }
+    }
+    
 }
 
 // MARK: - Setup

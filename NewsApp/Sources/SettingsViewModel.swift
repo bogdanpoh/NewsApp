@@ -30,8 +30,9 @@ final class SettingsViewModel: ViewModel {
     
     // MARK: - Initializers
     
-    init(coordinator: SettingsCoordinatorProtocol, countrySubject: BehaviorRelay<Country>) {
+    init(coordinator: SettingsCoordinatorProtocol, watchManager: WatchManagerProtocol, countrySubject: BehaviorRelay<Country>) {
         self.coordinator = coordinator
+        self.watchManager = watchManager
         countries = Country.allCases
         
         let selectedCountryIndex = countries.firstIndex(of: countrySubject.value) ?? 0
@@ -44,6 +45,7 @@ final class SettingsViewModel: ViewModel {
     // MARK: - Private
     
     private let coordinator: SettingsCoordinatorProtocol
+    private let watchManager: WatchManagerProtocol
     private let countries: [Country]
     private let selectedCountrySubj: BehaviorSubject<IndexPath>
     private let countrySubject: BehaviorRelay<Country>
@@ -85,6 +87,7 @@ extension SettingsViewModel: SettingsViewModelInput {
         let country = countries[indexPath.row]
         selectedCountrySubj.onNext(indexPath)
         countrySubject.accept(country)
+        watchManager.send(country)
         
         logger.info("tapped on county: \(country.title)")
     }

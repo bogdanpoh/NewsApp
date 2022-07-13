@@ -118,6 +118,15 @@
 		F75CF4962624D6BB008AE543 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75CF4952624D6BB008AE543 /* ImageView.swift */; };
 		F75CF49A2624D800008AE543 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75CF4992624D800008AE543 /* Button.swift */; };
 		F75CF49D2624DDC7008AE543 /* UIControl+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75CF49C2624DDC7008AE543 /* UIControl+Ext.swift */; };
+		F7653C50287F17F2004C4FF6 /* WatchManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7653C4F287F17F2004C4FF6 /* WatchManagerProtocol.swift */; };
+		F7653C51287F17F2004C4FF6 /* WatchManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7653C4F287F17F2004C4FF6 /* WatchManagerProtocol.swift */; };
+		F7653C52287F1B7A004C4FF6 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F747ADD5287B14F500B425CA /* UserManager.swift */; };
+		F7653C53287F1B87004C4FF6 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = F747ADD8287B151E00B425CA /* UserDefault.swift */; };
+		F76B068F287F130A00921CAA /* WatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76B068E287F130A00921CAA /* WatchManager.swift */; };
+		F76B0692287F15DD00921CAA /* WatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76B068E287F130A00921CAA /* WatchManager.swift */; };
+		F76B0693287F15ED00921CAA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74E64E1261745AC0012728F /* Logger.swift */; };
+		F76B0694287F160E00921CAA /* LogOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74E64DE2617455B0012728F /* LogOutput.swift */; };
+		F76B0695287F161500921CAA /* Logger.ConsoleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74E64E4261748090012728F /* Logger.ConsoleOutput.swift */; };
 		F77AE2712868C9CB00573FB5 /* WKInterfaceImage.Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77AE2702868C9CB00573FB5 /* WKInterfaceImage.Ext.swift */; };
 		F78BE2852874C41B00A4C7D7 /* SettingsHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78BE2842874C41B00A4C7D7 /* SettingsHeaderFooterView.swift */; };
 		F78BE2872874C9A900A4C7D7 /* UIComponentsLibrary.Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78BE2862874C9A900A4C7D7 /* UIComponentsLibrary.Settings.swift */; };
@@ -317,6 +326,8 @@
 		F75CF4952624D6BB008AE543 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		F75CF4992624D800008AE543 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		F75CF49C2624DDC7008AE543 /* UIControl+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Ext.swift"; sourceTree = "<group>"; };
+		F7653C4F287F17F2004C4FF6 /* WatchManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchManagerProtocol.swift; sourceTree = "<group>"; };
+		F76B068E287F130A00921CAA /* WatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchManager.swift; sourceTree = "<group>"; };
 		F77AE2702868C9CB00573FB5 /* WKInterfaceImage.Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKInterfaceImage.Ext.swift; sourceTree = "<group>"; };
 		F78BE2842874C41B00A4C7D7 /* SettingsHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeaderFooterView.swift; sourceTree = "<group>"; };
 		F78BE2862874C9A900A4C7D7 /* UIComponentsLibrary.Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponentsLibrary.Settings.swift; sourceTree = "<group>"; };
@@ -403,6 +414,7 @@
 				F70E84482625AC7500ADF8C3 /* Modules */,
 				F7FA84342626088700D2FAA5 /* Network */,
 				F7FA84302626079300D2FAA5 /* Core */,
+				F76B0690287F131200921CAA /* Watch */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -885,6 +897,15 @@
 			path = CollectionView;
 			sourceTree = "<group>";
 		};
+		F76B0690287F131200921CAA /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				F7653C4F287F17F2004C4FF6 /* WatchManagerProtocol.swift */,
+				F76B068E287F130A00921CAA /* WatchManager.swift */,
+			);
+			path = Watch;
+			sourceTree = "<group>";
+		};
 		F78D43B02875ED500012DD98 /* Language */ = {
 			isa = PBXGroup;
 			children = (
@@ -1215,18 +1236,25 @@
 				F7293B11285B72450023FE31 /* Constants.swift in Sources */,
 				F70E09B628619D5200712490 /* DetailNewsController.swift in Sources */,
 				F7E18EDD2860F64C004342BC /* NSObject.swift in Sources */,
+				F7653C53287F1B87004C4FF6 /* UserDefault.swift in Sources */,
 				F797BB782868D3F10034FA97 /* R.generated_watch.swift in Sources */,
 				F7293AFF285B6C510023FE31 /* ExtensionDelegate.swift in Sources */,
 				F7293B12285B72490023FE31 /* Article.swift in Sources */,
 				F77AE2712868C9CB00573FB5 /* WKInterfaceImage.Ext.swift in Sources */,
 				F7E18ED82860F467004342BC /* NewsRow.swift in Sources */,
+				F76B0692287F15DD00921CAA /* WatchManager.swift in Sources */,
 				F797BB7B2868D98E0034FA97 /* Array.Ext.swift in Sources */,
+				F7653C51287F17F2004C4FF6 /* WatchManagerProtocol.swift in Sources */,
 				F7293AFD285B6C510023FE31 /* InterfaceController.swift in Sources */,
 				F7E18ED62860F25D004342BC /* Int.Ext.swift in Sources */,
 				F7E18EE12860FA45004342BC /* ErrorRow.swift in Sources */,
+				F76B0693287F15ED00921CAA /* Logger.swift in Sources */,
 				F7293B13285B72570023FE31 /* NewsError.swift in Sources */,
+				F76B0695287F161500921CAA /* Logger.ConsoleOutput.swift in Sources */,
 				F7293B14285B72620023FE31 /* StorageKeys.swift in Sources */,
+				F76B0694287F160E00921CAA /* LogOutput.swift in Sources */,
 				F7293B10285B70260023FE31 /* NetworkService.swift in Sources */,
+				F7653C52287F1B7A004C4FF6 /* UserManager.swift in Sources */,
 				F7293B01285B6C510023FE31 /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1250,6 +1278,7 @@
 				F73166272621D79C00208394 /* CoordinatorOutput.swift in Sources */,
 				F70E84322625A48300ADF8C3 /* UIBarButtonItem+Ext.swift in Sources */,
 				F714C8452643C0E800ED596D /* WebSiteCoordinatorFactory.swift in Sources */,
+				F76B068F287F130A00921CAA /* WatchManager.swift in Sources */,
 				F71E09752647193F007FB6AB /* ButtonsFactory.swift in Sources */,
 				F747ADD6287B14F500B425CA /* UserManager.swift in Sources */,
 				F78D43B62875FD120012DD98 /* SettingsMenuItem.swift in Sources */,
@@ -1257,6 +1286,7 @@
 				F74E64F426174D450012728F /* LocalizationSource.swift in Sources */,
 				F7FA84232626035800D2FAA5 /* FakeParser.swift in Sources */,
 				F74E64FE26174D9D0012728F /* LocalizableManagerProtocol.swift in Sources */,
+				F7653C50287F17F2004C4FF6 /* WatchManagerProtocol.swift in Sources */,
 				F7FC1F2B262A398700B687DA /* KFImageView.swift in Sources */,
 				F747ADD4287B124E00B425CA /* CachedProperty.swift in Sources */,
 				F738D4B82628C059006242DD /* NewsTableView.swift in Sources */,

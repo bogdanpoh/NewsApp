@@ -5,13 +5,19 @@
 //  Created by Bogdan Pohidnya on 19.04.2021.
 //
 
+#if os(iOS)
 import PromiseKit
+#else
+import Foundation
+#endif
 
 typealias Country = Constants.NewsApi.Countries
 
+#if os(iOS)
 protocol NetworkNewsProtocol {
     func getNews(country: Country, pageNumber: Int?, pageSize: Int?) -> Promise<ArticleResponse>
 }
+#endif
 
 final class NetworkService {
     
@@ -32,6 +38,7 @@ final class NetworkService {
 
 // MARK: - NetworkNewsProtocol
 
+#if os(iOS)
 extension NetworkService: NetworkNewsProtocol {
     
     func getNews(country: Country, pageNumber: Int?, pageSize: Int?) -> Promise<ArticleResponse> {
@@ -69,6 +76,7 @@ extension NetworkService: NetworkNewsProtocol {
     }
     
 }
+#endif
 
 // MARK: - New features
 
