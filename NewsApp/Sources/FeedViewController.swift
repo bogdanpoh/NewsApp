@@ -56,6 +56,8 @@ final class FeedViewController: ViewController<FeedView> {
     // MARK: - Private
     
     private let viewModel: FeedViewModelProtocol
+    private(set) var selectedCell: NewsCollectionViewCell?
+    private(set) var snapshotImageView: UIView?
     private let disposeBag = DisposeBag()
     
 }
@@ -65,12 +67,12 @@ final class FeedViewController: ViewController<FeedView> {
 private extension FeedViewController {
     
     func setupView() {
-        contentView.newsTableView.tableView.make {
+        contentView.newsCollectionView.collectionView.make {
             $0.dataSource = self
             $0.delegate = self
         }
 
-        contentView.newsTableView.refreshControl.addTarget(self, action: #selector(didPullToRefresh(_:)), for: .valueChanged)
+        contentView.newsCollectionView.refreshControl.addTarget(self, action: #selector(didPullToRefresh(_:)), for: .valueChanged)
     }
     
     func setupNavigationBar(navigationBarColor: UIColor? = nil) {
@@ -93,7 +95,7 @@ private extension FeedViewController {
         viewModel.reloadCells
             .subscribe (onNext: { [weak self] _ in
                 DispatchQueue.main.async {
-                    self?.contentView.newsTableView.tableView.reloadData()
+                    self?.contentView.newsCollectionView.collectionView.reloadData()
                 }
             })
             .disposed(by: disposeBag)
@@ -107,7 +109,7 @@ private extension FeedViewController {
         viewModel.scrollToTop.subscribe(onNext: { [weak self] _ in
             let topRow = IndexPath(row: 0, section: 0)
             
-            self?.contentView.newsTableView.tableView.scrollToRow(at: topRow, at: .top, animated: true)
+            self?.contentView.newsCollectionView.collectionView.scrollToItem(at: topRow, at: .top, animated: true)
         })
         .disposed(by: disposeBag)
     }
@@ -121,7 +123,7 @@ private extension FeedViewController {
     @objc
     func didPullToRefresh(_ sender: Any) {
         viewModel.pullToRefresh { [weak self] in
-            self?.contentView.newsTableView.refreshControl.endRefreshing()
+            self?.contentView.newsCollectionView.refreshControl.endRefreshing()
         }
     }
     
@@ -132,35 +134,78 @@ private extension FeedViewController {
     
 }
 
-// MARK: - UITableViewDataSource
+// MARK: - UICollectionViewDataSource
 
-extension FeedViewController: UITableViewDataSource {
+extension FeedViewController: UICollectionViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfRows()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let article = viewModel.item(for: indexPath)
-        let cell = tableView.dequeue(NewsTableViewCell.self, for: indexPath)
+        let cell = collectionView.dequeue(NewsCollectionViewCell.self, for: indexPath)
         
         return cell.set(state: .init(imageUrl: article.urlToImage, author: article.author, title: article.title))
+    }
+
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension FeedViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedCell = collectionView.cellForItem(at: indexPath) as? NewsCollectionViewCell
+        snapshotImageView = selectedCell?.articleImageView.snapshotView(afterScreenUpdates: false)
+        
+        viewModel.tapSelectCell(at: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == (viewModel.numberOfRows() - 2) {
+            viewModel.scrollToEnd()
+        }
     }
     
 }
 
-// MARK: - UITableViewDelegate
+// MARK: - UICollectionViewDelegateFlowLayout
 
-extension FeedViewController: UITableViewDelegate {
+extension FeedViewController: UICollectionViewDelegateFlowLayout {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.tapSelectCell(at: indexPath)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if(indexPath.row == viewModel.numberOfRows() - 2) {
-            viewModel.scrollToEnd()
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width: CGFloat = UIScreen.main.bounds.width
+        let height: CGFloat = 320
+        return .init(width: width, height: height)
+    }
+    
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension FeedViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        guard let detailViewController = presented as? DetailsViewController else { return nil }
+        guard let selectedCellImageViewSnapshot = self.selectedCell?.articleImageView.snapshotView(afterScreenUpdates: false) else { return nil }
+        
+        let animator = Animator(type: .present, firstViewController: self, secondViewController: detailViewController, selectedCellImageViewSnapshot: selectedCellImageViewSnapshot)
+        
+        return animator
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        guard let detailViewController = dismissed as? DetailsViewController else { return nil }
+        guard let selectedCellImageViewSnapshot = self.selectedCell?.articleImageView.snapshotView(afterScreenUpdates: true) else { return nil }
+        
+        let animator = Animator(type: .dismiss, firstViewController: self, secondViewController: detailViewController, selectedCellImageViewSnapshot: selectedCellImageViewSnapshot)
+        return animator
     }
     
 }

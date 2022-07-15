@@ -35,6 +35,7 @@ final class FeedCoordinator: BaseCoordinator, CoordinatorOutput {
     private let router: Routable
     private let moduleFactory: ModuleFactoryProtocol
     private let coordinatorFactory: NewsCoordinatorFactory
+    private var transitionDelegate: UIViewControllerTransitioningDelegate?
     
 }
 
@@ -44,6 +45,7 @@ extension FeedCoordinator: Coordinatable {
     
     func start() {
         let view = moduleFactory.makeFeedView(coordinator: self)
+        transitionDelegate = view.toPresent as? UIViewControllerTransitioningDelegate
         router.setRootModule(view)
     }
     
@@ -54,7 +56,9 @@ extension FeedCoordinator: Coordinatable {
 extension FeedCoordinator: FeedCoordinatorProtocol {
     
     func open(article: Article) {
-        let coordinator = coordinatorFactory.makeDetailsCoordinator(with: router, article: article)
+        guard let td = transitionDelegate else { return }
+        
+        let coordinator = coordinatorFactory.makeDetailsCoordinator(with: router, transitionDelegate: td, article: article)
         coordinator.finishFlow = { [unowned self, unowned coordinator] in
             remove(dependency: coordinator)
         }

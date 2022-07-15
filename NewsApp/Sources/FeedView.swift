@@ -11,7 +11,7 @@ final class FeedView: View {
     
     // MARK: - UI
     
-    private(set) var newsTableView = NewsTableView()
+    private(set) var newsCollectionView = NewsCollectionView()
     
     private var placeholderView: PlaceholderView?
     
@@ -20,13 +20,13 @@ final class FeedView: View {
     override func setupSubviews() {
         super.setupSubviews()
         
-        addSubview(newsTableView)
+        addSubview(newsCollectionView)
     }
     
     override func defineLayout() {
         super.defineLayout()
         
-        newsTableView.snp.makeConstraints {
+        newsCollectionView.snp.makeConstraints {
             $0.top.equalTo(layoutMarginsGuide)
             $0.leading.trailing.bottom.equalToSuperview()
         }
@@ -54,7 +54,7 @@ extension FeedView {
         
         let placeholder = PlaceholderView()
             .set(title: R.string.localizable.placeholderLoading())
-        newsTableView.addSubview(placeholder)
+        newsCollectionView.addSubview(placeholder)
         
         placeholder.snp.makeConstraints {
             $0.edges.equalToSuperview()

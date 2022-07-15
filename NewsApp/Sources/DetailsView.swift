@@ -26,7 +26,7 @@ final class DetailsView: View {
         articleImage
     )
     
-    private let articleImage = KFImageView()
+    private(set) var articleImage = KFImageView()
         .backgroundColor(color: .gray)
         .setContentMode(.scaleToFill)
     
@@ -42,7 +42,7 @@ final class DetailsView: View {
     )
     .make { $0.setCustomSpacing(15, after: authorLabel) }
     
-    private let titleLabel = Label()
+    private(set) var titleLabel = Label()
         .enableMultilines()
     
     private(set) var authorLabel = Label()

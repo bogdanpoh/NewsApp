@@ -5,7 +5,7 @@
 //  Created by Bogdan Pohidnya on 16.04.2021.
 //
 
-import Foundation
+import UIKit
 
 protocol DetailsCoordinatorProtocol {
     func close()
@@ -21,10 +21,11 @@ final class DetailsCoordinator: BaseCoordinator, CoordinatorOutput {
     
     // MARK: - Lifecycle
     
-    init(router: Routable, moduleFactory: DetailsModuleFactory, coordinatorFactory: DetailsCoordinatorFactory, article: Article) {
+    init(router: Routable, moduleFactory: DetailsModuleFactory, coordinatorFactory: DetailsCoordinatorFactory, transitionDelegate: UIViewControllerTransitioningDelegate, article: Article) {
         self.router = router
         self.moduleFactory = moduleFactory
         self.coordinatorFactory = coordinatorFactory
+        self.transitionDelegate = transitionDelegate
         self.article = article
     }
     
@@ -33,6 +34,7 @@ final class DetailsCoordinator: BaseCoordinator, CoordinatorOutput {
     private let router: Routable
     private let moduleFactory: DetailsModuleFactory
     private let coordinatorFactory: DetailsCoordinatorFactory
+    private let transitionDelegate: UIViewControllerTransitioningDelegate
     private let article: Article
     
 }
@@ -42,7 +44,7 @@ final class DetailsCoordinator: BaseCoordinator, CoordinatorOutput {
 extension DetailsCoordinator: Coordinatable {
     
     func start() {
-        let view = moduleFactory.makeDetailsView(coordinator: self, article: article)
+        let view = moduleFactory.makeDetailsView(coordinator: self, transitioningDelegate: transitionDelegate, article: article)
         router.present(view)
     }
     

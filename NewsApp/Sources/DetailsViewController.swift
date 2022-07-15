@@ -10,21 +10,25 @@ import RxSwift
 
 private let logger = Logger(identifier: "DetailsViewController")
 
-final class DetailsViewController: ViewController<DetailsView> {
+final class DetailsViewController: UIViewController {
+    
+    // MARK: - UI
+    
+    private(set) var contentView = DetailsView()
     
     // MARK: - Initializers
     
     init(viewModel: DetailsViewModel) {
         self.viewModel = viewModel
         
-        super.init()
+        super.init(nibName: nil, bundle: nil)
         
         logger.debug("DetailsViewController constructed")
     }
     
     @available(*, unavailable)
-    required init() {
-        fatalError("init() has not been implemented")
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     deinit {
@@ -35,6 +39,12 @@ final class DetailsViewController: ViewController<DetailsView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(contentView)
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
         
         setupActionHandlers()
         setupBindingToViewModel()

@@ -1,5 +1,5 @@
 //
-//  NewsTableViewCell.swift
+//  NewsCollectionViewCell.swift
 //  NewsApp
 //
 //  Created by Bogdan Pohidnya on 15.04.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class NewsTableViewCell: TableViewCell {
+final class NewsCollectionViewCell: CollectionViewCell {
     
     struct State {
         var imageUrl: String?
@@ -22,10 +22,10 @@ final class NewsTableViewCell: TableViewCell {
         .setCornerRadius(15)
         .maskToBounds(true)
     
-    private let articleImageView = KFImageView()
+    private(set) var articleImageView = KFImageView()
         .setContentMode(.scaleToFill)
     
-    private let titleLabel = Label()
+    private(set) var titleLabel = Label()
         .set(numberOfLines: 2)
     
     private let authorLabel = Label()
@@ -35,7 +35,7 @@ final class NewsTableViewCell: TableViewCell {
     override func setup() {
         super.setup()
         
-        selectionStyle = .none
+//        selectionStyle = .none
     }
     
     override func setupSubviews() {
@@ -92,7 +92,7 @@ final class NewsTableViewCell: TableViewCell {
 
 // MARK: - Set
 
-extension NewsTableViewCell {
+extension NewsCollectionViewCell {
     
     @discardableResult
     func set(state: State) -> Self {
@@ -116,7 +116,7 @@ extension NewsTableViewCell {
 
 // MARK: - BackgroundView Factory
 
-private extension NewsTableViewCell {
+private extension NewsCollectionViewCell {
     
     static func makeBackgroundView(backgroundColor: UIColor) -> View {
         return View()
@@ -130,7 +130,7 @@ private extension NewsTableViewCell {
 //TODO: - Deprecated
 // MARK: - Setup shadow
 
-private extension NewsTableViewCell {
+private extension NewsCollectionViewCell {
     
     func applyShadow() {
         let shadowWidth = bounds.width
