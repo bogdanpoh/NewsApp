@@ -68,7 +68,8 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
               var cellAuthorLabelSnapshot = selectedCell.authorLabel.snapshotView(afterScreenUpdates: true),
               let controllerDescriptionLabelSnapshot = toViewControllerContent.descriptionLabel.snapshotView(afterScreenUpdates: true),
               let controllerCloseButtonSnapshot = toViewControllerContent.closeButton.snapshotView(afterScreenUpdates: true),
-              let controllerShareButtonSnapshot = toViewControllerContent.shareButton.snapshotView(afterScreenUpdates: true)
+              let controllerShareButtonSnapshot = toViewControllerContent.shareButton.snapshotView(afterScreenUpdates: true),
+              let controllerOpenButtonSnapshot = toViewControllerContent.openButton.snapshotView(afterScreenUpdates: true)
         else {
             transitionContext.completeTransition(true)
             return
@@ -82,6 +83,7 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         cellFadeViewCoordinate.origin.x += selectedCell.leftCellOffset
         cellFadeViewCoordinate.origin.y += selectedCell.topCellOffset
         cellFadeViewCoordinate.size.width = selectedCell.bounds.width - (selectedCell.leftCellOffset + selectedCell.rightCellOffset)
+        cellFadeViewCoordinate.size.height -= selectedCell.topCellOffset
         
         let controllerFadeViewCoordinate = toViewController.view.convert(toViewController.view.bounds, to: window)
         fadeView.frame = isPresenting ? cellFadeViewCoordinate : controllerFadeViewCoordinate
@@ -112,7 +114,8 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
             cellAuthorLabelSnapshot,
             controllerDescriptionLabelSnapshot,
             controllerCloseButtonSnapshot,
-            controllerShareButtonSnapshot
+            controllerShareButtonSnapshot,
+            controllerOpenButtonSnapshot
         )
         
         let controllerImageViewCoordinate = toViewControllerContent.articleImage.convertSelfBounds(to: window)
@@ -121,6 +124,7 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         let controllerDescriptionLabelCoordinate = toViewControllerContent.descriptionLabel.convertSelfBounds(to: window)
         let controllerCloseButtonCoordinate = toViewControllerContent.closeButton.convertSelfBounds(to: window)
         let controllerShareButtonCoordinate = toViewControllerContent.shareButton.convertSelfBounds(to: window)
+        let controllerOpenButtonCoordinate = toViewControllerContent.openButton.convertSelfBounds(to: window)
 
         [selectedCellImageViewSnapshot, controllerImageSnapshot].forEach {
             $0.frame = isPresenting ? cellImageViewCoordinate : controllerImageViewCoordinate
@@ -145,8 +149,15 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         controllerCloseButtonSnapshot.frame = controllerCloseButtonCoordinate
         controllerCloseButtonSnapshot.alpha = isPresenting ? 0 : 1
         
-        controllerShareButtonSnapshot.frame = isPresenting ? makeMoveToDownFrame(for: controllerShareButtonSnapshot) : controllerShareButtonCoordinate
-        controllerShareButtonSnapshot.alpha = isPresenting ? 0 : 1
+        controllerShareButtonSnapshot.make {
+            $0.frame = isPresenting ? makeMoveToDownFrame(for: $0) : controllerShareButtonCoordinate
+            $0.alpha = isPresenting ? 0 : 1
+        }
+        
+        controllerOpenButtonSnapshot.make {
+            $0.frame = isPresenting ? makeMoveToDownFrame(for: $0) : controllerOpenButtonCoordinate
+            $0.alpha = isPresenting ? 0 : 1
+        }
 
         UIView.animateKeyframes(withDuration: Self.duration, delay: 0, options: .calculationModePaced, animations: {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.4) {
@@ -167,8 +178,15 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
                 self.selectedCellImageViewSnapshot.alpha = isPresenting ? 0 : 1
                 controllerImageSnapshot.alpha = isPresenting ? 1 : 0
                 
-                controllerShareButtonSnapshot.frame = isPresenting ? controllerShareButtonCoordinate : self.makeMoveToDownFrame(for: controllerShareButtonSnapshot)
-                controllerShareButtonSnapshot.alpha = isPresenting ? 1 : 0
+                controllerShareButtonSnapshot.make {
+                    $0.frame = isPresenting ? controllerShareButtonCoordinate : self.makeMoveToDownFrame(for: $0)
+                    $0.alpha = isPresenting ? 1 : 0
+                }
+                
+                controllerOpenButtonSnapshot.make {
+                    $0.frame = isPresenting ? controllerOpenButtonCoordinate : self.makeMoveToDownFrame(for: $0)
+                    $0.alpha = isPresenting ? 1 : 0
+                }
             }
 
             UIView.addKeyframe(withRelativeStartTime: isPresenting ? 0.7 : 0, relativeDuration: isPresenting ? 0.3 : 0) {
@@ -186,7 +204,8 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
              cellTitleLabelSnapshot,
              cellAuthorLabelSnapshot,
              controllerCloseButtonSnapshot,
-             controllerShareButtonSnapshot
+             controllerShareButtonSnapshot,
+             controllerOpenButtonSnapshot
             ].forEach {
                 $0.removeFromSuperview()
             }
