@@ -15,6 +15,10 @@ final class NewsCollectionViewCell: CollectionViewCell {
         var title: String
     }
     
+    let topCellOffset: CGFloat = 18
+    let leftCellOffset: CGFloat = 16
+    let rightCellOffset: CGFloat = 16
+    
     // MARK: - UI
     
     private let containerView = View()
@@ -28,15 +32,9 @@ final class NewsCollectionViewCell: CollectionViewCell {
     private(set) var titleLabel = Label()
         .set(numberOfLines: 2)
     
-    private let authorLabel = Label()
+    private(set) var authorLabel = Label()
     
     // MARK: - Lifecycle
-    
-    override func setup() {
-        super.setup()
-        
-//        selectionStyle = .none
-    }
     
     override func setupSubviews() {
         super.setupSubviews()
@@ -53,7 +51,7 @@ final class NewsCollectionViewCell: CollectionViewCell {
         super.defineLayout()
         
         containerView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(UIEdgeInsets(aTop: 18, aLeft: 16, aRight: 16))
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(aTop: topCellOffset, aLeft: leftCellOffset, aRight: rightCellOffset))
         }
         
         articleImageView.snp.makeConstraints {
@@ -127,11 +125,11 @@ private extension NewsCollectionViewCell {
     
 }
 
-//TODO: - Deprecated
 // MARK: - Setup shadow
 
 private extension NewsCollectionViewCell {
     
+    ///Deprecated
     func applyShadow() {
         let shadowWidth = bounds.width
         let shadowHeight = bounds.height / 2
