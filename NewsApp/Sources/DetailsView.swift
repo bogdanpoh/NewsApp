@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import UIImageColors
 
 final class DetailsView: View {
     
@@ -47,7 +46,7 @@ final class DetailsView: View {
     
     private(set) var authorLabel = Label()
     
-    private let descriptionLabel = Label()
+    private(set) var descriptionLabel = Label()
         .enableMultilines()
     
     private let emptyView = View()
@@ -151,34 +150,13 @@ extension DetailsView {
     func set(state: State) -> Self {
         articleImage.setImage(path: state.articleImageUrl, placeholder: R.image.newsPlaceholder()) { [weak self] result in
             switch result {
+            case .success(let image):
+                self?.imageContentStack.setBackgroundColor(from: image)
+                
             case .failure(_):
-                self?.articleImage.image = R.image.newsPlaceholder()
-                R.image.newsPlaceholder()?.getColors() { colors in
-                    self?.imageContentStack.backgroundColor = colors?.background
-                }
-                
-            default:
-                break
-            }
-            
-        }
-        
-        articleImage.image?.getColors { [weak self] colors in
-            guard let self = self else { return }
-            guard let imageBackgroundColor = colors?.background else { return }
-            let isLightImageBackgroundColor = imageBackgroundColor.isLight() ?? false
-            
-            switch self.traitCollection.userInterfaceStyle {
-            case .light:
-                if isLightImageBackgroundColor {
-                    self.imageContentStack.backgroundColor = imageBackgroundColor
-                }
-                
-            case .dark:
-                self.imageContentStack.backgroundColor = imageBackgroundColor
-                
-            default:
-                break
+                let placeholder = R.image.newsPlaceholder()
+                self?.articleImage.image = placeholder
+                self?.imageContentStack.setBackgroundColor(from: placeholder)
             }
         }
         
@@ -196,3 +174,4 @@ extension DetailsView {
     }
     
 }
+
