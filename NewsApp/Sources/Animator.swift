@@ -18,7 +18,7 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         }
     }
     
-    static let duration: TimeInterval = 0.6
+    static let duration: TimeInterval = 0.35
 
     private let type: PresentationType
     private let fromViewController: FeedViewController
@@ -100,7 +100,7 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
             selectedCellImageViewSnapshot = cellImageSnapshot
             backgroundView = UIView(frame: containerView.bounds)
         } else {
-            backgroundView = fromViewController.contentView.snapshotView(afterScreenUpdates: true) ?? fadeView
+            backgroundView = fromViewController.parent?.view.snapshotView(afterScreenUpdates: true) ?? fadeView
         }
         
         backgroundView.addSubview(fadeView)
@@ -135,9 +135,6 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
             $0.layer.masksToBounds = true
         }
 
-        controllerImageSnapshot.alpha = isPresenting ? 0 : 1
-        selectedCellImageViewSnapshot.alpha = isPresenting ? 1 : 0
-
         cellTitleLabelSnapshot.frame = isPresenting ? cellLabelCoordinate : controllerLabelCoordinate
         cellAuthorLabelSnapshot.frame = isPresenting ? cellAuthorLabelCoordinate : controllerAuthorLabelCoordinate
         
@@ -160,7 +157,7 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         }
 
         UIView.animateKeyframes(withDuration: Self.duration, delay: 0, options: .calculationModePaced, animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.4) {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.15) {
                 fadeView.frame = isPresenting ? controllerFadeViewCoordinate : cellFadeViewCoordinate
                 
                 self.selectedCellImageViewSnapshot.frame = isPresenting ? controllerImageViewCoordinate : self.cellImageViewCoordinate
@@ -174,7 +171,7 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
                 }
             }
 
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.4) {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.15) {
                 self.selectedCellImageViewSnapshot.alpha = isPresenting ? 0 : 1
                 controllerImageSnapshot.alpha = isPresenting ? 1 : 0
                 
@@ -189,7 +186,7 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
                 }
             }
 
-            UIView.addKeyframe(withRelativeStartTime: isPresenting ? 0.7 : 0, relativeDuration: isPresenting ? 0.3 : 0) {
+            UIView.addKeyframe(withRelativeStartTime: isPresenting ? 0.15 : 0, relativeDuration: isPresenting ? 0.3 : 0) {
                 controllerDescriptionLabelSnapshot.make {
                     $0.frame = isPresenting ? controllerDescriptionLabelCoordinate : self.makeMoveToUpFrame(for: $0, isPresenting: isPresenting)
                     $0.alpha = isPresenting ? 1 : 0
@@ -222,7 +219,7 @@ private extension Animator {
     
     func makeMoveToUpFrame(for view: UIView, isPresenting: Bool) -> CGRect {
         let x = (window.frame.width / 2) - (view.frame.width / 2)
-        let y: CGFloat = isPresenting ? (window.frame.height / 2) : view.frame.origin.y + view.frame.height
+        let y = isPresenting ? (window.frame.height / 2) : view.frame.origin.y + view.frame.height
         
         return .init(origin: .init(x: x, y: y), size: view.frame.size)
     }
