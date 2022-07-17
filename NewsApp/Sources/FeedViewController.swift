@@ -57,7 +57,6 @@ final class FeedViewController: ViewController<FeedView> {
     
     private let viewModel: FeedViewModelProtocol
     private(set) var selectedCell: NewsCollectionViewCell?
-    private(set) var snapshotImageView: UIView?
     private let disposeBag = DisposeBag()
     
 }
@@ -157,7 +156,6 @@ extension FeedViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedCell = collectionView.cellForItem(at: indexPath) as? NewsCollectionViewCell
-        snapshotImageView = selectedCell?.articleImageView.snapshotView(afterScreenUpdates: false)
         
         viewModel.tapSelectCell(at: indexPath)
     }
@@ -191,20 +189,30 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
 extension FeedViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        guard let detailViewController = presented as? DetailsViewController,
+              let selectedCell = selectedCell
+        else { return nil }
         
-        guard let detailViewController = presented as? DetailsViewController else { return nil }
-        guard let selectedCellImageViewSnapshot = self.selectedCell?.articleImageView.snapshotView(afterScreenUpdates: false) else { return nil }
-        
-        let animator = Animator(type: .present, firstViewController: self, secondViewController: detailViewController, selectedCellImageViewSnapshot: selectedCellImageViewSnapshot)
-        
+        let animator = Animator(
+            type: .present,
+            fromViewController: self,
+            toViewController: detailViewController,
+            selectedCell: selectedCell
+        )
         return animator
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        guard let detailViewController = dismissed as? DetailsViewController else { return nil }
-        guard let selectedCellImageViewSnapshot = self.selectedCell?.articleImageView.snapshotView(afterScreenUpdates: true) else { return nil }
+        guard let detailViewController = dismissed as? DetailsViewController,
+              let selectedCell = selectedCell
+        else { return nil }
         
-        let animator = Animator(type: .dismiss, firstViewController: self, secondViewController: detailViewController, selectedCellImageViewSnapshot: selectedCellImageViewSnapshot)
+        let animator = Animator(
+            type: .dismiss,
+            fromViewController: self,
+            toViewController: detailViewController,
+            selectedCell: selectedCell
+        )
         return animator
     }
     
