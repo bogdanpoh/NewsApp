@@ -48,7 +48,6 @@
 		F7293B12285B72490023FE31 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E846E2625B61500ADF8C3 /* Article.swift */; };
 		F7293B13285B72570023FE31 /* NewsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7919D30262EF83C0056935F /* NewsError.swift */; };
 		F7293B14285B72620023FE31 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7293AE6285B63D50023FE31 /* StorageKeys.swift */; };
-		F72BFAE9286A426E00895B20 /* UIAlertController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72BFAE8286A426E00895B20 /* UIAlertController+Ext.swift */; };
 		F72F0ABF28733CF900591386 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72F0ABE28733CF900591386 /* SettingsView.swift */; };
 		F72F0AC228733D1200591386 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72F0AC128733D1200591386 /* SettingsViewController.swift */; };
 		F72F0AC428733E2D00591386 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72F0AC328733E2D00591386 /* SettingsViewModel.swift */; };
@@ -255,7 +254,6 @@
 		F7293B00285B6C510023FE31 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		F7293B02285B6C510023FE31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7293B04285B6C510023FE31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F72BFAE8286A426E00895B20 /* UIAlertController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Ext.swift"; sourceTree = "<group>"; };
 		F72F0ABE28733CF900591386 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F72F0AC128733D1200591386 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F72F0AC328733E2D00591386 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -614,7 +612,6 @@
 				F70E84392625A83300ADF8C3 /* UILayoutPriority+Ext.swift */,
 				F73166622621E7FF00208394 /* UIColor+Ext.swift */,
 				F70E843D2625A89200ADF8C3 /* UILabel+Ext.swift */,
-				F72BFAE8286A426E00895B20 /* UIAlertController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1348,7 +1345,6 @@
 				F7919D31262EF83C0056935F /* NewsError.swift in Sources */,
 				F73166722621EEB300208394 /* ActivityView.swift in Sources */,
 				F7293AE7285B63D50023FE31 /* StorageKeys.swift in Sources */,
-				F72BFAE9286A426E00895B20 /* UIAlertController+Ext.swift in Sources */,
 				F714C8432643BF2700ED596D /* ShareToSafariCoordinator.swift in Sources */,
 				F75CF47E2624CC61008AE543 /* SnappingCollectionViewLayout.swift in Sources */,
 				F7E18EDC2860F648004342BC /* NSObject.swift in Sources */,
