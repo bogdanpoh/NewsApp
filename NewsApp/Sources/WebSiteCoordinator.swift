@@ -51,7 +51,7 @@ extension WebSiteCoordinator: Coordinatable {
 
 extension WebSiteCoordinator: WebSiteCoordinatorProtocol {
     
-    func shareToSafari (urlString: String) {
+    func shareToSafari(urlString: String) {
         let coordinator = coordinator.makeShareToSafariCoordinator(with: router, urlString: urlString)
         coordinator.finishFlow = { [unowned coordinator, unowned self] in
             remove(dependency: coordinator)

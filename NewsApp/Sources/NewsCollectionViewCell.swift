@@ -98,7 +98,7 @@ extension NewsCollectionViewCell {
         articleImageView.setImage(path: state.imageUrl, placeholder: R.image.newsPlaceholder()) { [weak articleImageView] result in
             switch result {
             case .failure(_):
-                articleImageView?.image = R.image.newsPlaceholder()
+                articleImageView?.setImage(R.image.newsPlaceholder())
                 
             default:
                 break

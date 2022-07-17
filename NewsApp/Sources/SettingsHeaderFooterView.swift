@@ -75,7 +75,7 @@ extension SettingsHeaderFooterView {
 
     @discardableResult
     func set(text: String, style: TextStyle) -> Self {
-        var valueText: String?
+        let valueText: String
 
         switch style {
         case .header:
@@ -85,7 +85,7 @@ extension SettingsHeaderFooterView {
             valueText = text
         }
 
-        titleLabel.text = valueText
+        titleLabel.text(valueText)
         return self
     }
 

@@ -16,7 +16,7 @@ protocol WebSiteModuleFactoryProtocol {
 extension ModulesFactory: WebSiteModuleFactoryProtocol {
     
     func makeWebSiteView(coordinator: WebSiteCoordinator, urlString: String) -> Presentable {
-        guard let url = URL(string: urlString) else { return UIViewController() }
+        guard let url = urlString.asURL else { return UIViewController() }
         
         let configuration = SFSafariViewController.Configuration()
         configuration.entersReaderIfAvailable = true

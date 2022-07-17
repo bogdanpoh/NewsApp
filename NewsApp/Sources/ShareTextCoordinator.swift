@@ -40,7 +40,6 @@ extension ShareTextCoordinator: Coordinatable {
     
     func start() {
         let view = moduleFactory.makeShareTextView(text: text)
-//        router.present(view)
         router.topPresent(view)
     }
     

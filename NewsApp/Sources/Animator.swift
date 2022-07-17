@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
+final class Animator: NSObject {
 
     enum PresentationType {
         case present
@@ -46,6 +46,12 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         self.cellAuthorLabelCoordinate = selectedCell.authorLabel.convertSelfBounds(to: window)
     }
 
+}
+
+// MARK: - UIViewControllerAnimatedTransitioning
+
+extension Animator: UIViewControllerAnimatedTransitioning {
+    
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return Self.duration
     }
@@ -80,13 +86,13 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         let fadeView = UIView()
         fadeView.backgroundColor = toViewControllerContent.backgroundColor
         
-        var cellFadeViewCoordinate = selectedCell.contentView.convert(selectedCell.contentView.bounds, to: window)
+        var cellFadeViewCoordinate = selectedCell.contentView.convertSelfBounds(to: window)
         cellFadeViewCoordinate.origin.x += selectedCell.leftCellOffset
         cellFadeViewCoordinate.origin.y += selectedCell.topCellOffset
         cellFadeViewCoordinate.size.width = selectedCell.bounds.width - (selectedCell.leftCellOffset + selectedCell.rightCellOffset)
         cellFadeViewCoordinate.size.height -= selectedCell.topCellOffset
         
-        let controllerFadeViewCoordinate = toViewController.view.convert(toViewController.view.bounds, to: window)
+        let controllerFadeViewCoordinate = toViewController.view.convertSelfBounds(to: window)
         fadeView.frame = isPresenting ? cellFadeViewCoordinate : controllerFadeViewCoordinate
 
         if isPresenting {
@@ -230,6 +236,7 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
             transitionContext.completeTransition(isFinish)
         })
     }
+    
 }
 
 // MARK: - Private
