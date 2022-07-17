@@ -21,11 +21,13 @@ final class DetailsView: View {
     // MARK: - UI
     
     private lazy var imageContentStack = makeStackView(axis: .vertical) (
-        imageBackgroundView,
+        View(),
         articleImage
     )
     
-    private(set) var imageBackgroundView = View()
+    private(set) var imageBackgroundView = ImageView()
+        .setContentMode(.scaleToFill)
+        .addBlur(1)
     
     private(set) var articleImage = KFImageView()
         .backgroundColor(color: .gray)
@@ -71,7 +73,7 @@ final class DetailsView: View {
     override func setupSubviews() {
         super.setupSubviews()
         
-        addSubviews(imageContentStack, closeButton, contentStack)
+        addSubviews(imageBackgroundView, imageContentStack, closeButton, contentStack)
         addGestureRecognizer(swipeDown)
     }
     
@@ -87,6 +89,11 @@ final class DetailsView: View {
         imageContentStack.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(articleImageHeight + topInstet)
+        }
+        
+        imageBackgroundView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(imageContentStack)
         }
         
         articleImage.snp.makeConstraints {
@@ -153,12 +160,12 @@ extension DetailsView {
         articleImage.setImage(path: state.articleImageUrl, placeholder: R.image.newsPlaceholder()) { [weak self] result in
             switch result {
             case .success(let image):
-                self?.imageBackgroundView.setBackgroundColor(from: image)
+                self?.imageBackgroundView.setImage(image)
                 
             case .failure(_):
                 let placeholder = R.image.newsPlaceholder()
-                self?.articleImage.image = placeholder
-                self?.imageBackgroundView.setBackgroundColor(from: placeholder)
+                self?.articleImage.setImage(placeholder)
+                self?.imageBackgroundView.setImage(placeholder)
             }
         }
         

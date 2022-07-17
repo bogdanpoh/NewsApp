@@ -5,7 +5,6 @@ target 'NewsApp' do
     
     # UI
     pod 'SnapKit', '~> 5.0.0'
-    pod 'UIImageColors', '~> 2.1.0'
     
     # Arhitecture
     pod 'Swinject', "~> 2.8.1"

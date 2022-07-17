@@ -230,18 +230,3 @@ extension UIView {
     }
 
 }
-
-import UIImageColors
-
-extension UIView {
-    
-    @discardableResult
-    func setBackgroundColor(from image: UIImage?) -> Self {
-        image?.getColors() { [weak self] in
-            self?.backgroundColor = $0?.background
-        }
-        
-        return self
-    }
-    
-}
