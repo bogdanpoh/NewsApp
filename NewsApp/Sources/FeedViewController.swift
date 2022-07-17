@@ -155,6 +155,7 @@ extension FeedViewController: UICollectionViewDataSource {
 extension FeedViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: false)
         selectedCell = collectionView.cellForItem(at: indexPath) as? NewsCollectionViewCell
         
         viewModel.tapSelectCell(at: indexPath)

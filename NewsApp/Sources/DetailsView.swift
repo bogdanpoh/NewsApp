@@ -21,9 +21,11 @@ final class DetailsView: View {
     // MARK: - UI
     
     private lazy var imageContentStack = makeStackView(axis: .vertical) (
-        View(),
+        imageBackgroundView,
         articleImage
     )
+    
+    private(set) var imageBackgroundView = View()
     
     private(set) var articleImage = KFImageView()
         .backgroundColor(color: .gray)
@@ -151,12 +153,12 @@ extension DetailsView {
         articleImage.setImage(path: state.articleImageUrl, placeholder: R.image.newsPlaceholder()) { [weak self] result in
             switch result {
             case .success(let image):
-                self?.imageContentStack.setBackgroundColor(from: image)
+                self?.imageBackgroundView.setBackgroundColor(from: image)
                 
             case .failure(_):
                 let placeholder = R.image.newsPlaceholder()
                 self?.articleImage.image = placeholder
-                self?.imageContentStack.setBackgroundColor(from: placeholder)
+                self?.imageBackgroundView.setBackgroundColor(from: placeholder)
             }
         }
         
