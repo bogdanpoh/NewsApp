@@ -224,6 +224,10 @@ extension UIView {
         subviews.forEach { addSubview($0) }
         return self
     }
+    
+    func convertSelfBounds(to space: UICoordinateSpace) -> CGRect {
+        return convert(bounds, to: space)
+    }
 
 }
 
