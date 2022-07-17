@@ -13,24 +13,13 @@ final class NewsCollectionView: View {
     
     private(set) var refreshControl = UIRefreshControl()
     
-//    private(set) lazy var tableView = UICollectionView()
-//        .make {
-//            $0.register(class: NewsCollectionViewCell.self)
-//            $0.setEmptyFooter()
-//            $0.refreshControl = refreshControl
-//            $0.separatorStyle = .none
-//            $0.setRowHeight(310)
-//        }
+    private let collectionViewFlowLayout = UICollectionViewFlowLayout()
     
-    private(set) lazy var collectionView: UICollectionView = {
-        let collectionViewFlowLayout = UICollectionViewFlowLayout()
-        collectionViewFlowLayout.scrollDirection = .vertical
-
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
-        collectionView.register(class: NewsCollectionViewCell.self)
-        collectionView.refreshControl = refreshControl
-        return collectionView
-    }()
+    private(set) lazy var collectionView =  UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
+        .make {
+            $0.register(class: NewsCollectionViewCell.self)
+            $0.refreshControl = refreshControl
+        }
     
     // MARK: - Lifecycle
     
