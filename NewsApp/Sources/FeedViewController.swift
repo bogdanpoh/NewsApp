@@ -159,6 +159,7 @@ extension FeedViewController: UICollectionViewDelegate {
         selectedCell = collectionView.cellForItem(at: indexPath) as? NewsCollectionViewCell
         
         viewModel.tapSelectCell(at: indexPath)
+        logger.info("tapped on cell: \(indexPath)")
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
